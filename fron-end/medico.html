@@ -1,0 +1,257 @@
+<!-- <!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <title>Registro Cliente</title>
+    <script src="../js/cliente.js"></script>
+    <link rel="stylesheet" href="../css/cliente.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="centrado">
+        <div class="container">
+            <h1>Crear Cliente</h1>
+            <div class="row">
+                <div class="col col-xl-6 col-12">
+                    <label for="">Tipo documento</label>
+                    <select name="" id="tipo_documento" class="form-select">
+                        <option value="" selected disabled>Selecciones una opción</option>
+                        <option value="RC">Registro Civil</option>
+                        <option value="TI">Tarjeta de Identidad</option>
+                        <option value="CC">Cedula de Ciudadanía</option>
+                        <option value="CE">Cedula de Extranjería</option>
+                    </select>
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Número de documento</label>
+                    <input type="number" id="numero_documento" step="1" class="form-control"
+                        onfocusout="validarNumeroDocumento(this);">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Primer Nombre</label>
+                    <input type="text" id="primer_nombre" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Segundo Nombre</label>
+                    <input type="text" id="segundo_nombre" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Primer Apellido</label>
+                    <input type="text" id="primer_apellido" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Segundo Apellido</label>
+                    <input type="text" id="segundo_apellido" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Teléfono</label>
+                    <input type="text" id="telefono" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Correo</label>
+                    <input type="text" id="correo" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Direccion</label>
+                    <input type="text" id="direccion" class="form-control">
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-success" onclick="crearClientes();">Enviar</button>
+            <button class="btn btn-secondary">Limpiar</button>
+        </div>
+    </div>
+
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Médicos</title>
+</head>
+
+<body>
+    <!-- Formulario para agregar médicos -->
+    <h2>Agregar Médico</h2>
+    <br>
+    <div class="centrado">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xl-6 col-12">
+                    <label for="">Tipo documento</label>
+                    <select name="" id="tipo_documento" class="form-select">
+                        <option value="" selected disabled>Selecciones una opción</option>
+                        <option value="RC">Registro Civil</option>
+                        <option value="TI">Tarjeta de Identidad</option>
+                        <option value="CC">Cedula de Ciudadanía</option>
+                        <option value="CE">Cedula de Extranjería</option>
+                    </select>
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Número de documento</label>
+                    <input type="number" id="numero_documento" step="1" class="form-control"
+                        onfocusout="validarNumeroDocumento(this);">
+                    <!-- EL "STEP="1""  es para poner numeros decimales o no -->
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Primer Nombre</label>
+                    <input type="text" id="primer_nombre" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Segundo Nombre</label>
+                    <input type="text" id="segundo_nombre" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Primer Apellido</label>
+                    <input type="text" id="primer_apellido" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Segundo Apellido</label>
+                    <input type="text" id="segundo_apellido" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Teléfono</label>
+                    <input type="text" id="telefono" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Correo</label>
+                    <input type="text" id="correo" class="form-control">
+                </div>
+                <div class="col col-xl-6 col-12">
+                    <label for="">Direccion</label>
+                    <input type="text" id="direccion" class="form-control">
+                </div>
+            </div>
+            <br>
+            <button onclick="agregarMedico()">Agregar Médico</button>
+
+            <!-- Formulario para filtrar médicos -->
+            <h2>Filtrar Médicos</h2>
+            <label for="filtro_especialidad">Filtrar por Especialidad:</label>
+            <input type="text" id="filtro_especialidad" onkeyup="filtrarMedicos()">
+
+            <!-- Tabla para listar médicos -->
+            <h2>Listado de Médicos</h2>
+            <table id="tabla_medicos">
+                <tr>
+                    <th>Tipo documento</th>
+                    <th>Numero de documento</th>
+                    <th>Primer Nombre</th>
+                    <th>Segundo Nombre</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Direccion</th>
+                </tr>
+                <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+            </table>
+
+
+            <script>
+                // Array para almacenar los médicos
+                var medicos = [];
+
+                // Función para agregar un médico a la tabla y al array
+                function agregarMedico() {
+
+                    var nombre = document.getElementById("nombre").value;
+                    var nombre = document.getElementById("nombre").value;
+                    var especialidad = document.getElementById("especialidad").value;
+                    var contacto = document.getElementById("contacto").value;
+
+                    // Agregar el médico al array
+                    medicos.push({ nombre: nombre, especialidad: especialidad, contacto: contacto });
+
+                    // Actualizar la tabla
+                    actualizarTabla();
+                }
+
+                // Función para filtrar los médicos en la tabla
+                function filtrarMedicos() {
+                    var filtroEspecialidad = document.getElementById("filtro_especialidad").value.toLowerCase();
+                    var tabla = document.getElementById("tabla_medicos");
+                    var rows = tabla.getElementsByTagName("tr");
+
+                    for (var i = 1; i < rows.length; i++) {
+                        var especialidad = rows[i].getElementsByTagName("td")[1].innerText.toLowerCase();
+                        if (especialidad.includes(filtroEspecialidad) || filtroEspecialidad === "") {
+                            rows[i].style.display = "";
+                        } else {
+                            rows[i].style.display = "none";
+                        }
+                    }
+                }
+
+                // Función para actualizar la tabla de médicos
+                function actualizarTabla() {
+                    var tabla = document.getElementById("tabla_medicos");
+                    tabla.innerHTML = `
+            <tr>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+                <th>Contacto</th>
+                <th>Acciones</th>
+                </tr>
+                `;
+
+                    for (var i = 0; i < medicos.length; i++) {
+                        tabla.innerHTML += `
+                    <tr>
+                        <td>${medicos[i].nombre}</td>
+                        <td>${medicos[i].especialidad}</td>
+                        <td>${medicos[i].contacto}</td>
+                        <td>
+                            <button onclick="editarMedico(${i})">Editar</button>
+                            <button onclick="deshabilitarMedico(${i})">Deshabilitar</button>
+                            </td>
+                            </tr>
+                            `;
+                    }
+                }
+
+                // Función para editar un médico
+                function editarMedico(index) {
+                    var nuevoNombre = prompt("Ingrese el nuevo nombre:", medicos[index].nombre);
+                    var nuevaEspecialidad = prompt("Ingrese la nueva especialidad:", medicos[index].especialidad);
+                    var nuevoContacto = prompt("Ingrese el nuevo contacto:", medicos[index].contacto);
+
+                    // Actualizar los datos del médico en el array
+                    if (nuevoNombre !== null && nuevaEspecialidad !== null && nuevoContacto !== null) {
+                        medicos[index].nombre = nuevoNombre;
+                        medicos[index].especialidad = nuevaEspecialidad;
+                        medicos[index].contacto = nuevoContacto;
+
+                        // Actualizar la tabla
+                        actualizarTabla();
+                    }
+                }
+
+                // Función para deshabilitar un médico
+                function deshabilitarMedico(index) {
+                    // Eliminar el médico del array
+                    medicos.splice(index, 1);
+
+                    // Actualizar la tabla
+                    actualizarTabla();
+                }
+            </script>
+</body>
+
+</html>
