@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <title>Registro Ingreso</title>
+    <link rel="stylesheet" href="./css/RegistroPaciente.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div>
+        <div class="centradoo">
+            <div class="container col">
+                <br>
+                <h2>Registrar Ingreso</h2>
+                <div class="row">
+                    <div class="col col-xl-6 col-12">
+                        <label for="">Habitacion</label>
+                        <input type="text" id="Habitacion" class="form-control">
+                    </div>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">Cama</label>
+                        <input type="text" id="Cama" class="form-control">
+                    </div>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">Tipo documento del Paciente</label>
+                        <select name="" id="tipo_documento-paciente" class="form-select">
+                            <option value="" selected disabled>Selecciones una opción</option>
+                            <option value="RC">Registro Civil</option>
+                            <option value="TI">Tarjeta de Identidad</option>
+                            <option value="CC">Cedula de Ciudadanía</option>
+                            <option value="CE">Cedula de Extranjería</option>
+                        </select>
+                    </div>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">Tipo documento del Medico</label>
+                        <select name="" id="tipo_documento_Medico" class="form-select">
+                            <option value="" selected disabled>Selecciones una opción</option>
+                            <option value="RC">Registro Civil</option>
+                            <option value="TI">Tarjeta de Identidad</option>
+                            <option value="CC">Cedula de Ciudadanía</option>
+                            <option value="CE">Cedula de Extranjería</option>
+                        </select>
+                    </div>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">N° de Documento del Paciente</label>
+                        <input type="text" id="documento_paciente" class="form-control">
+                    </div>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">N° de Documento  del Medico</label>
+                        <input type="text" id="documento_medico" class="form-control">
+                    </div>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">Fecha de Ingreso</label>
+                        <input type="date" id="ingreso" class="form-control">
+                    </div>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">Fecha de salida</label>
+                        <input type="date" id="salida" class="form-control">
+                    </div>
+                    <center>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">Estado</label>
+                        <select name="" id="Estado" class="form-select">
+                            <option value="" selected disabled>Selecciones una opción</option>
+                            <option value="H">Habilitado</option>
+                            <option value="D">Deshabilitado </option>
+                        </select>
+                    </div>
+                </center>
+                </div>
+                <br>
+
+
+                <button class="btn btn-success" onclick="crearClientes();">Enviar</button>
+                <button class="btn btn-secondary">Limpiar</button>
+                <br>
+                <div><br></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
