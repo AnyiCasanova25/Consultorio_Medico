@@ -1,3 +1,7 @@
 .centrado {
- margin-top: 5%;
+    margin-top: 5%;
+}
+body {
+    background-image: url('/img/fondototal.webp');
+    background-size: cover;
 }
