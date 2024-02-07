@@ -1,5 +1,7 @@
 package consultorio.com.consultorio.models;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,12 +44,12 @@ public class Ingreso {
     private Medico Medico;
 
     @Column(name = "fechaIngreso", nullable = false, length = 36)
-    private String fechaIngreso;
+    private Date  fechaIngreso;
 
     @Column(name = "fechaSalida", nullable = false, length = 36)
-    private String fechaSalida;
+    private Date fechaSalida;
 
-    @Column(name = "Estado", nullable = false, length = 36)
+    @Column(name = "Estado", nullable = false, length = 1)
     private String Estado;
 
     public Ingreso() {
@@ -55,7 +57,7 @@ public class Ingreso {
 
     public Ingreso(String idIngreso, String habitacion, String cama,
             consultorio.com.consultorio.models.Paciente paciente, consultorio.com.consultorio.models.Medico medico,
-            String fechaIngreso, String fechaSalida, String estado) {
+            Date fechaIngreso, Date fechaSalida, String estado) {
         this.idIngreso = idIngreso;
         this.habitacion = habitacion;
         this.cama = cama;
@@ -106,19 +108,19 @@ public class Ingreso {
         Medico = medico;
     }
 
-    public String getFechaIngreso() {
+    public Date getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(String fechaIngreso) {
+    public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public String getFechaSalida() {
+    public Date getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(String fechaSalida) {
+    public void setFechaSalida(Date fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 

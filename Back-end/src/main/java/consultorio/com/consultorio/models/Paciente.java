@@ -28,7 +28,7 @@ public class Paciente {
     @Column(name = "idPaciente", nullable = false, length = 36)
     private String idPaciente;
 
-    @Column(name = "documentoIdentidad", nullable = false, length = 36)
+    @Column(name = "documentoIdentidad", nullable = false, length = 11)
     private String documentoIdentidad;
 
     @Column(name = "primerNombre", nullable = false, length = 36)
@@ -43,19 +43,19 @@ public class Paciente {
     @Column(name = "segundoApellido", nullable = false, length = 36)
     private String segundoApellido;
 
-    @Column(name = "Celular", nullable = false, length = 36)
+    @Column(name = "Celular", nullable = false, length = 13)
     private String Celular;
 
-    @Column(name = "Correo", nullable = false, length = 36)
+    @Column(name = "Correo", nullable = false, length = 100)
     private String Correo;
 
     @Column(name = "nombrePersonaContacto", nullable = false, length = 36)
     private String nombrePersonaContacto;
 
-    @Column(name = "telefonoPersonaContacto", nullable = false, length = 36)
+    @Column(name = "telefonoPersonaContacto", nullable = false, length = 13)
     private String telefonoPersonaContacto;
 
-    @Column(name = "Estado", nullable = false, length = 36)
+    @Column(name = "Estado", nullable = false, length = 1)
     private String Estado;
 
     public Paciente() {
