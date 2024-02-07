@@ -10,7 +10,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <title>Registro Medico</title>
-    <link rel="stylesheet" href="./css/RegistroPaciente.css">
+    <link rel="stylesheet" href="/fron-end/css/estilos.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -61,21 +61,23 @@
                         <label for="">Correo</label>
                         <input type="text" id="correo" class="form-control">
                     </div>
-                    <center>
                     <div class="col col-xl-6 col-12">
                         <label for="">Estado</label>
                         <select name="" id="Estado" class="form-select">
                             <option value="" selected disabled>Selecciones una opción</option>
                             <option value="H">Habilitado</option>
-                            <option value="D">Deshabilitado </option>
+                            <option value="D">especialidad </option>
                         </select>
                     </div>
-                </center>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">Especialidad</label>
+                        <input type="text" id="telefono" class="form-control">
+                    </div>
                 </div>
                 <br>
 
 
-                <button class="btn btn-success" onclick="crearClientes();">Enviar</button>
+                <button class="btn btn-success" onclick="agregarMedico();">Enviar</button>
                 <button class="btn btn-secondary">Limpiar</button>
                 <br>
                 <div><br></div>

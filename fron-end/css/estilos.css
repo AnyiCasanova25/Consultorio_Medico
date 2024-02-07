@@ -1,0 +1,38 @@
+.centrado {
+    margin-top: 5%;
+}
+
+.centradoo {
+    margin-top: 10%;
+}
+
+.centradooo {
+    margin: 350px 0px 0px 40%;
+}
+
+.centradoInicio {
+    margin: 12% 0px 0px 35%;
+}
+
+.col {
+    background-color: #C2C8C5;
+}
+
+
+body {
+    background-color: #DDDDDA !important;
+}
+
+.circul{
+    border-radius: 100%;
+    background-color: #C2C8C5;
+    width: 120px;
+    height: 120px;
+    display: block;
+
+}
+ .circul i{
+    margin-top: 20%;
+    font-size: 65px;
+
+ }
