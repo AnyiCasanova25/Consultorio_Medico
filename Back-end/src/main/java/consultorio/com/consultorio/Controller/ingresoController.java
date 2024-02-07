@@ -45,10 +45,15 @@ public class ingresoController {
     public ResponseEntity<Object> delete(@PathVariable String id) {
         var Ingreso = ingresoService.findOne(id).get();
         if (Ingreso != null) {
-            Ingreso.setEstado("D");
-            return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>("No se ha encontrado el registro de ingreso", HttpStatus.BAD_REQUEST);
+            if (Ingreso.getEstado().equals("H")) {
+
+                Ingreso.setEstado("D");
+                return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
+            } else
+            Ingreso.setEstado("H");
+            return new ResponseEntity<>("Se ha habilitado correctamente", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
         }
     }
 
