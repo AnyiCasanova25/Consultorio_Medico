@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 97c31b929456910ab91ab94506917e29b2acd1b9
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RequestMapping("/api/v1/Medico")
@@ -43,8 +47,13 @@ public class medicoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
-        medicoService.delete(id);
-        return new ResponseEntity<>("Registro Eliminado", HttpStatus.OK);
+        var Medico = medicoService.findOne(id).get();
+        if (Medico != null) {
+            Medico.setEstado("D");
+            return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("/{id}")
