@@ -45,7 +45,7 @@ public class Ingreso {
     private String fechaIngreso;
 
     @Column(name = "fechaSalida", nullable = false, length = 36)
-    private String Celular;
+    private String fechaSalida;
 
     @Column(name = "Estado", nullable = false, length = 36)
     private String Estado;
@@ -55,14 +55,14 @@ public class Ingreso {
 
     public Ingreso(String idIngreso, String habitacion, String cama,
             consultorio.com.consultorio.models.Paciente paciente, consultorio.com.consultorio.models.Medico medico,
-            String fechaIngreso, String celular, String estado) {
+            String fechaIngreso, String fechaSalida, String estado) {
         this.idIngreso = idIngreso;
         this.habitacion = habitacion;
         this.cama = cama;
         Paciente = paciente;
         Medico = medico;
         this.fechaIngreso = fechaIngreso;
-        Celular = celular;
+        this.fechaSalida = fechaSalida;
         Estado = estado;
     }
 
@@ -114,12 +114,12 @@ public class Ingreso {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public String getCelular() {
-        return Celular;
+    public String getFechaSalida() {
+        return fechaSalida;
     }
 
-    public void setCelular(String celular) {
-        Celular = celular;
+    public void setFechaSalida(String fechaSalida) {
+        this.fechaSalida = fechaSalida;
     }
 
     public String getEstado() {
@@ -130,5 +130,6 @@ public class Ingreso {
         Estado = estado;
     }
 
-}
+    
 
+}

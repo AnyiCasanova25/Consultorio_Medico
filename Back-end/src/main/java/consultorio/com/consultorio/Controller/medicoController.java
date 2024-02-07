@@ -12,10 +12,8 @@ import consultorio.com.consultorio.models.Medico;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RequestMapping("/api/v1/Medico")
@@ -57,7 +55,8 @@ public class medicoController {
             Medico.setDocumentoIdentidad(MedicoUpdate.getDocumentoIdentidad());
             Medico.setPrimerNombre(MedicoUpdate.getPrimerNombre());
             Medico.setSegundoNombre(MedicoUpdate.getSegundoNombre());
-            Medico.setPrimerApellido(MedicoUpdate.getSegundoApellido());
+            Medico.setPrimerApellido(MedicoUpdate.getPrimerApellido());
+            Medico.setSegundoApellido(MedicoUpdate.getSegundoApellido());
             Medico.setCelular(MedicoUpdate.getCelular());
             Medico.setCorreo(MedicoUpdate.getCorreo());
             Medico.setEstado(MedicoUpdate.getEstado());
