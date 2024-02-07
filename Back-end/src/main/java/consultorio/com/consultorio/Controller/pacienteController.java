@@ -61,6 +61,7 @@ public class pacienteController {
             Paciente.setCorreo(PacienteUpdate.getCorreo());
             Paciente.setNombrePersonaContacto(PacienteUpdate.getNombrePersonaContacto());
             Paciente.setTelefonoPersonaContacto(PacienteUpdate.getTelefonoPersonaContacto());
+            Paciente.setEstado(PacienteUpdate.getEstado());
             
            
 
