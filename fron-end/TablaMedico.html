@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicos</title>
+    <script src="/fron-end/js/medico.js"></script>
+</head>
+<body>
+    <h2>Filtrar Médicos</h2>
+    <label for="filtro_especialidad">Filtrar por Especialidad:</label>
+    <input type="text" id="filtro_especialidad" onkeyup="filtrarMedicos()">
+
+    <!-- Tabla para listar médicos -->
+    <h2>Listado de Médicos</h2>
+    <table id="tabla_medicos">
+        <tr>
+            <th>Tipo documento</th>
+            <th>Numero de documento</th>
+            <th>Primer Nombre</th>
+            <th>Segundo Nombre</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Direccion</th>
+            <th>Especialidad</th>
+        </tr>
+        <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+    </table>
+</body>
+</html>

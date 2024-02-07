@@ -26,7 +26,11 @@ public class Medico {
     @Column(name = "idMedico", nullable = false, length = 36)
     private String idMedico;
 
+<<<<<<< HEAD
     @Column(name = "documentoIdentidad", nullable = false, length = 13)
+=======
+    @Column(name = "documentoIdentidad", nullable = false, length = 11)
+>>>>>>> 81a7bccc000df0fc3d2f601d2d46fc3d810b98bf
     private String documentoIdentidad;
 
     @Column(name = "primerNombre", nullable = false, length = 36)
@@ -41,7 +45,11 @@ public class Medico {
     @Column(name = "segundoApellido", nullable = false, length = 36)
     private String segundoApellido;
 
+<<<<<<< HEAD
     @Column(name = "Celular", nullable = false, length = 11)
+=======
+    @Column(name = "Celular", nullable = false, length = 13)
+>>>>>>> 81a7bccc000df0fc3d2f601d2d46fc3d810b98bf
     private String Celular;
 
     @Column(name = "Correo", nullable = false, length = 100)
