@@ -20,6 +20,7 @@ public class Paciente {
      * - correo electrónico (obligatorio)
      * - nombre persona de contacto (obligatorio)
      * - telefono persona de contacto (obligatorio)
+     * - Estado
      */
 
     @Id
@@ -54,12 +55,15 @@ public class Paciente {
     @Column(name = "telefonoPersonaContacto", nullable = false, length = 36)
     private String telefonoPersonaContacto;
 
+    @Column(name = "Estado", nullable = false, length = 36)
+    private String Estado;
+
     public Paciente() {
     }
 
     public Paciente(String idPaciente, String documentoIdentidad, String primerNombre, String segundoNombre,
             String primerApellido, String segundoApellido, String celular, String correo, String nombrePersonaContacto,
-            String telefonoPersonaContacto) {
+            String telefonoPersonaContacto, String estado) {
         this.idPaciente = idPaciente;
         this.documentoIdentidad = documentoIdentidad;
         this.primerNombre = primerNombre;
@@ -70,6 +74,7 @@ public class Paciente {
         Correo = correo;
         this.nombrePersonaContacto = nombrePersonaContacto;
         this.telefonoPersonaContacto = telefonoPersonaContacto;
+        Estado = estado;
     }
 
     public String getIdPaciente() {
@@ -152,8 +157,12 @@ public class Paciente {
         this.telefonoPersonaContacto = telefonoPersonaContacto;
     }
 
-    
-    
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String estado) {
+        Estado = estado;
+    }
 
 }
-
