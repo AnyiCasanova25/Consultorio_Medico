@@ -43,8 +43,13 @@ public class ingresoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
-        ingresoService.delete(id);
-        return new ResponseEntity<>("Ingreso Eliminado", HttpStatus.OK);
+        var Ingreso = ingresoService.findOne(id).get();
+        if (Ingreso != null) {
+            Ingreso.setEstado("D");
+            return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("No se ha encontrado el registro de ingreso", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("/{id}")
