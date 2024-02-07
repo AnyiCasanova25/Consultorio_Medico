@@ -46,9 +46,14 @@ public class medicoController {
     public ResponseEntity<Object> delete(@PathVariable String id) {
         var Medico = medicoService.findOne(id).get();
         if (Medico != null) {
-            Medico.setEstado("D");
-            return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
-        }else{
+            if (Medico.getEstado().equals("H")) {
+
+                Medico.setEstado("D");
+                return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
+            } else
+                Medico.setEstado("H");
+            return new ResponseEntity<>("Se ha habilitado correctamente", HttpStatus.OK);
+        } else {
             return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
         }
     }
