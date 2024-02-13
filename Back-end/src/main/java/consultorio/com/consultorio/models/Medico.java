@@ -25,7 +25,7 @@ public class Medico {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "idMedico", nullable = false, length = 36)
     private String idMedico;
-
+ 
     @Column(name = "documentoIdentidad", nullable = false, length = 11)
     private String documentoIdentidad;
 
