@@ -17,6 +17,51 @@
 </head>
 
 <body>
+    <br id="Tabla">
+
+
+    <div>
+        <div class="centradooor">
+            <div class="container col">
+                <br>
+                <div class="row">
+
+                    <!-- Tabla para listar médicos -->
+                    <h2>Listado de Médicos</h2>
+                    <table id="tabla_medicos">
+                        <div>
+                            <tr>
+                                <th>Documento</th>
+                                <th>N° de documento</th>
+                                <th>Primer Nombre</th>
+                                <th>Segundo Nombre</th>
+                                <th>Primer Apellido</th>
+                                <th>Segundo Apellido</th>
+                                <th>Telefono</th>
+                                <th>Correo</th>
+                                <th>Estado</th>
+                                <th>Especialidad</th>
+                            </tr>
+                        </div>
+                        <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+                    </table>
+
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        <p><a class="btn btn-success" href="#ir">Registrar</a></p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="topdiv"></div>
+
     <div>
         <div class="centradoo">
             <div class="container col">
@@ -25,7 +70,7 @@
                 <div class="row">
                     <div class="col col-xl-6 col-12">
                         <label for="">Tipo documento</label>
-                        <select name="" id="tipo_documento" class="form-select">
+                        <select name="" id="TipoDocumento" class="form-select">
                             <option value="" selected disabled>Selecciones una opción</option>
                             <option value="RC">Registro Civil</option>
                             <option value="TI">Tarjeta de Identidad</option>
@@ -34,58 +79,72 @@
                         </select>
                     </div>
                     <div class="col col-xl-6 col-12">
-                        <label for="">N° de documento</label>
-                        <input type="number" id="numero_documento" step="1" class="form-control"
+                        <label for="">Numero de documento</label>
+                        <input type="number" id="NumeroDocumento" step="1" class="form-control"
                             onfocusout="validarNumeroDocumento(this);">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Primer Nombre</label>
-                        <input type="text" id="primer_nombre" class="form-control">
+                        <input type="text" id="PrimerNombre" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Segundo Nombre</label>
-                        <input type="text" id="segundo_nombre" class="form-control">
+                        <input type="text" id="SegundoNombre" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Primer Apellido</label>
-                        <input type="text" id="primer_apellido" class="form-control">
+                        <input type="text" id="PrimerApellido" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Segundo Apellido</label>
-                        <input type="text" id="segundo_apellido" class="form-control">
+                        <input type="text" id="SegundoApellido" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Teléfono</label>
-                        <input type="text" id="telefono" class="form-control">
+                        <input type="text" id="Telefono" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Correo</label>
-                        <input type="text" id="correo" class="form-control">
+                        <input type="text" id="Correo" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Estado</label>
                         <select name="" id="Estado" class="form-select">
                             <option value="" selected disabled>Selecciones una opción</option>
-                            <option value="H">Habilitado</option>
-                            <option value="D">especialidad </option>
+                            <option value="Habilitado">Habilitado</option>
+                            <option value="Deshabilitado">Deshabilitado </option>
                         </select>
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Especialidad</label>
-                        <input type="text" id="telefono" class="form-control">
+                        <select name="" id="Especialidad" class="form-select">
+                            <option value="" selected disabled>Selecciones una opción</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="Medico">Medico </option>
+                            <option value="Enfermero">Enfermero </option>
+                            <option value="Neurocirujano">Neurocirujano </option>
+                        </select>
                     </div>
                 </div>
+                <br id="ir">
+                <a class="btn btn-success" onclick="AgregarMedico();">Registrar</a>
+                <a class="btn btn-success" href="#Tabla">Ver Tabla</a>
                 <br>
-
-
-                <button class="btn btn-success" onclick="agregarMedico();">Enviar</button>
-                <button class="btn btn-secondary">Limpiar</button>
-                <br>
-                <div><br></div>
+                <div>
+                    <br>
+                </div>
             </div>
         </div>
-
     </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <script src="/fron-end/js/medico.js"></script>
+</body>
 
 </body>
 
