@@ -44,6 +44,21 @@ public class medicoController {
             return new ResponseEntity<>("El primer nombre es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
+        if (Medico.getPrimerApellido().equals("")) {
+            
+            return new ResponseEntity<>("El primer apellido es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (Medico.getCelular().equals("")) {
+            
+            return new ResponseEntity<>("El numero de celular es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (Medico.getCorreo().equals("")) {
+            
+            return new ResponseEntity<>("La direccion de correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
         // todo bien
         medicoService.save(Medico);
         return new ResponseEntity<>(Medico, HttpStatus.OK);
