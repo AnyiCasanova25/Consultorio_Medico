@@ -25,16 +25,23 @@ public class medicoController {
 
     @PostMapping("/")
     public ResponseEntity<Object> save(@ModelAttribute("Medico") Medico Medico) {
-        if(Medico.getDocumentoIdentidad().equals("")){
-            
-            return new ResponseEntity<>("El documento de identidad es obligatorio", HttpStatus.BAD_REQUEST);
-        }else{
-            //todo bien
-            medicoService.save(Medico);
-            return new ResponseEntity<>(Medico, HttpStatus.OK);
+
+        // verificar que no exista el documento de identidad
+        var listaMedico = medicoService.findAll()
+                .stream().filter(medico -> medico.getDocumentoIdentidad()
+                        .equals(Medico.getDocumentoIdentidad()));
+        if (listaMedico.count() != 0) {
+            return new ResponseEntity<>("El medico ya existe", HttpStatus.BAD_REQUEST);
         }
-        
-        
+        //verificar que el campo documento de identidad sea diferente vacio
+        if (Medico.getDocumentoIdentidad().equals("")) {
+
+            return new ResponseEntity<>("El documento de identidad es obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        // todo bien
+        medicoService.save(Medico);
+        return new ResponseEntity<>(Medico, HttpStatus.OK);
+
     }
 
     @GetMapping("/")
