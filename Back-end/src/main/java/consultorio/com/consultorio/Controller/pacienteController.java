@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import consultorio.com.consultorio.interfaceService.IpacienteService;
+import consultorio.com.consultorio.models.Medico;
 import consultorio.com.consultorio.models.Paciente;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,8 +26,50 @@ public class pacienteController {
 
     @PostMapping("/")
     public ResponseEntity<Object> save(@ModelAttribute("Paciente") Paciente Paciente) {
-        pacienteService.save(Paciente);
+        var listaPaciente = pacienteService.findAll()
+                .stream().filter(paciente -> paciente.getDocumentoIdentidad()
+                        .equals(Paciente.getDocumentoIdentidad()));
+        if (listaPaciente.count() != 0) {
+            return new ResponseEntity<>("El paciente ya existe", HttpStatus.BAD_REQUEST);
+        }
+        //verificar que el campo documento de identidad sea diferente vacio
+        if (Paciente.getDocumentoIdentidad().equals("")) {
+
+            return new ResponseEntity<>("El documento de identidad es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (Paciente.getPrimerNombre().equals("")) {
+            
+            return new ResponseEntity<>("El primer nombre es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        if (Paciente.getPrimerApellido().equals("")) {
+            
+            return new ResponseEntity<>("El primer apellido es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (Paciente.getCelular().equals("")) {
+            
+            return new ResponseEntity<>("El numero de celular es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (Paciente.getCorreo().equals("")) {
+            
+            return new ResponseEntity<>("La direccion de correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        if (Paciente.getNombrePersonaContacto().equals("")) {
+            
+            return new ResponseEntity<>("El Nombre Persona Contacto es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (Paciente.getTelefonoPersonaContacto().equals("")) {
+            
+            return new ResponseEntity<>(" El Telefono Persona Contacto es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        // todo bien
+        pacienteService.save(Paciente); 
         return new ResponseEntity<>(Paciente, HttpStatus.OK);
+
     }
 
     @GetMapping("/")
