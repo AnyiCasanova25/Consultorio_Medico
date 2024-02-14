@@ -25,8 +25,45 @@ public class ingresoController {
 
     @PostMapping("/")
     public ResponseEntity<Object> save(@ModelAttribute("Ingreso") Ingreso Ingreso) {
-        ingresoService.save(Ingreso);
-        return new ResponseEntity<>(Ingreso, HttpStatus.OK);
+        var listaIngreso = ingresoService.findAll()
+                .stream().filter(ingreso -> ingreso.getCama()
+                        .equals(Ingreso.getCama()));
+        if (listaIngreso.count() != 0) {
+            return new ResponseEntity<>("El ingreso ya existe", HttpStatus.BAD_REQUEST);
+        }
+        //verificar que el campo documento de identidad sea diferente vacio
+        if (Ingreso.getHabitacion().equals("")) {
+
+            return new ResponseEntity<>("El campo habitacion es obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (Ingreso.getCama().equals("")) {
+            
+            return new ResponseEntity<>("El campo cama es obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        if (Ingreso.getPaciente().equals("")) {
+            
+            return new ResponseEntity<>("El campo paciente es obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        if (Ingreso.getMedico().equals("")) {
+            
+            return new ResponseEntity<>("El campo medico es obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        if (Ingreso.getFechaIngreso().equals("")) {
+            
+            return new ResponseEntity<>("El campo fecha ingreso es obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        if (Ingreso.getFechaSalida().equals("")) {
+            
+            return new ResponseEntity<>("El campo fecha salida es obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        if (Ingreso.getEstado().equals("")) {
+            
+            return new ResponseEntity<>("El campo estado es obligatorio", HttpStatus.BAD_REQUEST);
+        }
+          // todo bien
+          ingresoService.save(Ingreso); 
+          return new ResponseEntity<>(Ingreso, HttpStatus.OK);
     }
 
     @GetMapping("/")
