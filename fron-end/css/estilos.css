@@ -10,16 +10,32 @@
 .centradooo {
     margin: 350px 0px 0px 40%;
 }
+/*pantalla pequeña*/
+@media (max-width: 260px) {
+    .centradoInicio {
+        margin: 12% 0px 0px 0%;
+    }
+}
+/*mediana*/
+@media (min-width: 261px) and (max-width: 1000px) {
+    .centradoInicio {
+        margin: 12% 0px 0px 20%;
+    }
+}
+
+/*pantalla grandes*/
+@media (min-width: 1001px) and (max-width: 2000px) {
+    .centradoInicio {
+        margin: 12% 0px 0px 32%;
+    }
+}
+
 .centradooor {
     margin-top: 1%;
 }
 
-.margenTabla{
+.margenTabla {
     margin: 0px 10px 0px 10px;
-}
-
-.centradoInicio {
-    margin: 12% 0px 0px 35%;
 }
 
 .col {
@@ -29,22 +45,31 @@
 
 body {
     background-color: #DDDDDA !important;
+
 }
 
-.circul{
+.circul {
     border-radius: 100%;
     background-color: #C2C8C5;
     width: 120px;
     height: 120px;
     display: block;
-
+    transition: 1s all;
 }
- .circul i{
+
+.circul:hover {
+    background-color: #000000;
+    color: #ffffff;
+    /* width: 200px;
+    height: 200px; */
+}
+
+.circul i {
     margin-top: 20%;
     font-size: 65px;
 
- }
+}
 
- .topdiv{
+.topdiv {
     margin-top: 40%;
- }
+}
