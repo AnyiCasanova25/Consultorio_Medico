@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import consultorio.com.consultorio.interfaceService.IpacienteService;
-import consultorio.com.consultorio.models.Medico;
 import consultorio.com.consultorio.models.Paciente;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
