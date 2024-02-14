@@ -16,6 +16,54 @@
 </head>
 
 <body>
+
+    
+    <br id="Tabla">
+
+
+    <div>
+        <div class="centradooor">
+            <div class="container col">
+                <br>
+                <div class="row">
+
+                    <!-- Tabla para listar médicos -->
+                    <h2>Listado de Médicos</h2>
+                    <table id="tabla_medicos">
+                        <div>
+                            <tr>
+                                <th>Documento</th>
+                                <th>N° de documento</th>
+                                <th>Primer Nombre</th>
+                                <th>Segundo Nombre</th>
+                                <th>Primer Apellido</th>
+                                <th>Segundo Apellido</th>
+                                <th>Telefono</th>
+                                <th>Correo</th>
+                                <th>Nombre Emergencia</th>
+                                <th>Telefono Emergencia</th>
+                            </tr>
+                        </div>
+                        <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
+                    </table>
+
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        <p><a class="btn btn-success" href="#ir">Registrar</a>
+                        <a class="btn btn-success" href="/fron-end/Inicio.html">Inicio </a></p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="topdiv"></div>
+
     <div>
         <div class="centrado">
             <div class="container col">
@@ -24,7 +72,7 @@
                 <div class="row">
                     <div class="col col-xl-6 col-12">
                         <label for="">Tipo documento</label>
-                        <select name="" id="tipo_documento" class="form-select">
+                        <select name="" id="TipoDocumento" class="form-select">
                             <option value="" selected disabled>Selecciones una opción</option>
                             <option value="RC">Registro Civil</option>
                             <option value="TI">Tarjeta de Identidad</option>
@@ -33,33 +81,33 @@
                         </select>
                     </div>
                     <div class="col col-xl-6 col-12">
-                        <label for="">N° de documento</label>
-                        <input type="number" id="numero_documento" step="1" class="form-control"
+                        <label for="">Numero de documento</label>
+                        <input type="number" id="NumeroDocumento" step="1" class="form-control"
                             onfocusout="validarNumeroDocumento(this);">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Primer Nombre</label>
-                        <input type="text" id="primer_nombre" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Primer Apellido</label>
-                        <input type="text" id="primer_apellido" class="form-control">
+                        <input type="text" id="PrimerNombre" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Segundo Nombre</label>
-                        <input type="text" id="segundo_nombre" class="form-control">
+                        <input type="text" id="SegundoNombre" class="form-control">
+                    </div>
+                    <div class="col col-xl-6 col-12">
+                        <label for="">Primer Apellido</label>
+                        <input type="text" id="PrimerApellido" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Segundo Apellido</label>
-                        <input type="text" id="segundo_apellido" class="form-control">
+                        <input type="text" id="SegundoApellido" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Teléfono</label>
-                        <input type="text" id="telefono" class="form-control">
+                        <input type="text" id="Telefono" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Correo</label>
-                        <input type="text" id="correo" class="form-control">
+                        <input type="text" id="Correo" class="form-control">
                     </div>
                 </div>
                 <br>
@@ -67,54 +115,33 @@
                 <h2>Contacto de Emergencia</h2>
                 <div class="row">
                     <div class="col col-xl-6 col-12">
-                        <label for="">Tipo documento</label>
-                        <select name="" id="tipo_documento_emergencia" class="form-select">
-                            <option value="" selected disabled>Selecciones una opción</option>
-                            <option value="RC">Registro Civil</option>
-                            <option value="TI">Tarjeta de Identidad</option>
-                            <option value="CC">Cedula de Ciudadanía</option>
-                            <option value="CE">Cedula de Extranjería</option>
-                        </select>
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">N° de documento</label>
-                        <input type="number" id="numero_documento_emergencia" step="1" class="form-control"
-                            onfocusout="validarNumeroDocumento(this);">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Primer Nombre</label>
-                        <input type="text" id="primer_nombre_emergencia" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Primer Apellido</label>
-                        <input type="text" id="primer_apellido_emergencia" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Segundo Nombre</label>
-                        <input type="text" id="segundo_nombre_emergencia" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Segundo Apellido</label>
-                        <input type="text" id="segundo_apellido_emergencia" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Parentesco</label>
-                        <select name="" id="Parentesco" class="form-select">
-                            <option value="" selected disabled>Selecciones una opción</option>
-                            <option value="Padre">Padre</option>
-                            <option value="Madre">Madre</option>
-                            <option value="Herman@">Herman@</option>
-                            <option value="Otro">Otro</option>
-                        </select>
+                        <label for="">Nombre</label>
+                        <input type="text" id="PrimerNombrEmergencia" class="form-control">
                     </div>
                     <div class="col col-xl-6 col-12">
                         <label for="">Teléfono</label>
-                        <input type="text" id="telefono_emergencia" class="form-control">
+                        <input type="text" id="TelefonoEmergencia" class="form-control">
                     </div>
                 </div>
                 <br>
-                <button class="btn btn-success" onclick="crearClientes();">Enviar</button>
-                <button class="btn btn-secondary">Limpiar</button>
+                <br id="ir">
+                <a class="btn btn-success" onclick="AgregarPaciente();">Registrar</a>
+                <a class="btn btn-success" href="#Tabla">Ver Tabla</a>
+                <br>
+                <div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
                 <br>
                 <div><br></div>
             </div>
@@ -122,6 +149,7 @@
 
     </div>
 
+    <script src=""></script>
 </body>
 
 </html>
