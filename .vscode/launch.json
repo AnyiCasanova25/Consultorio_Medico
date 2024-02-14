@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ConsultorioApplication<consultorio>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "consultorio.com.consultorio.ConsultorioApplication",
+            "projectName": "consultorio",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

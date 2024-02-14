@@ -25,8 +25,16 @@ public class medicoController {
 
     @PostMapping("/")
     public ResponseEntity<Object> save(@ModelAttribute("Medico") Medico Medico) {
-        medicoService.save(Medico);
-        return new ResponseEntity<>(Medico, HttpStatus.OK);
+        if(Medico.getDocumentoIdentidad().equals("")){
+            
+            return new ResponseEntity<>("El documento de identidad es obligatorio", HttpStatus.BAD_REQUEST);
+        }else{
+            //todo bien
+            medicoService.save(Medico);
+            return new ResponseEntity<>(Medico, HttpStatus.OK);
+        }
+        
+        
     }
 
     @GetMapping("/")
