@@ -36,8 +36,14 @@ public class medicoController {
         //verificar que el campo documento de identidad sea diferente vacio
         if (Medico.getDocumentoIdentidad().equals("")) {
 
-            return new ResponseEntity<>("El documento de identidad es obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El documento de identidad es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
+
+        if (Medico.getPrimerNombre().equals("")) {
+            
+            return new ResponseEntity<>("El primer nombre es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
         // todo bien
         medicoService.save(Medico);
         return new ResponseEntity<>(Medico, HttpStatus.OK);
