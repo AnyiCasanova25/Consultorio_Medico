@@ -9,10 +9,9 @@ function AgregarMedico() {
     var SegundoApellido = document.getElementById("SegundoApellido").value;
     var Telefono = document.getElementById("Telefono").value;
     var Correo = document.getElementById("Correo").value;
-    var Estado = document.getElementById("Estado").value;
     var Especialidad = document.getElementById("Especialidad").value;
     // Agregar el médico al array
-    medicos.push({ TipoDocumento: TipoDocumento, NumeroDocumento: NumeroDocumento, PrimerNombre: PrimerNombre, SegundoNombre: SegundoNombre, PrimerApellido: PrimerApellido, SegundoApellido: SegundoApellido, Telefono: Telefono, Correo: Correo, Estado: Estado, Especialidad: Especialidad });
+    medicos.push({ TipoDocumento: TipoDocumento, NumeroDocumento: NumeroDocumento, PrimerNombre: PrimerNombre, SegundoNombre: SegundoNombre, PrimerApellido: PrimerApellido, SegundoApellido: SegundoApellido, Telefono: Telefono, Correo: Correo, Especialidad: Especialidad });
 
     // Actualizar la tabla
     actualizarTabla();
@@ -47,7 +46,6 @@ function actualizarTabla() {
     <th>Segundo Apellido</th>
     <th>Telefono</th>
     <th>Correo</th>
-    <th>Estado</th>
     <th>Especialidad</th>
 
         <th>Editar</th>
@@ -66,7 +64,6 @@ function actualizarTabla() {
                 <td>${medicos[i].SegundoApellido}</td>
                 <td>${medicos[i].Telefono}</td>
                 <td>${medicos[i].Correo}</td>
-                <td>${medicos[i].Estado}</td>
                 <td>${medicos[i].Especialidad}</td>
                 <td>
                 <button onclick="editarMedico(${i})">Editar</button>
@@ -89,10 +86,9 @@ function editarMedico(index) {
     var nuevoSegundoApe = prompt("INGRESE EL NUEVO SEGUNDO APELLIDO:", medicos[index].SegundoApellido);
     var nuevoTelefono = prompt("INGRESE EL NUEVO TELEFONO:", medicos[index].Telefono);
     var nuevoCorreo = prompt("INGRESE EL NUEVO CORREO:", medicos[index].Correo);
-    var nuevoEstado = prompt("INGRESE LA NUEVA DIRECCION:", medicos[index].Estado);
     var nuevoEspecialidad = prompt("INGRESE LA NUEVA ESPECIALIDAD:", medicos[index].Especialidad);
     // Actualizar los datos del médico en el array
-    if (nuevoTipoDocu !== null && nuevoNumeroDocu !== null && nuevoPrimerNom !== null && nuevoSegundoNom !== null && nuevoPrimerApe !== null && nuevoSegundoApe !== null && nuevoTelefono !== null && nuevoCorreo !== null && nuevoEstado !== null && nuevoEspecialidad !== null) {
+    if (nuevoTipoDocu !== null && nuevoNumeroDocu !== null && nuevoPrimerNom !== null && nuevoSegundoNom !== null && nuevoPrimerApe !== null && nuevoSegundoApe !== null && nuevoTelefono !== null && nuevoCorreo !== null && nuevoEspecialidad !== null) {
         medicos[index].TipoDocumento = nuevoTipoDocu;
         medicos[index].NumeroDocumento = nuevoNumeroDocu;
         medicos[index].PrimerNombre = nuevoPrimerNom;
@@ -101,7 +97,6 @@ function editarMedico(index) {
         medicos[index].SegundoApellido = nuevoSegundoApe;
         medicos[index].Telefono = nuevoTelefono;
         medicos[index].Correo = nuevoCorreo;
-        medicos[index].Estado = nuevoEstado;
         medicos[index].Especialidad = nuevoEspecialidad;
 
         // Actualizar la tabla

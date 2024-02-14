@@ -11,6 +11,9 @@
         crossorigin="anonymous"></script>
     <title>Registro Medico</title>
     <link rel="stylesheet" href="/fron-end/css/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/fron-end/js/medico.js"></script>
@@ -18,16 +21,98 @@
 
 <body>
     <br id="Tabla">
-
-
+    <div>
+        <a class="btn btn-success" href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i> </a>
+    </div>
     <div>
         <div class="centradooor">
             <div class="container col">
                 <br>
                 <div class="row">
-
                     <!-- Tabla para listar médicos -->
                     <h2>Listado de Médicos</h2>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" style="width: 10%; ">Registrar</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <div class="centradoo">
+                                            <div class="container col">
+                                                <br>
+                                                <h2>Registrar Medico</h2>
+                                                <div class="row table-hover">
+                                                    <div class="col col-xl-6 col-12">
+                                                        <label for="">Tipo documento</label>
+                                                        <select name="" id="TipoDocumento" class="form-select" required>
+                                                            <option value="" selected disabled>Selecciones una opción
+                                                            </option>
+                                                            <option value="RC">Registro Civil</option>
+                                                            <option value="TI">Tarjeta de Identidad</option>
+                                                            <option value="CC">Cedula de Ciudadanía</option>
+                                                            <option value="CE">Cedula de Extranjería</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col col-xl-6 col-12 table-hover">
+                                                        <label for="">Numero de documento</label>
+                                                        <input type="number" id="NumeroDocumento" step="1"
+                                                            class="form-control"
+                                                            onfocusout="validarNumeroDocumento(this);" required>
+                                                    </div>
+                                                    <div class="col col-xl-6 col-12 table-hover">
+                                                        <label for="">Primer Nombre</label>
+                                                        <input type="text" id="PrimerNombre" class="form-control"
+                                                            required>
+                                                    </div>
+                                                    <div class="col col-xl-6 col-12 table-hover">
+                                                        <label for="">Segundo Nombre</label>
+                                                        <input type="text" id="SegundoNombre" class="form-control">
+                                                    </div>
+                                                    <div class="col col-xl-6 col-12">
+                                                        <label for="">Primer Apellido</label>
+                                                        <input type="text" id="PrimerApellido" class="form-control"
+                                                            required>
+                                                    </div>
+                                                    <div class="col col-xl-6 col-12">
+                                                        <label for="">Segundo Apellido</label>
+                                                        <input type="text" id="SegundoApellido" class="form-control">
+                                                    </div>
+                                                    <div class="col col-xl-6 col-12">
+                                                        <label for="">Teléfono</label>
+                                                        <input type="text" id="Telefono" class="form-control" required>
+                                                    </div>
+                                                    <div class="col col-xl-6 col-12">
+                                                        <label for="">Correo</label>
+                                                        <input type="text" id="Correo" class="form-control" required>
+                                                    </div>
+                                                    <div class="col col-xl-6 col-12">
+                                                        <label for="">Especialidad</label>
+                                                        <input type="text" id="Especialidad" class="form-control"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="AgregarMedico();">Registrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <table id="tabla_medicos">
                         <div>
                             <tr>
@@ -49,101 +134,12 @@
                     <div>
                         <br>
                     </div>
-                    <div>
-                        <p><a class="btn btn-success" href="#ir">Registrar</a>
-                        <a class="btn btn-success" href="/fron-end/Inicio.html">Inicio </a></p>
-                    </div>
 
                 </div>
             </div>
 
         </div>
     </div>
-
-
-    <div class="topdiv"></div>
-
-    <div>
-        <div class="centradoo">
-            <div class="container col">
-                <br>
-                <h2>Registrar Medico</h2>
-                <div class="row">
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Tipo documento</label>
-                        <select name="" id="TipoDocumento" class="form-select">
-                            <option value="" selected disabled>Selecciones una opción</option>
-                            <option value="RC">Registro Civil</option>
-                            <option value="TI">Tarjeta de Identidad</option>
-                            <option value="CC">Cedula de Ciudadanía</option>
-                            <option value="CE">Cedula de Extranjería</option>
-                        </select>
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Numero de documento</label>
-                        <input type="number" id="NumeroDocumento" step="1" class="form-control"
-                            onfocusout="validarNumeroDocumento(this);">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Primer Nombre</label>
-                        <input type="text" id="PrimerNombre" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Segundo Nombre</label>
-                        <input type="text" id="SegundoNombre" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Primer Apellido</label>
-                        <input type="text" id="PrimerApellido" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Segundo Apellido</label>
-                        <input type="text" id="SegundoApellido" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Teléfono</label>
-                        <input type="text" id="Telefono" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Correo</label>
-                        <input type="text" id="Correo" class="form-control">
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Estado</label>
-                        <select name="" id="Estado" class="form-select">
-                            <option value="" selected disabled>Selecciones una opción</option>
-                            <option value="Habilitado">Habilitado</option>
-                            <option value="Deshabilitado">Deshabilitado </option>
-                        </select>
-                    </div>
-                    <div class="col col-xl-6 col-12">
-                        <label for="">Especialidad</label>
-                        <select name="" id="Especialidad" class="form-select">
-                            <option value="" selected disabled>Selecciones una opción</option>
-                            <option value="Doctor">Doctor</option>
-                            <option value="Medico">Medico </option>
-                            <option value="Enfermero">Enfermero </option>
-                            <option value="Neurocirujano">Neurocirujano </option>
-                        </select>
-                    </div>
-                </div>
-                <br id="ir">
-                <a class="btn btn-success" onclick="AgregarMedico();">Registrar</a>
-                <a class="btn btn-success" href="#Tabla">Ver Tabla</a>
-                <br>
-                <div>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br>
-    <br>
-    <br>
-    <br>
-
-
     <script src="/fron-end/js/medico.js"></script>
 </body>
 
