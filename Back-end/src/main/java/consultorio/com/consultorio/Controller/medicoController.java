@@ -34,6 +34,7 @@ public class medicoController {
             return new ResponseEntity<>("El medico ya existe", HttpStatus.BAD_REQUEST);
         }
         //verificar que el campo documento de identidad sea diferente vacio
+        //Añadir campos obligatorios
         if (Medico.getDocumentoIdentidad().equals("")) {
 
             return new ResponseEntity<>("El documento de identidad es un campo obligatorio", HttpStatus.BAD_REQUEST);
