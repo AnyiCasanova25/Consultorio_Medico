@@ -43,6 +43,10 @@
     background-color: #C2C8C5;
 }
 
+.fondomodaldialog{
+    margin-top: 10%;
+}
+
 
 body {
     background-color: #DDDDDA !important;
@@ -86,4 +90,8 @@ body {
 
 .doll{
     color: rgb(255, 255, 255);
+}
+
+.modal-footer {
+    flex-direction: column;
 }
