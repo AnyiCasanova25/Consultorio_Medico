@@ -1,6 +1,6 @@
 //se almacena la url de la API
-var url = "http://localhost:8080/api/v1/Medico";
-function listarMedico() {
+var url = "http://localhost:8080/api/v1/Ingreso";
+function listarIngreso() {
     //metodo para alistar los medicos
     //se crea la peticion AJAX
     $.ajax({
@@ -25,39 +25,34 @@ function listarMedico() {
 
                 //creamos un td por cada campo de registro
 
-                let celdaDocumentoIdentidad = document.createElement("td");
-                let celdaPrimerNombre = document.createElement("td");
-                let celdaSegundoNombre = document.createElement("td");
-                let celdaPrimerApellido = document.createElement("td");
-                let celdaSegundoApellido = document.createElement("td");
-                let celdaCelular = document.createElement("td");
-                let celdaCorreo = document.createElement("td");
+                let celdaHabitacion = document.createElement("td");
+                let celdaCama = document.createElement("td");
+                let celdaPaciente = document.createElement("td");
+                let celdaMedico= document.createElement("td");
+                let celdaFechaIngreso = document.createElement("td");
+                let celdaFechaSalida = document.createElement("td");
                 let celdaEstado = document.createElement("td");
-                celdaId.innerText = result[i]["idMedico"];
-
+               
                 //se agrega la celda al registro una linea por cada campo 
 
-                trRegistro.appendChild(celdaId);
-                trRegistro.appendChild(celdaDocumentoIdentidad);
-                trRegistro.appendChild(celdaPrimerNombre);
-                trRegistro.appendChild(celdaSegundoNombre);
-                trRegistro.appendChild(celdaPrimerApellido);
-                trRegistro.appendChild(celdaSegundoApellido);
-                trRegistro.appendChild(celdaCelular);
-                trRegistro.appendChild(celdaCorreo);
+                trRegistro.appendChild(celdaidIngreso);
+                trRegistro.appendChild(celdaHabitacion);
+                trRegistro.appendChild(celdaCama);
+                trRegistro.appendChild(celdaPaciente);
+                trRegistro.appendChild(celdaMedico);
+                trRegistro.appendChild(celdaFechaIngreso);
+                trRegistro.appendChild(celdaFechaSalida);
                 trRegistro.appendChild(celdaEstado);
-
-
+                
                 //se agrega el registro en la tabla 
 
                 cuerpoTabla.appendChild(trRegistro);
-                celdaDocumentoIdentidad.innerText = result[i]["documentoIdentidad"];
-                celdaPrimerNombre.innerText = result[i]["primerNombre"];
-                celdaSegundoNombre.innerText = result[i]["segundoNombre"];
-                celdaPrimerApellido.innerText = result[i]["primerApellido"];
-                celdaSegundoApellido.innerText = result[i]["segundoApellido"];
-                celdaCelular.innerText = result[i]["Celular"];
-                celdaCorreo.innerText = result[i]["Correo"];
+                celdaHabitacion.innerText = result[i]["habitacion"];
+                celdaCama.innerText = result[i]["cama"];
+                celdaPaciente.innerText = result[i]["paciente"];
+                celdaMedico.innerText = result[i]["medico"];
+                celdaFechaIngreso.innerText = result[i]["fechaIngreso"];
+                celdaFechaSalida.innerText = result[i]["fechaSalida"];
                 celdaEstado.innerText = result[i]["Estado"];
 
 
@@ -75,15 +70,14 @@ function listarMedico() {
 }
 
 //se almacenan los valores
-function registrarMedico() {
+function registrarIngreso() {
     let forData = {
-        "documentoIdentidad": document.getElementById("documentoIdentidad").value,
-        "primerNombre": document.getElementById("primerNombre").value,
-        "segundoNombre": document.getElementById("segundoNombre").value,
-        "primerApellido": document.getElementById("primerApellido").value,
-        "segundoApellido": document.getElementById("segundoApellido").value,
-        "Celular": document.getElementById("Celular").value,
-        "Correo": document.getElementById("Correo").value,
+        "habitacion": document.getElementById("habitacion").value,
+        "cama": document.getElementById("cama").value,
+        "paciente": document.getElementById("paciente").value,
+        "medico": document.getElementById("medico").value,
+        "fechaIngreso": document.getElementById("fechaIngreso").value,
+        "fechaSalida": document.getElementById("fechaSalida").value,
         "Estado": document.getElementById("Estado").value,
     };
     if (validarCampos()) {
@@ -114,8 +108,8 @@ function registrarMedico() {
 
 
 function validarCampos() {
-    var documentoIdentidad = document.documentoIdentidad("documentoIdentidad");
-    return validarDocumentoIdentidad(documentoIdentidad);
+    var habitacion = document.documentoIdentidad("habitacion");
+    return validarDocumentoIdentidad(habitacion);
 }
 
 function validarDocumentoIdentidad(cuadroNumero) {
@@ -141,13 +135,12 @@ function validarDocumentoIdentidad(cuadroNumero) {
 
 function limpiar() {
 
-    document.getElementById("documentoIdentidad").value = "";
-    document.getElementById("primerNombre").value = "";
-    document.getElementById("segundoNombre").value = "";
-    document.getElementById("primerApellido").value = "";
-    document.getElementById("segundo_apellido").value = "";
-    document.getElementById("Celular").value = "";
-    document.getElementById("Correo").value = "";
+    document.getElementById("habitacion").value = "";
+    document.getElementById("cama").value = "";
+    document.getElementById("paciente").value = "";
+    document.getElementById("medico").value = "";
+    document.getElementById("fechaIngreso").value = "";
+    document.getElementById("fechaSalida").value = "";
     document.getElementById("Estado").value = "";
 
 }
