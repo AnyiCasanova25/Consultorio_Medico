@@ -1,5 +1,5 @@
 //se almacena la url de la API
-var url = "http://localhost:8080/api/v1/Medico";
+var url = "http://localhost:8080/api/v1/Medico/";
 function listarMedico() {
     //metodo para alistar los medicos
     //se crea la peticion AJAX
