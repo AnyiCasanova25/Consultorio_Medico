@@ -1,153 +1,231 @@
-//se almacena la url de la API
-var url = "http://localhost:8080/api/v1/Medico";
-function listarMedico() {
-    //metodo para alistar los medicos
-    //se crea la peticion AJAX
-    $.ajax({
-        url: url,
-        type: "GET",
-        success: function (result) {
-            //success: funcion que se ejecuta 
-            //cuando la peticion tiene exito
-            console.log(result);
-            //se crea un objeto que contenga
-            //el cuerpo de la tabla
-            var cuerpoTabla = document.getElementById("cuerpoTabla");
-            //se limpia el cuerpo de la tabla
-            cuerpoTabla.innerHTML = "";
-            //Se hace un ciclo que recorra 
-            //el arreglo con los datos
-            for (var i = 0; i < result.length; i++) {
-                //se crea una etiqueta tr por
-                //cada registro
-                var trRegistro = document.createElement("tr");
-                let celdaId = document.createElement("td");
+/*
+var medicos = [];
+ Función para agregar un médico a la tabla y al array
+function AgregarMedico() {
+    var TipoDocumento = document.getElementById("TipoDocumento").value;
+    var NumeroDocumento = document.getElementById("NumeroDocumento").value;
+    var PrimerNombre = document.getElementById("PrimerNombre").value;
+    var SegundoNombre = document.getElementById("SegundoNombre").value;
+    var PrimerApellido = document.getElementById("PrimerApellido").value;
+    var SegundoApellido = document.getElementById("SegundoApellido").value;
+    var Telefono = document.getElementById("Telefono").value;
+    var Correo = document.getElementById("Correo").value;
+    var Direccion = document.getElementById("Direccion").value;
+    var Especialidad = document.getElementById("Especialidad").value;
+     Agregar el médico al array
+    medicos.push({ TipoDocumento: TipoDocumento, NumeroDocumento: NumeroDocumento, PrimerNombre: PrimerNombre, SegundoNombre: SegundoNombre, PrimerApellido: PrimerApellido, SegundoApellido: SegundoApellido, Telefono: Telefono, Correo: Correo, Direccion: Direccion, Especialidad: Especialidad });
 
-                //creamos un td por cada campo de registro
+     Actualizar la tabla
+    actualizarTabla();
+}
 
-                let celdaDocumentoIdentidad = document.createElement("td");
-                let celdaPrimerNombre = document.createElement("td");
-                let celdaSegundoNombre = document.createElement("td");
-                let celdaPrimerApellido = document.createElement("td");
-                let celdaSegundoApellido = document.createElement("td");
-                let celdaCelular = document.createElement("td");
-                let celdaCorreo = document.createElement("td");
-                let celdaEstado = document.createElement("td");
-                celdaId.innerText = result[i]["idMedico"];
+ Función para filtrar los médicos en la tabla
+function filtrarMedicos() {
+    var filtroEspecialidad = document.getElementById("filtro_especialidad").value.toLowerCase();
+    var tabla = document.getElementById("tabla_medicos");
+    var rows = tabla.getElementsByTagName("tr");
 
-                //se agrega la celda al registro una linea por cada campo 
-
-                trRegistro.appendChild(celdaId);
-                trRegistro.appendChild(celdaDocumentoIdentidad);
-                trRegistro.appendChild(celdaPrimerNombre);
-                trRegistro.appendChild(celdaSegundoNombre);
-                trRegistro.appendChild(celdaPrimerApellido);
-                trRegistro.appendChild(celdaSegundoApellido);
-                trRegistro.appendChild(celdaCelular);
-                trRegistro.appendChild(celdaCorreo);
-                trRegistro.appendChild(celdaEstado);
-
-
-                //se agrega el registro en la tabla 
-
-                cuerpoTabla.appendChild(trRegistro);
-                celdaDocumentoIdentidad.innerText = result[i]["documentoIdentidad"];
-                celdaPrimerNombre.innerText = result[i]["primerNombre"];
-                celdaSegundoNombre.innerText = result[i]["segundoNombre"];
-                celdaPrimerApellido.innerText = result[i]["primerApellido"];
-                celdaSegundoApellido.innerText = result[i]["segundoApellido"];
-                celdaCelular.innerText = result[i]["Celular"];
-                celdaCorreo.innerText = result[i]["Correo"];
-                celdaEstado.innerText = result[i]["Estado"];
-
-
-
-            }
-        },
-        error: function (error) {
-            //error: funcion que se ejecuta 
-            //cuando la peticion tiene un error
-            alert("Error en la peticion ${error}");
-
+    for (var i = 1; i < rows.length; i++) {
+        var Especialidad = rows[i].getElementsByTagName("td")[9].innerText.toLowerCase();
+        if (Especialidad.includes(filtroEspecialidad) || filtroEspecialidad === "") {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
         }
-
-    });
-}
-
-//se almacenan los valores
-function registrarMedico() {
-    let forData = {
-        "documentoIdentidad": document.getElementById("documentoIdentidad").value,
-        "primerNombre": document.getElementById("primerNombre").value,
-        "segundoNombre": document.getElementById("segundoNombre").value,
-        "primerApellido": document.getElementById("primerApellido").value,
-        "segundoApellido": document.getElementById("segundoApellido").value,
-        "Celular": document.getElementById("Celular").value,
-        "Correo": document.getElementById("Correo").value,
-        "Estado": document.getElementById("Estado").value,
-    };
-    if (validarCampos()) {
-        //se ejecuta la peticion
-        $.ajax({
-
-            url: url,
-            type: "POST",
-            data: forData,
-
-            success: function (result) {
-                //
-                alert("Se guardo correctamente");
-            },
-            error: function (error) {
-                //error
-                alert("Error al guardar", error);
-            }
-        });
-    } else {
-        Swal.fire({
-            title: "Error!",
-            text: "Llene todos los campos correctamente!",
-            icon: "error"
-        });
     }
 }
 
+ Función para actualizar la tabla de médicos
+function actualizarTabla() {
+    var tabla = document.getElementById("tabla_medicos");
+    tabla.innerHTML = `
+    <tr>
+        <th>TipoDocumento</th>
+        <th>NumeroDocumento</th>
+        <th>PrimerNombre</th>
+        <th>SegundoNombre</th>
+        <th>PrimerApellido</th>
+        <th>SegundoApellido</th>
+        <th>Telefono</th>
+        <th>Correo</th>
+        <th>Direccion</th>
+        <th>Especialidad</th>
+        <th>Acciones</th>
+        </tr>
+        `;
 
-function validarCampos() {
-    var documentoIdentidad = document.documentoIdentidad("documentoIdentidad");
-    return validarDocumentoIdentidad(documentoIdentidad);
+    for (var i = 0; i < medicos.length; i++) {
+        tabla.innerHTML += `
+            <tr>
+                <td>${medicos[i].TipoDocumento}</td>
+                <td>${medicos[i].NumeroDocumento}</td>
+                <td>${medicos[i].PrimerNombre}</td>
+                <td>${medicos[i].SegundoNombre}</td>
+                <td>${medicos[i].PrimerApellido}</td>
+                <td>${medicos[i].SegundoApellido}</td>
+                <td>${medicos[i].Telefono}</td>
+                <td>${medicos[i].Correo}</td>
+                <td>${medicos[i].Direccion}</td>
+                <td>${medicos[i].Especialidad}</td>
+                <td>
+                    <button onclick="editarMedico(${i})">Editar</button>
+                    <button onclick="deshabilitarMedico(${i})">Deshabilitar</button>
+                    </td>
+                    </tr>
+                    `;
+    }
 }
 
-function validarDocumentoIdentidad(cuadroNumero) {
+ Función para editar un médico
+function editarMedico(index) {
+    var nuevoTipoDocu = prompt("INGRESE EL NUEVO TIPO DE DOCUMENTO:", medicos[index].TipoDocumento);
+    var nuevoNumeroDocu = prompt("INGRESE EL NUEVO EL NUEVO NUMERO DE DOCUMENTO:", medicos[index].NumeroDocumento);
+    var nuevoPrimerNom = prompt("INGRESE EL NUEVO PRIMER NOMBRE:", medicos[index].PrimerNombre);
+    var nuevoSegundoNom = prompt("INGRESE EL NUEVO SEGUNDO NOMBRE:", medicos[index].SegundoNombre);
+    var nuevoPrimerApe = prompt("INGRESE EL NUEVO PRIMER APELLIDO:", medicos[index].PrimerApellido);
+    var nuevoSegundoApe = prompt("INGRESE EL NUEVO SEGUNDO APELLIDO:", medicos[index].SegundoApellido);
+    var nuevoTelefono = prompt("INGRESE EL NUEVO TELEFONO:", medicos[index].Telefono);
+    var nuevoCorreo = prompt("INGRESE EL NUEVO CORREO:", medicos[index].Correo);
+    var nuevoDireccion = prompt("INGRESE LA NUEVA DIRECCION:", medicos[index].Direccion);
+    var nuevoEspecialidad = prompt("INGRESE LA NUEVA ESPECIALIDAD:", medicos[index].Especialidad);
+     Actualizar los datos del médico en el array
+    if (nuevoTipoDocu !== null && nuevoNumeroDocu !== null && nuevoPrimerNom !== null && nuevoSegundoNom !== null && nuevoPrimerApe !== null && nuevoSegundoApe !== null && nuevoTelefono !== null && nuevoCorreo !== null && nuevoDireccion !== null && nuevoEspecialidad !== null) {
+        medicos[index].TipoDocumento = nuevoTipoDocu;
+        medicos[index].NumeroDocumento = nuevoNumeroDocu;
+        medicos[index].PrimerNombre = nuevoPrimerNom;
+        medicos[index].SegundoNombre = nuevoSegundoNom;
+        medicos[index].PrimerApellido = nuevoPrimerApe;
+        medicos[index].SegundoApellido = nuevoSegundoApe;
+        medicos[index].Telefono = nuevoTelefono;
+        medicos[index].Correo = nuevoCorreo;
+        medicos[index].Direccion = nuevoDireccion;
+        medicos[index].Especialidad = nuevoEspecialidad;
 
-
-
-    var valor = cuadroNumero.value;
-    var valido = true;
-    if (valor.length < 5 || valor.length > 11) {
-        valido = false;
+         Actualizar la tabla
+        actualizarTabla();
     }
-
-    if (valido) {
-        //cuadro de texto cumple
-        //se modifica la clase del cuadro de texto
-        cuadroNumero.className = "form-control is-valid";
-    } else {
-        //cuadro de texto no cumple
-        cuadroNumero.className = "form-control is-invalid"
-    }
-    return valido
 }
 
-function limpiar() {
+ Función para deshabilitar un médico
+function deshabilitarMedico(index) {
+     Eliminar el médico del array
+    medicos.splice(index, 1);
 
-    document.getElementById("documentoIdentidad").value = "";
-    document.getElementById("primerNombre").value = "";
-    document.getElementById("segundoNombre").value = "";
-    document.getElementById("primerApellido").value = "";
-    document.getElementById("segundo_apellido").value = "";
-    document.getElementById("Celular").value = "";
-    document.getElementById("Correo").value = "";
-    document.getElementById("Estado").value = "";
+     Actualizar la tabla
+    actualizarTabla();
+}
+*/
+var medicos = [];
+// Función para agregar un médico a la tabla y al array
+function AgregarMedico() {
+    var TipoDocumento = document.getElementById("TipoDocumento").value;
+    var NumeroDocumento = document.getElementById("NumeroDocumento").value;
+    var PrimerNombre = document.getElementById("PrimerNombre").value;
+    var SegundoNombre = document.getElementById("SegundoNombre").value;
+    var PrimerApellido = document.getElementById("PrimerApellido").value;
+    var SegundoApellido = document.getElementById("SegundoApellido").value;
+    var Telefono = document.getElementById("Telefono").value;
+    var Correo = document.getElementById("Correo").value;
+    var Especialidad = document.getElementById("Especialidad").value;
+    // Agregar el médico al array
+    medicos.push({ TipoDocumento: TipoDocumento, NumeroDocumento: NumeroDocumento, PrimerNombre: PrimerNombre, SegundoNombre: SegundoNombre, PrimerApellido: PrimerApellido, SegundoApellido: SegundoApellido, Telefono: Telefono, Correo: Correo, Especialidad: Especialidad });
 
+    // Actualizar la tabla
+    actualizarTabla();
+}
+
+// Función para filtrar los médicos en la tabla
+function filtrarMedicos() {
+    var filtroEspecialidad = document.getElementById("filtro_especialidad").value.toLowerCase();
+    var tabla = document.getElementById("tabla_medicos");
+    var rows = tabla.getElementsByTagName("tr");
+
+    for (var i = 1; i < rows.length; i++) {
+        var Especialidad = rows[i].getElementsByTagName("td")[9].innerText.toLowerCase();
+        if (Especialidad.includes(filtroEspecialidad) || filtroEspecialidad === "") {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+
+// Función para actualizar la tabla de médicos
+function actualizarTabla() {
+    var tabla = document.getElementById("tabla_medicos");
+    tabla.innerHTML = `
+    <tr>
+    <th>Documento</th>
+    <th>N° de documento</th>
+    <th>Primer Nombre</th>
+    <th>Segundo Nombre</th>
+    <th>Primer Apellido</th>
+    <th>Segundo Apellido</th>
+    <th>Telefono</th>
+    <th>Correo</th>
+    <th>Especialidad</th>
+
+        <th>Editar</th>
+        <th>Eliminar</th>
+        </tr>
+        `;
+
+    for (var i = 0; i < medicos.length; i++) {
+        tabla.innerHTML += `
+            <tr>
+                <td>${medicos[i].TipoDocumento}</td>
+                <td>${medicos[i].NumeroDocumento}</td>
+                <td>${medicos[i].PrimerNombre}</td>
+                <td>${medicos[i].SegundoNombre}</td>
+                <td>${medicos[i].PrimerApellido}</td>
+                <td>${medicos[i].SegundoApellido}</td>
+                <td>${medicos[i].Telefono}</td>
+                <td>${medicos[i].Correo}</td>
+                <td>${medicos[i].Especialidad}</td>
+                <td>
+                <button class="btn btn-primary" onclick="editarMedico(${i})">Editar</button>
+                </td>
+                <td>
+                <button class="btn btn-primary" onclick="deshabilitarMedico(${i})">Deshabilitar</button>
+                </td>
+                </tr>
+                    `;
+    }
+}
+
+// Función para editar un médico
+function editarMedico(index) {
+    var nuevoTipoDocu = prompt("INGRESE EL NUEVO TIPO DE DOCUMENTO:", medicos[index].TipoDocumento);
+    var nuevoNumeroDocu = prompt("INGRESE EL NUEVO EL NUEVO NUMERO DE DOCUMENTO:", medicos[index].NumeroDocumento);
+    var nuevoPrimerNom = prompt("INGRESE EL NUEVO PRIMER NOMBRE:", medicos[index].PrimerNombre);
+    var nuevoSegundoNom = prompt("INGRESE EL NUEVO SEGUNDO NOMBRE:", medicos[index].SegundoNombre);
+    var nuevoPrimerApe = prompt("INGRESE EL NUEVO PRIMER APELLIDO:", medicos[index].PrimerApellido);
+    var nuevoSegundoApe = prompt("INGRESE EL NUEVO SEGUNDO APELLIDO:", medicos[index].SegundoApellido);
+    var nuevoTelefono = prompt("INGRESE EL NUEVO TELEFONO:", medicos[index].Telefono);
+    var nuevoCorreo = prompt("INGRESE EL NUEVO CORREO:", medicos[index].Correo);
+    var nuevoEspecialidad = prompt("INGRESE LA NUEVA ESPECIALIDAD:", medicos[index].Especialidad);
+    // Actualizar los datos del médico en el array
+    if (nuevoTipoDocu !== null && nuevoNumeroDocu !== null && nuevoPrimerNom !== null && nuevoSegundoNom !== null && nuevoPrimerApe !== null && nuevoSegundoApe !== null && nuevoTelefono !== null && nuevoCorreo !== null && nuevoEspecialidad !== null) {
+        medicos[index].TipoDocumento = nuevoTipoDocu;
+        medicos[index].NumeroDocumento = nuevoNumeroDocu;
+        medicos[index].PrimerNombre = nuevoPrimerNom;
+        medicos[index].SegundoNombre = nuevoSegundoNom;
+        medicos[index].PrimerApellido = nuevoPrimerApe;
+        medicos[index].SegundoApellido = nuevoSegundoApe;
+        medicos[index].Telefono = nuevoTelefono;
+        medicos[index].Correo = nuevoCorreo;
+        medicos[index].Especialidad = nuevoEspecialidad;
+
+        // Actualizar la tabla
+        actualizarTabla();
+    }
+}
+
+// Función para deshabilitar un médico
+function deshabilitarMedico(index) {
+    // Eliminar el médico del array
+    medicos.splice(index, 1);
+
+    // Actualizar la tabla
+    actualizarTabla();
 }
