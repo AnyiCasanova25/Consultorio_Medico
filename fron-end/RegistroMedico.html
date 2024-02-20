@@ -16,25 +16,28 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="/fron-end/css/estilos.css">
 </head>
 
 <body>
-    <br id="Tabla">
     <div>
-        <a class="btn btn-success position-absolute bottom-0 end-0" href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i> </a>
+        <a class="btn btn-success position-absolute bottom-0 end-0" href="/fron-end/Inicio.html"><i
+                class="fa-sharp fa-solid fa-house"></i> </a>
     </div>
     <div>
         <div class="centradooor">
             <div class="container col">
                 <br>
-                <div class="row">
+                <div class="row botonregistrar">
                     <!-- Tabla para listar médicos -->
-                    
-                        <h2 class="col-10" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Médicos</h2>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Médico
-                        </button>
+
+                    <h2 class="col-10" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Médicos
+                    </h2>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Médico
+                    </button>
                     <br>
                     <br>
                     <!-- Modal -->
@@ -43,51 +46,59 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="  modal-header">
-                                    <button type="button" class="col-1 btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                        id="X"></button>
+                                    <button type="button" class="col-1 btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close" id="X"></button>
                                     <h1 class="modal-title fs-5 col-11" id="exampleModalLabel"
                                         style="font-family:Georgia, 'Times New Roman', Times, serif; text-align: center;">
                                         Registro Médico
                                     </h1>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body ">
                                     <div>
                                         <div class="centradoo">
                                             <div class="container col">
                                                 <br>
                                                 <form class="row table-hover needs-validation">
+
                                                     <div class="col col-xl-6 col-12 table-hover ">
-                                                        <label for="">Numero de documento</label>
+                                                        <label for="">N° De Documento</label>
                                                         <input type="number" id="documentoIdentidad" step="1"
                                                             class=" form-control"
                                                             onfocusout="validardocumentoIdentidad(this);" required>
                                                     </div>
+
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">Primer Nombre</label>
                                                         <input type="text" id="primerNombre" class="form-control"
                                                             required>
                                                     </div>
+
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">Segundo Nombre</label>
                                                         <input type="text" id="segundoNombre" class="form-control">
                                                     </div>
+
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Primer Apellido</label>
                                                         <input type="text" id="primerApellido" class="form-control"
                                                             required>
                                                     </div>
+
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Segundo Apellido</label>
                                                         <input type="text" id="segundoApellido" class="form-control">
                                                     </div>
+
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Teléfono</label>
                                                         <input type="text" id="Celular" class="form-control" required>
                                                     </div>
+
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Correo</label>
                                                         <input type="text" id="Correo" class="form-control" required>
                                                     </div>
+
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Estado</label>
                                                         <input type="text" id="Estado" class="form-control" required>
@@ -98,24 +109,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary"
-                                        onclick="listarMedico();">Registrar</button>
-                                </div>
+                                    <div class="modal-footer ">
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="listarMedico();">Registrar</button>
+                                    </div>
                             </div>
                         </div>
                     </div>
-                    <table class=" table table-hover table-striped" id="tabla_medicos">
-                        <div>
+                    <table class=" table table-hover table-striped ">
+                        <div class="colorTabla">
                             <tr>
-                                <th>N° de documento</th>
-                                <th>Primer Nombre</th>
-                                <th>Segundo Nombre</th>
-                                <th>Primer Apellido</th>
-                                <th>Segundo Apellido</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
-                                <th>Estado</th>
+                                <th class="colorTabla">N° de documento</th>
+                                <th class="colorTabla">Primer Nombre</th>
+                                <th class="colorTabla">Segundo Nombre</th>
+                                <th class="colorTabla">Primer Apellido</th>
+                                <th class="colorTabla">Segundo Apellido</th>
+                                <th class="colorTabla">Telefono</th>
+                                <th class="colorTabla">Correo</th>
+                                <th class="colorTabla">Estado</th>
                             </tr>
                         </div>
                         <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
@@ -127,5 +138,5 @@
     </div>
     <script src="/Back-end/src/main/java/consultorio/com/consultorio/Controller/js/Medico.js"></script>
 </body>
-</html>
 
+</html>

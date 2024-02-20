@@ -31,7 +31,8 @@
 }
 
 .centradooor {
-    margin-top: 1%;
+    margin-top: 2%;
+    
 }
 
 .margenTabla {
@@ -48,6 +49,16 @@ body {
 
 }
 
+.colorTabla {
+    background-color: #f3efef !important;
+    margin-top: 1%;
+
+}
+
+.botonregistrar{
+    margin: 0% 1% 0% 1%;
+}
+
 .circul {
     border-radius: 100%;
     background-color: #C2C8C5;
@@ -59,7 +70,6 @@ body {
 
 .circul:hover {
     background-color: #000000;
-    color: #ffffff;
     /* width: 200px;
     height: 200px; */
 }
@@ -75,5 +85,5 @@ body {
 }
 
 .doll{
-    color: white;
+    color: rgb(255, 255, 255);
 }
