@@ -19,11 +19,7 @@
     <link rel="stylesheet" href="/fron-end/css/estilos.css">
 </head>
 
-<body>
-    <div>
-        <a class="btn btn-success position-absolute bottom-0 end-0" href="/fron-end/Inicio.html"><i
-                class="fa-sharp fa-solid fa-house"></i> </a>
-    </div>
+<body onload="listarMedico()">
     <div>
         <div class="centradooor">
             <div class="container col">
@@ -31,13 +27,14 @@
                 <div class="row botonregistrar">
                     <!-- Tabla para listar médicos -->
 
-                    <h2 class="col-10" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Médicos
+                    <h2 class="col-9" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Médicos
                     </h2>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                         style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Médico
                     </button>
+                    <a class="btn btn-success col-1" href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i> </a>
                     <br>
                     <br>
                     <!-- Modal -->
@@ -136,7 +133,7 @@
 
         </div>
     </div>
-    <script src="/Back-end/src/main/java/consultorio/com/consultorio/Controller/js/Medico.js"></script>
+    <script src="/fron-end/js/Medico.js"></script>
 </body>
 
 </html>

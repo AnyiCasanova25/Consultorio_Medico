@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,7 +21,8 @@
 
 <body>
     <div>
-        <a class="btn btn-success position-absolute bottom-0 end-0" href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i> </a>
+        <a class="btn btn-success position-absolute bottom-0 end-0" href="/fron-end/Inicio.html"><i
+                class="fa-sharp fa-solid fa-house"></i> </a>
     </div>
     <div>
         <div class="centradooor">
@@ -30,12 +30,14 @@
                 <br>
                 <div class="row botonregistrar">
                     <!-- Tabla para listar médicos -->
-                    
-                        <h2 class="col-10" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Paciente</h2>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Paciente
-                        </button>
+
+                    <h2 class="col-10" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Paciente
+                    </h2>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Paciente
+                    </button>
                     <br>
                     <br>
                     <!-- Modal -->
@@ -44,8 +46,8 @@
                         <div class="modal-dialog fondomodaldialog">
                             <div class="modal-content col">
                                 <div class="  modal-header">
-                                    <button type="button" class="col-1 btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                        id="X"></button>
+                                    <button type="button" class="col-1 btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close" id="X"></button>
                                     <h1 class="modal-title fs-5 col-11" id="exampleModalLabel"
                                         style="font-family:Georgia, 'Times New Roman', Times, serif; text-align: center;">
                                         Registro Paciente
@@ -60,9 +62,8 @@
 
                                                     <div class="col col-xl-6 col-12 table-hover ">
                                                         <label for="">N° de documento</label>
-                                                        <input type="number" id="documentoIdentidad" step="1"
-                                                            class=" form-control"
-                                                            onfocusout="validardocumentoIdentidad(this);" required>
+                                                        <input type="number" id="primerNombre" class="form-control"
+                                                            required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
@@ -101,12 +102,18 @@
                                                         <label for="">Estado</label>
                                                         <input type="text" id="Estado" class="form-control" required>
                                                     </div>
-                                                <center>
+
                                                     <div class="col col-xl-6 col-12">
-                                                        <label for="">Familiar</label>
-                                                        <input type="text" id="nombrePersonaContacto" class="form-control" required>
+                                                        <label for="">Nombre del Familiar</label>
+                                                        <input type="text" id="nombrePersonaContacto"
+                                                            class="form-control" required>
                                                     </div>
-                                                </center>
+
+                                                    <div class="col col-xl-6 col-12">
+                                                        <label for="">Numero del Familiar</label>
+                                                        <input type="text" id="nombrePersonaContacto"
+                                                            class="form-control" required>
+                                                    </div>
                                                 </form>
                                                 <br>
                                             </div>
@@ -120,7 +127,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class=" table table-hover table-striped" >
+                    <table class=" table table-hover table-striped">
                         <div class="colorTabla">
                             <tr>
                                 <th class="colorTabla">N° de documento</th>
@@ -131,7 +138,8 @@
                                 <th class="colorTabla">Telefono</th>
                                 <th class="colorTabla">Correo</th>
                                 <th class="colorTabla">Estado</th>
-                                <th class="colorTabla">Familiar</th>
+                                <th class="colorTabla">Nombre del Familiar</th>
+                                <th class="colorTabla">Numero del Familiar</th>
                             </tr>
                         </div>
                         <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
@@ -141,8 +149,7 @@
 
         </div>
     </div>
-    <script src="/Back-end/src/main/java/consultorio/com/consultorio/Controller/js/Paciente.js"></script>
+    <script src="/fron-end/js/Paciente.js"></script>
 </body>
+
 </html>
-
-

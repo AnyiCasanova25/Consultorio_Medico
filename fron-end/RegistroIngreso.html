@@ -31,11 +31,14 @@
                 <div class="row botonregistrar">
                     <!-- Tabla para listar médicos -->
                     
-                        <h2 class="col-10" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Ingreso</h2>
+                        <h2 class="col-10
+                        " style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Ingreso</h2>
                         <!-- Button trigger modal -->
+                        
                         <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal" data-bs-target="#exampleModal"
                             style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Ingreso
                         </button>
+                        
                     <br>
                     <br>
                     <!-- Modal -->
@@ -60,13 +63,13 @@
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Habitacion</label>
-                                                        <input type="text" id="habitacion" class="form-control"
+                                                        <input type="number" id="habitacion" class="form-control"
                                                             required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Cama</label>
-                                                        <input type="text" id="primerNombre" class="form-control"
+                                                        <input type="number" id="primerNombre" class="form-control"
                                                             required>
                                                     </div>
 
@@ -128,6 +131,6 @@
 
         </div>
     </div>
-    <script src="/Back-end/src/main/java/consultorio/com/consultorio/Controller/js/Paciente.js"></script>
+    <script src="/fron-end/js/Ingreso.js"></script>
 </body>
 </html>
