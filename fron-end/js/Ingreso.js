@@ -36,7 +36,7 @@ function listarIngreso() {
                
                 //se agrega la celda al registro una linea por cada campo 
 
-                trRegistro.appendChild(celdaidIngreso);
+                trRegistro.appendChild(celdaId);
                 trRegistro.appendChild(celdaHabitacion);
                 trRegistro.appendChild(celdaCama);
                 trRegistro.appendChild(celdaPaciente);
