@@ -54,7 +54,7 @@ function listarIngreso() {
                 celdaMedico.innerText = result[i]["medico"];
                 celdaFechaIngreso.innerText = result[i]["fechaIngreso"];
                 celdaFechaSalida.innerText = result[i]["fechaSalida"];
-                celdaEstado.innerText = result[i]["Estado"];
+                celdaEstado.innerText = result[i]["estado"];
 
 
 
@@ -79,7 +79,7 @@ function registrarIngreso() {
         "medico": document.getElementById("medico").value,
         "fechaIngreso": document.getElementById("fechaIngreso").value,
         "fechaSalida": document.getElementById("fechaSalida").value,
-        "Estado": document.getElementById("Estado").value,
+        "Estado": document.getElementById("estado").value,
     };
     if (validarCampos()) {
         //se ejecuta la peticion
@@ -107,7 +107,7 @@ function registrarIngreso() {
     }
 }
 
-
+//Validar campo de documento de identidad paciente
 function validarCampos() {
     var habitacion = document.documentoIdentidad("habitacion");
     return validarDocumentoIdentidad(habitacion);
@@ -142,6 +142,6 @@ function limpiar() {
     document.getElementById("medico").value = "";
     document.getElementById("fechaIngreso").value = "";
     document.getElementById("fechaSalida").value = "";
-    document.getElementById("Estado").value = "";
+    document.getElementById("estado").value = "";
 
 }
