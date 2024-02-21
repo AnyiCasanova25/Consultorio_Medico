@@ -92,6 +92,7 @@ function registrarMedico() {
         "Correo": document.getElementById("Correo").value,
         "Estado": document.getElementById("Estado").value,
         "nombrePersonaContacto": document.getElementById("nombrePersonaContacto").value,
+        "telefonoPersonaContacto": document.getElementById("telefonoPersonaContacto").value,
     };
     if (validarCampos()) {
         //se ejecuta la peticion
@@ -157,5 +158,6 @@ function limpiar() {
     document.getElementById("Correo").value = "";
     document.getElementById("Estado").value = "";
     document.getElementById("nombrePersonaContacto").value = "";
+    document.getElementById("telefonoPersonaContacto").value = "";
 
 }
