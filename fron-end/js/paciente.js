@@ -1,5 +1,5 @@
 //se almacena la url de la API
-var url = "http://localhost:8080/api/v1/Paciente";
+var url = "http://localhost:8080/api/v1/Paciente/";
 function listarPaciente() {
     //metodo para alistar los medicos
     //se crea la peticion AJAX
@@ -81,7 +81,7 @@ function listarPaciente() {
 }
 
 //se almacenan los valores
-function registrarMedico() {
+function registrarPaciente() {
     let forData = {
         "documentoIdentidad": document.getElementById("documentoIdentidad").value,
         "primerNombre": document.getElementById("primerNombre").value,
