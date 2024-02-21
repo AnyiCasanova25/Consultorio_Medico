@@ -141,6 +141,8 @@ function validarDocumentoIdentidad(cuadroNumero) {
     return valido
 }
 
+// identidad, 1 nombre,1 apellido, telefono. correo.
+
 function limpiar() {
 
     document.getElementById("documentoIdentidad").value = "";
