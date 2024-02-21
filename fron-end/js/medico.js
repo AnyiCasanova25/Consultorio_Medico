@@ -77,6 +77,7 @@ function listarMedico() {
 //se almacenan los valores
 function registrarMedico() {
     let forData = {
+        //
         "documentoIdentidad": document.getElementById("documentoIdentidad").value,
         "primerNombre": document.getElementById("primerNombre").value,
         "segundoNombre": document.getElementById("segundoNombre").value,
