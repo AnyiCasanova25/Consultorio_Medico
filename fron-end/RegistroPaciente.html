@@ -60,8 +60,7 @@
 
                                                     <div class="col col-xl-6 col-12 table-hover ">
                                                         <label for="">N° de documento</label>
-                                                        <input type="number" id="primerNombre" class="form-control"
-                                                            required>
+                                                        <input type="number" id="documentoIdentidad" class="form-control"  onfocusout="validarDocumentoIdentidad(this)"required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
@@ -109,7 +108,7 @@
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Numero del Familiar</label>
-                                                        <input type="text" id="nombrePersonaContacto"
+                                                        <input type="text" id="telefonoPersonaContacto"
                                                             class="form-control" required>
                                                     </div>
                                                 </form>
@@ -120,7 +119,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-dark"
-                                        onclick="listarPaciente();">Registrar</button>
+                                        onclick="registrarPaciente(); limpiar();">Registrar</button>
                                 </div>
                             </div>
                         </div>

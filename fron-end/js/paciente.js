@@ -105,6 +105,8 @@ function registrarPaciente() {
             success: function (result) {
                 //
                 alert("Se guardo correctamente");
+                $('#exampleModal').modal('hide');
+                listarPaciente();
             },
             error: function (error) {
                 //error
@@ -122,7 +124,7 @@ function registrarPaciente() {
 
 
 function validarCampos() {
-    var documentoIdentidad = document.documentoIdentidad("documentoIdentidad");
+    var documentoIdentidad = document.getElementById("documentoIdentidad");
     return validarDocumentoIdentidad(documentoIdentidad);
 }
 
@@ -153,7 +155,7 @@ function limpiar() {
     document.getElementById("primerNombre").value = "";
     document.getElementById("segundoNombre").value = "";
     document.getElementById("primerApellido").value = "";
-    document.getElementById("segundo_apellido").value = "";
+    document.getElementById("segundoApellido").value = "";
     document.getElementById("Celular").value = "";
     document.getElementById("Correo").value = "";
     document.getElementById("Estado").value = "";

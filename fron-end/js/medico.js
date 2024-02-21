@@ -77,7 +77,6 @@ function listarMedico() {
 //se almacenan los valores
 function registrarMedico() {
     let forData = {
-        //
         "documentoIdentidad": document.getElementById("documentoIdentidad").value,
         "primerNombre": document.getElementById("primerNombre").value,
         "segundoNombre": document.getElementById("segundoNombre").value,
@@ -98,6 +97,7 @@ function registrarMedico() {
             success: function (result) {
                 //
                 alert("Se guardo correctamente");
+                $('#exampleModal').modal('hide');
                 listarMedico();
             },
             error: function (error) {
@@ -147,7 +147,7 @@ function limpiar() {
     document.getElementById("primerNombre").value = "";
     document.getElementById("segundoNombre").value = "";
     document.getElementById("primerApellido").value = "";
-    document.getElementById("segundo_apellido").value = "";
+    document.getElementById("segundoApellido").value = "";
     document.getElementById("Celular").value = "";
     document.getElementById("Correo").value = "";
     document.getElementById("Estado").value = "";
