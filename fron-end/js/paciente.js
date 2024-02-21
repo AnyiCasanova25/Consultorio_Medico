@@ -34,6 +34,7 @@ function listarPaciente() {
                 let celdaCorreo = document.createElement("td");
                 let celdaEstado = document.createElement("td");
                 let celdaNombrePersonaContacto = document.createElement("td");
+                let celdaNumeroPersonaContacto = document.createElement("td");
                 celdaId.innerText = result[i]["idMedico"];
 
                 //se agrega la celda al registro una linea por cada campo 
@@ -48,6 +49,7 @@ function listarPaciente() {
                 trRegistro.appendChild(celdaCorreo);
                 trRegistro.appendChild(celdaEstado);
                 trRegistro.appendChild(celdaNombrePersonaContacto);
+                trRegistro.appendChild(celdaNumeroPersonaContacto);
 
 
                 //se agrega el registro en la tabla 
@@ -62,6 +64,7 @@ function listarPaciente() {
                 celdaCorreo.innerText = result[i]["Correo"];
                 celdaEstado.innerText = result[i]["Estado"];
                 celdaNombrePersonaContacto.innerText = result[i]["nombrePersonaContacto"];
+                celdaNumeroPersonaContacto.innerText = result[i]["telefonoPersonaContacto"];
 
 
 
