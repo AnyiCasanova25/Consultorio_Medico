@@ -32,6 +32,7 @@ function listarIngreso() {
                 let celdaFechaIngreso = document.createElement("td");
                 let celdaFechaSalida = document.createElement("td");
                 let celdaEstado = document.createElement("td");
+                celdaId.innerText = result[i]["idIngreso"];
                
                 //se agrega la celda al registro una linea por cada campo 
 
