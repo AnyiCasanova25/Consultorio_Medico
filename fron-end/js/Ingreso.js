@@ -54,7 +54,7 @@ function listarIngreso() {
                 celdaMedico.innerText = result[i]["medico"];
                 celdaFechaIngreso.innerText = result[i]["fechaIngreso"];
                 celdaFechaSalida.innerText = result[i]["fechaSalida"];
-                celdaEstado.innerText = result[i]["Estado"];
+                celdaEstado.innerText = result[i]["estado"];
 
 
 
