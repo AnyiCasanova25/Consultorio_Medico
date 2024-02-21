@@ -35,7 +35,7 @@ function listarPaciente() {
                 let celdaEstado = document.createElement("td");
                 let celdaNombrePersonaContacto = document.createElement("td");
                 let celdaNumeroPersonaContacto = document.createElement("td");
-                celdaId.innerText = result[i]["idMedico"];
+                celdaId.innerText = result[i]["idPaciente"];
 
                 //se agrega la celda al registro una linea por cada campo 
 
