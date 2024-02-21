@@ -20,25 +20,21 @@
     <link rel="stylesheet" href="/fron-end/css/estilos.css">
 </head>
 
-<body>
-    <div>
-        <a class="btn btn-success position-absolute bottom-0 end-0" href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i> </a>
-    </div>
+<body onload="listarIngreso()">
     <div>
         <div class="centradooor">
             <div class="container col">
                 <br>
                 <div class="row botonregistrar">
-                    <!-- Tabla para listar médicos -->
-                    
-                        <h2 class="col-10
-                        " style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Ingreso</h2>
+                    <!-- Tabla para listar Ingresos -->
+                
+                    <h2 class="col-9" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Ingreso
+                    </h2>
                         <!-- Button trigger modal -->
-                        
                         <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal" data-bs-target="#exampleModal"
                             style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Ingreso
                         </button>
-                        
+                        <a class="btn btn-success col-1" href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i> </a>
                     <br>
                     <br>
                     <!-- Modal -->
@@ -69,7 +65,7 @@
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Cama</label>
-                                                        <input type="number" id="primerNombre" class="form-control"
+                                                        <input type="number" id="cama" class="form-control"
                                                             required>
                                                     </div>
 
@@ -107,7 +103,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-dark"
-                                        onclick="listarPaciente();">Registrar</button>
+                                        onclick="listarIngreso();">Registrar</button>
                                 </div>
                             </div>
                         </div>
@@ -115,6 +111,7 @@
                     <table class=" table table-hover table-striped">
                         <div class="colorTabla">
                             <tr>
+                                <th class="colorTabla">ID</th>
                                 <th class="colorTabla">N° De Habitacion</th>
                                 <th class="colorTabla">N° De Cama</th>
                                 <th class="colorTabla">Nombre Paciente</th>
@@ -124,6 +121,7 @@
                                 <th class="colorTabla">Estado</th>
                             </tr>
                         </div>
+                        <tbody id="cuerpoTabla"></tbody>
                         <!-- Las filas de la tabla se agregarán dinámicamente con JavaScript -->
                     </table>
                 </div>

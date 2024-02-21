@@ -1,5 +1,5 @@
 //se almacena la url de la API
-var url = "http://localhost:8080/api/v1/Ingreso";
+var url = "http://localhost:8080/api/v1/Ingreso/";
 function listarIngreso() {
     //metodo para alistar los medicos
     //se crea la peticion AJAX
@@ -36,7 +36,7 @@ function listarIngreso() {
                
                 //se agrega la celda al registro una linea por cada campo 
 
-                trRegistro.appendChild(celdaidIngreso);
+                trRegistro.appendChild(celdaId);
                 trRegistro.appendChild(celdaHabitacion);
                 trRegistro.appendChild(celdaCama);
                 trRegistro.appendChild(celdaPaciente);
