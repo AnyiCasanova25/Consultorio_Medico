@@ -60,9 +60,9 @@ function listarPaciente() {
                 celdaSegundoNombre.innerText = result[i]["segundoNombre"];
                 celdaPrimerApellido.innerText = result[i]["primerApellido"];
                 celdaSegundoApellido.innerText = result[i]["segundoApellido"];
-                celdaCelular.innerText = result[i]["Celular"];
-                celdaCorreo.innerText = result[i]["Correo"];
-                celdaEstado.innerText = result[i]["Estado"];
+                celdaCelular.innerText = result[i]["celular"];
+                celdaCorreo.innerText = result[i]["correo"];
+                celdaEstado.innerText = result[i]["estado"];
                 celdaNombrePersonaContacto.innerText = result[i]["nombrePersonaContacto"];
                 celdaNumeroPersonaContacto.innerText = result[i]["telefonoPersonaContacto"];
 
