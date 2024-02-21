@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-@RequestMapping("/api/v1/Ingreso")
+@RequestMapping("/api/v1/Ingreso/")
 @RestController
 public class ingresoController {
 
