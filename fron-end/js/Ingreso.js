@@ -92,6 +92,8 @@ function registrarIngreso() {
             success: function (result) {
                 //
                 alert("Se guardo correctamente");
+                $('#exampleModal').modal('hide');
+                listarIngreso();
             },
             error: function (error) {
                 //error
@@ -109,17 +111,17 @@ function registrarIngreso() {
 
 //Validar campo de documento de identidad paciente
 function validarCampos() {
-    var habitacion = document.documentoIdentidad("habitacion");
-    return validarDocumentoIdentidad(habitacion);
+    var cama = document.getElementById("cama");
+    return validarCama(cama);
 }
 
-function validarDocumentoIdentidad(cuadroNumero) {
+function validarCama(cuadroNumero) {
 
 
 
     var valor = cuadroNumero.value;
     var valido = true;
-    if (valor.length < 5 || valor.length > 11) {
+    if (valor.length <= 1 || valor.length > 11) {
         valido = false;
     }
 

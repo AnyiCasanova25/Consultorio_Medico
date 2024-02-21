@@ -56,9 +56,9 @@ function listarMedico() {
                 celdaSegundoNombre.innerText = result[i]["segundoNombre"];
                 celdaPrimerApellido.innerText = result[i]["primerApellido"];
                 celdaSegundoApellido.innerText = result[i]["segundoApellido"];
-                celdaCelular.innerText = result[i]["Celular"];
-                celdaCorreo.innerText = result[i]["Correo"];
-                celdaEstado.innerText = result[i]["Estado"];
+                celdaCelular.innerText = result[i]["celular"];
+                celdaCorreo.innerText = result[i]["correo"];
+                celdaEstado.innerText = result[i]["estado"];
 
 
 
@@ -77,7 +77,6 @@ function listarMedico() {
 //se almacenan los valores
 function registrarMedico() {
     let forData = {
-        //
         "documentoIdentidad": document.getElementById("documentoIdentidad").value,
         "primerNombre": document.getElementById("primerNombre").value,
         "segundoNombre": document.getElementById("segundoNombre").value,
@@ -98,6 +97,8 @@ function registrarMedico() {
             success: function (result) {
                 //
                 alert("Se guardo correctamente");
+                $('#exampleModal').modal('hide');
+                listarMedico();
             },
             error: function (error) {
                 //error
@@ -115,7 +116,7 @@ function registrarMedico() {
 
 
 function validarCampos() {
-    var documentoIdentidad = document.documentoIdentidad("documentoIdentidad");
+    var documentoIdentidad = document.getElementById("documentoIdentidad");
     return validarDocumentoIdentidad(documentoIdentidad);
 }
 
@@ -140,13 +141,15 @@ function validarDocumentoIdentidad(cuadroNumero) {
     return valido
 }
 
+// identidad, 1 nombre,1 apellido, telefono. correo.
+
 function limpiar() {
 
     document.getElementById("documentoIdentidad").value = "";
     document.getElementById("primerNombre").value = "";
     document.getElementById("segundoNombre").value = "";
     document.getElementById("primerApellido").value = "";
-    document.getElementById("segundo_apellido").value = "";
+    document.getElementById("segundoApellido").value = "";
     document.getElementById("Celular").value = "";
     document.getElementById("Correo").value = "";
     document.getElementById("Estado").value = "";

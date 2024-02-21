@@ -59,14 +59,12 @@
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Habitacion</label>
-                                                        <input type="number" id="habitacion" class="form-control"
-                                                            required>
+                                                        <input type="number" id="habitacion" class="form-control" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Cama</label>
-                                                        <input type="number" id="cama" class="form-control"
-                                                            required>
+                                                        <input type="number" id="cama" class="form-control" onfocusout="validarCama(this)"required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
@@ -103,7 +101,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-dark"
-                                        onclick="listarIngreso();">Registrar</button>
+                                        onclick="registrarIngreso(); limpiar();">Registrar</button>
                                 </div>
                             </div>
                         </div>
