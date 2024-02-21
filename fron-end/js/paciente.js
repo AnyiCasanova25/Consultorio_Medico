@@ -103,8 +103,11 @@ function registrarPaciente() {
             data: forData,
 
             success: function (result) {
-                //
-                alert("Se guardo correctamente");
+                Swal.fire({
+                    title: "LISTO",
+                    text: "Felicidades registrado con exito",
+                    icon: "success"
+                });
                 $('#exampleModal').modal('hide');
                 listarPaciente();
             },
