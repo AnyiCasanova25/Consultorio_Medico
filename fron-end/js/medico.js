@@ -56,9 +56,9 @@ function listarMedico() {
                 celdaSegundoNombre.innerText = result[i]["segundoNombre"];
                 celdaPrimerApellido.innerText = result[i]["primerApellido"];
                 celdaSegundoApellido.innerText = result[i]["segundoApellido"];
-                celdaCelular.innerText = result[i]["Celular"];
-                celdaCorreo.innerText = result[i]["Correo"];
-                celdaEstado.innerText = result[i]["Estado"];
+                celdaCelular.innerText = result[i]["celular"];
+                celdaCorreo.innerText = result[i]["correo"];
+                celdaEstado.innerText = result[i]["estado"];
 
 
 
@@ -98,6 +98,7 @@ function registrarMedico() {
             success: function (result) {
                 //
                 alert("Se guardo correctamente");
+                listarMedico();
             },
             error: function (error) {
                 //error
@@ -115,7 +116,7 @@ function registrarMedico() {
 
 
 function validarCampos() {
-    var documentoIdentidad = document.documentoIdentidad("documentoIdentidad");
+    var documentoIdentidad = document.getElementById("documentoIdentidad");
     return validarDocumentoIdentidad(documentoIdentidad);
 }
 
