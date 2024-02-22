@@ -18,66 +18,32 @@ function listarPaciente() {
             //Se hace un ciclo que recorra 
             //el arreglo con los datos
             for (var i = 0; i < result.length; i++) {
-                //se crea una etiqueta tr por
-                //cada registro
                 var trRegistro = document.createElement("tr");
-                let celdaId = document.createElement("td");
-
-                //creamos un td por cada campo de registro
-
-                let celdaDocumentoIdentidad = document.createElement("td");
-                let celdaPrimerNombre = document.createElement("td");
-                let celdaSegundoNombre = document.createElement("td");
-                let celdaPrimerApellido = document.createElement("td");
-                let celdaSegundoApellido = document.createElement("td");
-                let celdaCelular = document.createElement("td");
-                let celdaCorreo = document.createElement("td");
-                let celdaEstado = document.createElement("td");
-                let celdaNombrePersonaContacto = document.createElement("td");
-                let celdaNumeroPersonaContacto = document.createElement("td");
-                celdaId.innerText = result[i]["idPaciente"];
-
-                //se agrega la celda al registro una linea por cada campo 
-
-                trRegistro.appendChild(celdaId);
-                trRegistro.appendChild(celdaDocumentoIdentidad);
-                trRegistro.appendChild(celdaPrimerNombre);
-                trRegistro.appendChild(celdaSegundoNombre);
-                trRegistro.appendChild(celdaPrimerApellido);
-                trRegistro.appendChild(celdaSegundoApellido);
-                trRegistro.appendChild(celdaCelular);
-                trRegistro.appendChild(celdaCorreo);
-                trRegistro.appendChild(celdaEstado);
-                trRegistro.appendChild(celdaNombrePersonaContacto);
-                trRegistro.appendChild(celdaNumeroPersonaContacto);
-
-
-                //se agrega el registro en la tabla 
-
-                cuerpoTabla.appendChild(trRegistro);
-                celdaDocumentoIdentidad.innerText = result[i]["documentoIdentidad"];
-                celdaPrimerNombre.innerText = result[i]["primerNombre"];
-                celdaSegundoNombre.innerText = result[i]["segundoNombre"];
-                celdaPrimerApellido.innerText = result[i]["primerApellido"];
-                celdaSegundoApellido.innerText = result[i]["segundoApellido"];
-                celdaCelular.innerText = result[i]["celular"];
-                celdaCorreo.innerText = result[i]["correo"];
-                celdaEstado.innerText = result[i]["estado"];
-                celdaNombrePersonaContacto.innerText = result[i]["nombrePersonaContacto"];
-                celdaNumeroPersonaContacto.innerText = result[i]["telefonoPersonaContacto"];
-
-
-
-            }
-        },
-        error: function (error) {
-            //error: funcion que se ejecuta 
-            //cuando la peticion tiene un error
-            alert("Error en la peticion ${error}");
-
+                trRegistro.innerHTML = `
+                <td>${result[i]["idPaciente"]}</td>
+                <td>${result[i]["documentoIdentidad"]}</td>
+                <td>${result[i]["primerNombre"]}</td>
+                <td>${result[i]["segundoNombre"]}</td>
+                <td>${result[i]["primerApellido"]}</td>
+                <td>${result[i]["segundoApellido"]}</td>
+                <td>${result[i]["celular"]}</td>
+                <td>${result[i]["correo"]}</td>
+                <td class="text-center align-middle">${result[i]["estado"]}</td>
+                <td>${result[i]["nombrePersonaContacto"]}</td>
+                <td>${result[i]["telefonoPersonaContacto"]}</td>
+                <td class="text-center align-middle">
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-user-slash"></i>
+                    <i class="fas fa-trash-alt"></i>
+                </td>
+            `;
+            cuerpoTabla.appendChild(trRegistro);
         }
-
-    });
+    },
+    error: function (error) {
+        alert("Error en la petición: " + error);
+    }
+});
 }
 
 //se almacenan los valores
@@ -94,75 +60,77 @@ function registrarPaciente() {
         "nombrePersonaContacto": document.getElementById("nombrePersonaContacto").value,
         "telefonoPersonaContacto": document.getElementById("telefonoPersonaContacto").value,
     };
+
     if (validarCampos()) {
-        //se ejecuta la peticion
-        $.ajax({
-
-            url: url,
-            type: "POST",
-            data: forData,
-
-            success: function (result) {
-                Swal.fire({
-                    title: "LISTO",
-                    text: "Felicidades registrado con exito",
-                    icon: "success"
+                //se ejecuta la peticion
+                $.ajax({
+        
+                    url: url,
+                    type: "POST",
+                    data: forData,
+        
+                    success: function (result) {
+                        Swal.fire({
+                            title: "LISTO",
+                            text: "Felicidades registrado con exito",
+                            icon: "success"
+                        });
+                        $('#exampleModal').modal('hide');
+                        listarPaciente();
+                    },
+                    error: function (error) {
+                        //error
+                        alert("Error al guardar", error);
+                    }
                 });
-                $('#exampleModal').modal('hide');
-                listarPaciente();
-            },
-            error: function (error) {
-                //error
-                alert("Error al guardar", error);
+            } else {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Llene todos los campos correctamente!",
+                    icon: "error"
+                });
             }
-        });
-    } else {
-        Swal.fire({
-            title: "Error!",
-            text: "Llene todos los campos correctamente!",
-            icon: "error"
-        });
-    }
-}
-
-
-function validarCampos() {
-    var documentoIdentidad = document.getElementById("documentoIdentidad");
-    return validarDocumentoIdentidad(documentoIdentidad);
-}
-
-function validarDocumentoIdentidad(cuadroNumero) {
-
-
-
-    var valor = cuadroNumero.value;
-    var valido = true;
-    if (valor.length < 5 || valor.length > 11) {
-        valido = false;
-    }
-
-    if (valido) {
-        //cuadro de texto cumple
-        //se modifica la clase del cuadro de texto
-        cuadroNumero.className = "form-control is-valid";
-    } else {
-        //cuadro de texto no cumple
-        cuadroNumero.className = "form-control is-invalid"
-    }
-    return valido
-}
-
-function limpiar() {
-
-    document.getElementById("documentoIdentidad").value = "";
-    document.getElementById("primerNombre").value = "";
-    document.getElementById("segundoNombre").value = "";
-    document.getElementById("primerApellido").value = "";
-    document.getElementById("segundoApellido").value = "";
-    document.getElementById("Celular").value = "";
-    document.getElementById("Correo").value = "";
-    document.getElementById("Estado").value = "";
-    document.getElementById("nombrePersonaContacto").value = "";
-    document.getElementById("telefonoPersonaContacto").value = "";
-
-}
+        }
+        
+        
+        function validarCampos() {
+            var documentoIdentidad = document.getElementById("documentoIdentidad");
+            return validarDocumentoIdentidad(documentoIdentidad);
+        }
+        
+        function validarDocumentoIdentidad(cuadroNumero) {
+        
+        
+        
+            var valor = cuadroNumero.value;
+            var valido = true;
+            if (valor.length < 5 || valor.length > 11) {
+                valido = false;
+            }
+        
+            if (valido) {
+                //cuadro de texto cumple
+                //se modifica la clase del cuadro de texto
+                cuadroNumero.className = "form-control is-valid";
+            } else {
+                //cuadro de texto no cumple
+                cuadroNumero.className = "form-control is-invalid"
+            }
+            return valido
+        }
+        
+        function limpiar() {
+        
+            document.getElementById("documentoIdentidad").value = "";
+            document.getElementById("primerNombre").value = "";
+            document.getElementById("segundoNombre").value = "";
+            document.getElementById("primerApellido").value = "";
+            document.getEleentById("segundoApellido").value = "";
+            document.getElementById("Celular").value = "";
+            document.getElementById("Correo").value = "";
+            document.getElementById("Estado").value = "";
+            document.getElementById("nombrePersonaContacto").value = "";
+            document.getElementById("telefonoPersonaContacto").value = "";
+        
+        }
+        
