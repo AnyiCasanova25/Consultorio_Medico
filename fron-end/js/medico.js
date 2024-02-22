@@ -35,6 +35,20 @@ function listarMedico() {
                 let celdaEstado = document.createElement("td");
                 celdaId.innerText = result[i]["idMedico"];
 
+
+                //botones
+                
+
+                let celdaOpcion = document.createElement("td");
+                let botonEditarMedico = document.createElement("icono")
+                botonEditarMedico.className="fas fa-edit"
+
+                let botonDesahabilitarMedico = document.createElement("icono")
+                botonDesahabilitarMedico.className="fas fa-user-slash"
+
+                let botonEliminarMedico = document.createElement("icono")
+                botonEliminarMedico.className="fas fa-trash-alt"
+
                 //se agrega la celda al registro una linea por cada campo 
 
                 trRegistro.appendChild(celdaId);
@@ -47,10 +61,11 @@ function listarMedico() {
                 trRegistro.appendChild(celdaCorreo);
                 trRegistro.appendChild(celdaEstado);
 
+                 
 
                 //se agrega el registro en la tabla 
 
-                cuerpoTabla.appendChild(trRegistro);
+                
                 celdaDocumentoIdentidad.innerText = result[i]["documentoIdentidad"];
                 celdaPrimerNombre.innerText = result[i]["primerNombre"];
                 celdaSegundoNombre.innerText = result[i]["segundoNombre"];
@@ -60,6 +75,16 @@ function listarMedico() {
                 celdaCorreo.innerText = result[i]["correo"];
                 celdaEstado.innerText = result[i]["estado"];
 
+                celdaOpcion.appendChild(botonEditarMedico);
+                trRegistro.appendChild(celdaOpcion)
+
+                celdaOpcion.appendChild(botonDesahabilitarMedico);
+                trRegistro.appendChild(celdaOpcion)
+
+                celdaOpcion.appendChild(botonEliminarMedico);
+                trRegistro.appendChild(celdaOpcion)
+
+                cuerpoTabla.appendChild(trRegistro);
 
 
             }
