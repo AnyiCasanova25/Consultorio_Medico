@@ -196,9 +196,11 @@ $(document).on("click", ".eliminar", function () {
                 error: function (error) {
                     console.error("Error al eliminar el médico: " + error.statusText);
                     Swal.fire({
-                        title: "Error",
-                        text: "Error al eliminar el médico",
-                        icon: "error"
+                        position: "top-end",
+                        icon: "error",
+                        title: "ERROR :(",
+                        showConfirmButton: false,
+                        timer: 1500
                     });
                 }
     });
