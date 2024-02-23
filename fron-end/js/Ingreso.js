@@ -1,3 +1,4 @@
+
 //se almacena la url de la API
 var url = "http://localhost:8080/api/v1/Ingreso/";
 function listarIngreso() {
@@ -194,3 +195,12 @@ $(document).on("click", ".eliminar", function () {
 $(document).ready(function () {
     listarIngreso();
 });
+
+// Obtener la fecha actual
+var today = new Date();
+
+// Formatear la fecha como "YYYY-MM-DD"
+var formattedDate = today.toISOString().substr(0, 10);
+
+// Establecer la fecha actual como el valor predeterminado del campo de entrada de fecha
+document.getElementById("fechaIngreso").value = formattedDate;

@@ -226,3 +226,4 @@ $(document).on("click", ".eliminar", function () {
 $(document).ready(function () {
     listarMedico();
 });
+
