@@ -1,14 +1,14 @@
-/* .verde {
-    color: green;
+.verde {
+    color: rgb(5, 185, 5);
 }
 
 .azul {
-    color: blue;
+    color: rgb(0, 0, 255);
 }
 
 .rojo {
-    color: red;
-} */
+    color: rgb(255, 0, 0);
+}
 
 .centrado {
     margin-top: 5%;
