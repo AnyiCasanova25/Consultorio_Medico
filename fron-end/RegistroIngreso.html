@@ -33,7 +33,7 @@
                     </h2>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Ingreso
+                        onclick="registrarIngresoBandera=true;" style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Ingreso
                         </button>
                         <a class="btn btn-success col-1" href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i> </a>
                     <br>
@@ -65,16 +65,16 @@
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Cama</label>
-                                                        <input type="number" id="cama" class="form-control" onfocusout="validarCama(this)"required>
+                                                        <input type="number" id="cama" class="form-control"  onfocusout="validarcama(this)"required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
-                                                        <label for="">Nombre Paciente</label>
+                                                        <label for="">ID Paciente</label>
                                                         <input type="text" id="paciente" class="form-control">
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
-                                                        <label for="">Nombre Medico</label>
+                                                        <label for="">ID Medico</label>
                                                         <input type="text" id="medico" class="form-control"
                                                             required>
                                                     </div>

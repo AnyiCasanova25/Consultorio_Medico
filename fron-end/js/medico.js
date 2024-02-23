@@ -163,22 +163,12 @@ $(document).on("click", ".cambiarEstado", function () {
 
     if (confirm) {
         Swal.fire({
-            title: "<strong>CAMBIAR ESTADO </strong>",
-            icon: "info",
-            html: `
-        ¿Estás seguro de que quieres cambiar el estado de este médico?
-        `,
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonText: `
-          <i class="fa fa-thumbs-up"></i> 
-        `,
-            confirmButtonAriaLabel: "Thumbs up, great!",
-            cancelButtonText: `
-          <i class="fa fa-thumbs-down"></i>
-        `,
-        });
+            position: "top-end",
+            icon: "success",
+            title: "Medico deshabilitado",
+            showConfirmButton: false,
+            timer: 1500
+          });
     }
 });
 
@@ -189,22 +179,12 @@ $(document).on("click", ".eliminar", function () {
 
     if (confirm) {
         Swal.fire({
-            title: "<strong>ELIMINAR REGISTRO</strong>",
-            icon: "info",
-            html: `
-        ¿Estás seguro de que quieres eliminar este médico?
-        `,
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonText: `
-          <i class="fa fa-thumbs-up"></i> 
-        `,
-            confirmButtonAriaLabel: "Thumbs up, great!",
-            cancelButtonText: `
-          <i class="fa fa-thumbs-down"></i>
-        `,
-        });
+            position: "top-end",
+            icon: "success",
+            title: "Registro eliminado :)",
+            showConfirmButton: false,
+            timer: 1500
+          });
     }
 });
 

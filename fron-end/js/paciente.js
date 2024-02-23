@@ -7,9 +7,6 @@ function listarPaciente() {
         url: url,
         type: "GET",
         success: function (result) {
-            //success: funcion que se ejecuta 
-            //cuando la peticion tiene exito
-            console.log(result);
             //se crea un objeto que contenga
             //el cuerpo de la tabla
             var cuerpoTabla = document.getElementById("cuerpoTabla");
@@ -32,19 +29,21 @@ function listarPaciente() {
                 <td>${result[i]["nombrePersonaContacto"]}</td>
                 <td>${result[i]["telefonoPersonaContacto"]}</td>
                 <td class="text-center align-middle">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-user-slash"></i>
-                    <i class="fas fa-trash-alt"></i>
-                </td>
+                        <i class="fas fa-edit editar"  onclick="registrarPacienteBandera=false;" data-id="${result[i]["idPaciente"]}"></i>
+                        <i class="fas fa-user-slash cambiarEstado" data-id="${result[i]["idPaciente"]}"></i>
+                        <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idPaciente"]}"></i>
+                    </td>
             `;
-            cuerpoTabla.appendChild(trRegistro);
+                cuerpoTabla.appendChild(trRegistro);
+            }
+        },
+        error: function (error) {
+            alert("Error en la petición: " + error);
         }
-    },
-    error: function (error) {
-        alert("Error en la petición: " + error);
-    }
-});
+    });
 }
+
+var registrarPacienteBandera = true;
 
 //se almacenan los valores
 function registrarPaciente() {
@@ -61,76 +60,155 @@ function registrarPaciente() {
         "telefonoPersonaContacto": document.getElementById("telefonoPersonaContacto").value,
     };
 
+    var metodo = "";
+    var urlLocal = "";
+    var textoimprimir = "";
+    if (registrarPacienteBandera == true) {
+        metodo = "POST";
+        urlLocal = url;
+        textoimprimir = Swal.fire({
+            title: "LISTO",
+            text: "Felicidades, Registrado con éxito",
+            icon: "success"
+        });
+    } else {
+        metodo = "PUT";
+        urlLocal = url + idPaciente;
+        textoimprimir = Swal.fire({
+            title: "LISTO",
+            text: "Felicidades, Guardado con éxito",
+            icon: "success"
+        });
+    }
+
+
     if (validarCampos()) {
-                //se ejecuta la peticion
-                $.ajax({
-        
-                    url: url,
-                    type: "POST",
-                    data: forData,
-        
-                    success: function (result) {
-                        Swal.fire({
-                            title: "LISTO",
-                            text: "Felicidades registrado con exito",
-                            icon: "success"
-                        });
-                        $('#exampleModal').modal('hide');
-                        listarPaciente();
-                    },
-                    error: function (error) {
-                        //error
-                        alert("Error al guardar", error);
-                    }
-                });
-            } else {
-                Swal.fire({
-                    title: "Error!",
-                    text: "Llene todos los campos correctamente!",
-                    icon: "error"
-                });
+        $.ajax({
+            url: urlLocal,
+            type: metodo,
+            data: forData,
+            success: function (result) {
+                textoimprimir;
+                $('#exampleModal').modal('hide');
+                listarPaciente();
+            },
+            error: function (error) {
+                if (error.responseJSON && error.responseJSON.message) {
+                    alert("Error al guardar: " + error.responseJSON.message);
+                } else {
+                    alert("Error al guardar: " + error.statusText);
+                }
             }
+        });
+    } else {
+        Swal.fire({
+            title: "Error!",
+            text: "¡Llene todos los campos correctamente!",
+            icon: "error"
+        });
+    }
+}
+
+
+function validarCampos() {
+    var documentoIdentidad = document.getElementById("documentoIdentidad");
+    return validarDocumentoIdentidad(documentoIdentidad);
+}
+
+function validarDocumentoIdentidad(cuadroNumero) {
+
+
+
+    var valor = cuadroNumero.value;
+    var valido = true;
+    if (valor.length < 5 || valor.length > 11) {
+        valido = false;
+    }
+
+
+    if (valido) {
+        //cuadro de texto cumple
+        //se modifica la clase del cuadro de texto
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        //cuadro de texto no cumple
+        cuadroNumero.className = "form-control is-invalid"
+    }
+    return valido
+}
+
+function limpiar() {
+
+    document.getElementById("documentoIdentidad").value = "";
+    document.getElementById("primerNombre").value = "";
+    document.getElementById("segundoNombre").value = "";
+    document.getElementById("primerApellido").value = "";
+    document.getElementById("segundoApellido").value = "";
+    document.getElementById("Celular").value = "";
+    document.getElementById("Correo").value = "";
+    document.getElementById("Estado").value = "";
+    document.getElementById("nombrePersonaContacto").value = "";
+    document.getElementById("telefonoPersonaContacto").value = "";
+
+}
+var idPaciente = "";
+// Asociar eventos de clic a los iconos dentro de la tabla
+$(document).on("click", ".editar", function () {
+    idPaciente = $(this).data("id");
+
+    $.ajax({
+        url: url + idPaciente,
+        type: "GET",
+        success: function (paciente) {
+            document.getElementById("documentoIdentidad").value = paciente.documentoIdentidad;
+            document.getElementById("primerNombre").value = paciente.primerNombre;
+            document.getElementById("segundoNombre").value = paciente.segundoNombre;
+            document.getElementById("primerApellido").value = paciente.primerApellido;
+            document.getElementById("segundoApellido").value = paciente.segundoApellido;
+            document.getElementById("Celular").value = paciente.celular;
+            document.getElementById("Correo").value = paciente.correo;
+            document.getElementById("Estado").value = paciente.estado;
+            document.getElementById("nombrePersonaContacto").value = paciente.nombrePersonaContacto;
+            document.getElementById("telefonoPersonaContacto").value = paciente.telefonoPersonaContacto;
+            $('#exampleModal').modal('show');
+        },
+        error: function (error) {
+            alert("Error al obtener los datos del médico: " + error.statusText);
         }
-        
-        
-        function validarCampos() {
-            var documentoIdentidad = document.getElementById("documentoIdentidad");
-            return validarDocumentoIdentidad(documentoIdentidad);
-        }
-        
-        function validarDocumentoIdentidad(cuadroNumero) {
-        
-        
-        
-            var valor = cuadroNumero.value;
-            var valido = true;
-            if (valor.length < 5 || valor.length > 11) {
-                valido = false;
-            }
-        
-            if (valido) {
-                //cuadro de texto cumple
-                //se modifica la clase del cuadro de texto
-                cuadroNumero.className = "form-control is-valid";
-            } else {
-                //cuadro de texto no cumple
-                cuadroNumero.className = "form-control is-invalid"
-            }
-            return valido
-        }
-        
-        function limpiar() {
-        
-            document.getElementById("documentoIdentidad").value = "";
-            document.getElementById("primerNombre").value = "";
-            document.getElementById("segundoNombre").value = "";
-            document.getElementById("primerApellido").value = "";
-            document.getEleentById("segundoApellido").value = "";
-            document.getElementById("Celular").value = "";
-            document.getElementById("Correo").value = "";
-            document.getElementById("Estado").value = "";
-            document.getElementById("nombrePersonaContacto").value = "";
-            document.getElementById("telefonoPersonaContacto").value = "";
-        
-        }
-        
+    });
+});
+
+$(document).on("click", ".cambiarEstado", function () {
+    var idMedico = $(this).data("id");
+
+    if (confirm) {
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Medico deshabilitado",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+});
+
+$(document).on("click", ".eliminar", function () {
+    var idMedico = $(this).data("id");
+
+
+
+    if (confirm) {
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Registro eliminado :)",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+});
+
+// Llamar a la función para listar médicos al cargar la página
+$(document).ready(function () {
+    listarPaciente();
+});
