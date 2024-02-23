@@ -53,7 +53,7 @@ function registrarMedico() {
     };
     var metodo = "";
     var urlLocal = "";
-    var textoimprimir ="";
+    var textoimprimir = "";
     if (registrarMedicoBandera == true) {
         metodo = "POST";
         urlLocal = url;
@@ -64,7 +64,7 @@ function registrarMedico() {
         });
     } else {
         metodo = "PUT";
-        urlLocal = url+ idMedico;
+        urlLocal = url + idMedico;
         textoimprimir = Swal.fire({
             title: "LISTO",
             text: "Felicidades, Guardado con éxito",
@@ -158,35 +158,69 @@ $(document).on("click", ".editar", function () {
     });
 });
 
+// Funcion para canbiar el estado
+
 $(document).on("click", ".cambiarEstado", function () {
-    var idMedico = $(this).data("id");
+    idMedico = $(this).data("id");
 
     if (confirm) {
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Medico deshabilitado",
+            title: "Cambio de estado exitoso",
             showConfirmButton: false,
             timer: 1500
-          });
+        });
     }
 });
+
+
+// Función para eliminar un médico
 
 $(document).on("click", ".eliminar", function () {
-    var idMedico = $(this).data("id");
+    idMedico = $(this).data("id");
 
-    
-
-    if (confirm) {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Registro eliminado :)",
-            showConfirmButton: false,
-            timer: 1500
-          });
-    }
+    $.ajax({
+        urlLocal: url + idMedico,
+        type: "DELETE",
+                success: function () {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Registro eliminado :)",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    listarMedico(); // Vuelve a listar los médicos después de eliminar uno
+                },
+                error: function (error) {
+                    console.error("Error al eliminar el médico: " + error.statusText);
+                    Swal.fire({
+                        title: "Error",
+                        text: "Error al eliminar el médico",
+                        icon: "error"
+                    });
+                }
+    });
 });
+
+
+
+// $(document).on("click", ".eliminar", function () {
+//     idMedico = $(this).data("id");
+
+
+
+//     if (confirm) {
+//         Swal.fire({
+//             position: "top-end",
+//             icon: "success",
+//             title: "Registro eliminado :)",
+//             showConfirmButton: false,
+//             timer: 1500
+//         });
+//     }
+// });
 
 // Llamar a la función para listar médicos al cargar la página
 $(document).ready(function () {

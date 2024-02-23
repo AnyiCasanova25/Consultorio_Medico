@@ -161,16 +161,16 @@ $(document).on("click", ".editar", function () {
 });
 
 $(document).on("click", ".cambiarEstado", function () {
-    var idMedico = $(this).data("id");
+    idMedico = $(this).data("id");
 
     if (confirm) {
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Medico deshabilitado",
+            title: "Cambio de estado exitoso",
             showConfirmButton: false,
             timer: 1500
-          });
+        });
     }
 });
 
