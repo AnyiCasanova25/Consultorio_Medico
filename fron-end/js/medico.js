@@ -7,8 +7,6 @@ function listarMedico() {
         url: url,
         type: "GET",
         success: function (result) {
-            //success: funcion que se ejecuta 
-            //cuando la peticion tiene exito
             var cuerpoTabla = document.getElementById("cuerpoTabla");
             cuerpoTabla.innerHTML = "";
 
@@ -25,9 +23,9 @@ function listarMedico() {
                     <td>${result[i]["correo"]}</td>
                     <td class="text-center align-middle">${result[i]["estado"]}</td>
                     <td class="text-center align-middle">
-                        <i class="fas fa-edit"></i>
-                        <i class="fas fa-user-slash"></i>
-                        <i class="fas fa-trash-alt"></i>
+                        <i class="fas fa-edit editar"  onclick="registrarMedicoBandera=false;" data-id="${result[i]["idMedico"]}"></i>
+                        <i class="fas fa-user-slash cambiarEstado" data-id="${result[i]["idMedico"]}"></i>
+                        <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idMedico"]}"></i>
                     </td>
                 `;
                 cuerpoTabla.appendChild(trRegistro);
@@ -38,6 +36,8 @@ function listarMedico() {
         }
     });
 }
+
+var registrarMedicoBandera = true;
 
 // Función para registrar un médico
 function registrarMedico() {
@@ -51,23 +51,42 @@ function registrarMedico() {
         "Correo": document.getElementById("Correo").value,
         "Estado": document.getElementById("Estado").value,
     };
-
+    var metodo = "";
+    var urlLocal = "";
+    var textoimprimir ="";
+    if (registrarMedicoBandera == true) {
+        metodo = "POST";
+        urlLocal = url;
+        textoimprimir = Swal.fire({
+            title: "LISTO",
+            text: "Felicidades, Registrado con éxito",
+            icon: "success"
+        });
+    } else {
+        metodo = "PUT";
+        urlLocal = url+ idMedico;
+        textoimprimir = Swal.fire({
+            title: "LISTO",
+            text: "Felicidades, Guardado con éxito",
+            icon: "success"
+        });
+    }
     if (validarCampos()) {
         $.ajax({
-            url: url,
-            type: "POST",
+            url: urlLocal,
+            type: metodo,
             data: forData,
             success: function (result) {
-                Swal.fire({
-                    title: "LISTO",
-                    text: "Felicidades, registrado con éxito",
-                    icon: "success"
-                });
+                textoimprimir;
                 $('#exampleModal').modal('hide');
                 listarMedico();
             },
             error: function (error) {
-                alert("Error al guardar: " + error);
+                if (error.responseJSON && error.responseJSON.message) {
+                    alert("Error al guardar: " + error.responseJSON.message);
+                } else {
+                    alert("Error al guardar: " + error.statusText);
+                }
             }
         });
     } else {
@@ -114,3 +133,82 @@ function limpiar() {
     document.getElementById("Correo").value = "";
     document.getElementById("Estado").value = "";
 }
+var idMedico = "";
+// Asociar eventos de clic a los iconos dentro de la tabla
+$(document).on("click", ".editar", function () {
+    idMedico = $(this).data("id");
+
+    $.ajax({
+        url: url + idMedico,
+        type: "GET",
+        success: function (medico) {
+            document.getElementById("documentoIdentidad").value = medico.documentoIdentidad;
+            document.getElementById("primerNombre").value = medico.primerNombre;
+            document.getElementById("segundoNombre").value = medico.segundoNombre;
+            document.getElementById("primerApellido").value = medico.primerApellido;
+            document.getElementById("segundoApellido").value = medico.segundoApellido;
+            document.getElementById("Celular").value = medico.celular;
+            document.getElementById("Correo").value = medico.correo;
+            document.getElementById("Estado").value = medico.estado;
+            $('#exampleModal').modal('show');
+        },
+        error: function (error) {
+            alert("Error al obtener los datos del médico: " + error.statusText);
+        }
+    });
+});
+
+$(document).on("click", ".cambiarEstado", function () {
+    var idMedico = $(this).data("id");
+
+    if (confirm) {
+        Swal.fire({
+            title: "<strong>CAMBIAR ESTADO </strong>",
+            icon: "info",
+            html: `
+        ¿Estás seguro de que quieres cambiar el estado de este médico?
+        `,
+            showCloseButton: true,
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText: `
+          <i class="fa fa-thumbs-up"></i> 
+        `,
+            confirmButtonAriaLabel: "Thumbs up, great!",
+            cancelButtonText: `
+          <i class="fa fa-thumbs-down"></i>
+        `,
+        });
+    }
+});
+
+$(document).on("click", ".eliminar", function () {
+    var idMedico = $(this).data("id");
+
+    
+
+    if (confirm) {
+        Swal.fire({
+            title: "<strong>ELIMINAR REGISTRO</strong>",
+            icon: "info",
+            html: `
+        ¿Estás seguro de que quieres eliminar este médico?
+        `,
+            showCloseButton: true,
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText: `
+          <i class="fa fa-thumbs-up"></i> 
+        `,
+            confirmButtonAriaLabel: "Thumbs up, great!",
+            cancelButtonText: `
+          <i class="fa fa-thumbs-down"></i>
+        `,
+        });
+    }
+});
+
+// Llamar a la función para listar médicos al cargar la página
+$(document).ready(function () {
+    listarMedico();
+});
