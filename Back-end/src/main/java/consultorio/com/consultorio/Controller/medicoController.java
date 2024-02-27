@@ -72,6 +72,12 @@ public class medicoController {
         return new ResponseEntity<>(listaMedico, HttpStatus.OK);
     }
 
+    @GetMapping("/busquedafiltro/{filtro}")
+    public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
+        var listaMedico = medicoService.filtroMedico(filtro);
+        return new ResponseEntity<>(listaMedico, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> findOne(@PathVariable String id) {
         var Medico = medicoService.findOne(id);
@@ -92,6 +98,12 @@ public class medicoController {
         } else {
             return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable String id) {
+        clienteService.delete(id);
+        return new ResponseEntity<>("Registro eliminado", HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

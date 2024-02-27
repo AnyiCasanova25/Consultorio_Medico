@@ -29,6 +29,12 @@ public class medicoService implements ImedicoService {
     }
 
     @Override
+    public List<Medico> filtroMedico(String filtro) {
+        List<Medico> listaMedico =data.filtroMedico(filtro);
+        return listaMedico;
+    }
+
+    @Override
     public Optional<Medico> findOne(String id) {
         Optional<Medico> Medico = data.findById(id);
         return Medico;

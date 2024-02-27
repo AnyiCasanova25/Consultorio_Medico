@@ -11,6 +11,8 @@ public interface ImedicoService {
 
     public List<Medico> findAll();
 
+    public List<Medico> filtroMedico(String filtro);
+
     public Optional<Medico> findOne(String id);
 
     public int delete(String id);
