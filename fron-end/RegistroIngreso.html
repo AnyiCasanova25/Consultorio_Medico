@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,12 +9,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-        <link rel="icon" type="image/png" href="/fron-end/img/logo.png">
+    <link rel="icon" type="image/png" href="/fron-end/img/logo.png">
     <title>Registro Ingreso</title>
     <!-- <link rel="stylesheet" href="/fron-end/css/estilos.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/fron-end/css/estilos.css">
@@ -28,14 +28,27 @@
                 <br>
                 <div class="row botonregistrar">
                     <!-- Tabla para listar Ingresos -->
-                
-                    <h2 class="col-9" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Ingreso
+
+                    <h2 class="col-3" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Ingreso
                     </h2>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        onclick="registrarIngresoBandera=true;" style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Ingreso
-                        </button>
-                        <a class="btn btn-success col-1" href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i> </a>
+                    <!-- Filtro -->
+                    <form action="#" method="post" class="col-6 ">
+                        <div class="input-group mb-3">
+                            <input type="text" id="texto" name="texto" class="form-control" placeholder="Buscar..."
+                                aria-label="Buscar" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-dark col-2 mb-1" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" onclick="registrarIngresoBandera=true;"
+                        style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Ingreso
+                    </button>
+                    <a class="btn btn-success col-1 mb-1" href="/fron-end/Inicio.html"><i
+                            class="fa-sharp fa-solid fa-house"></i> </a>
                     <br>
                     <br>
                     <!-- Modal -->
@@ -44,8 +57,8 @@
                         <div class="modal-dialog fondomodaldialog">
                             <div class="modal-content col">
                                 <div class="  modal-header">
-                                    <button type="button" class="col-1 btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                        id="X"></button>
+                                    <button type="button" class="col-1 btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close" id="X"></button>
                                     <h1 class="modal-title fs-5 col-11" id="exampleModalLabel"
                                         style="font-family:Georgia, 'Times New Roman', Times, serif; text-align: center;">
                                         Registro Ingreso
@@ -60,12 +73,14 @@
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Habitacion</label>
-                                                        <input type="number" id="habitacion" class="form-control" required>
+                                                        <input type="number" id="habitacion" class="form-control"
+                                                            required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Cama</label>
-                                                        <input type="number" id="cama" class="form-control"  onfocusout="validarcama(this)"required>
+                                                        <input type="number" id="cama" class="form-control"
+                                                            onfocusout="validarcama(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
@@ -75,8 +90,7 @@
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">ID Medico</label>
-                                                        <input type="text" id="medico" class="form-control"
-                                                            required>
+                                                        <input type="text" id="medico" class="form-control" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
@@ -86,14 +100,20 @@
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Fecha Salida</label>
-                                                        <input type="date" id="fechaSalida" class="form-control" required>
+                                                        <input type="date" id="fechaSalida" class="form-control"
+                                                            required>
                                                     </div>
-                                                <center>
-                                                    <div class="col col-xl-6 col-12">
-                                                        <label for="">Estado</label>
-                                                        <input type="text" id="Estado" class="form-control" required>
-                                                    </div>
-                                                </center>
+
+                                                    <center>
+                                                        <div class="col col-xl-6 col-12">
+                                                            <label for="Estado" class="text-center">Estado</label>
+                                                            <select id="Estado" class="form-control" required>
+                                                                <option value="H" selected class="text-center">H
+                                                                </option>
+                                                                <option value="D" class="text-center">D</option>
+                                                            </select>
+                                                        </div>
+                                                    </center>
                                                 </form>
                                                 <br>
                                             </div>
@@ -131,4 +151,5 @@
     </div>
     <script src="/fron-end/js/Ingreso.js"></script>
 </body>
+
 </html>
