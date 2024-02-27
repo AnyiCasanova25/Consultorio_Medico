@@ -74,40 +74,44 @@
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Habitacion</label>
                                                         <input type="number" id="habitacion" class="form-control"
-                                                            required>
+                                                        onfocusout="validarHabitacion(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">N° De Cama</label>
                                                         <input type="number" id="cama" class="form-control"
-                                                            onfocusout="validarcama(this)" required>
+                                                            onfocusout="validarCama(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">ID Paciente</label>
-                                                        <input type="text" id="paciente" class="form-control">
+                                                        <input type="text" id="paciente" class="form-control"
+                                                        onfocusout="validarPaciente(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">ID Medico</label>
-                                                        <input type="text" id="medico" class="form-control" required>
+                                                        <input type="text" id="medico" class="form-control"
+                                                        onfocusout="validarMedico(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Fecha Ingreso</label>
-                                                        <input type="date" id="fechaIngreso" class="form-control">
+                                                        <input type="date" id="fechaIngreso" class="form-control"
+                                                        onfocusout="validarFechaIngreso(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Fecha Salida</label>
                                                         <input type="date" id="fechaSalida" class="form-control"
-                                                            required>
+                                                        onfocusout="validarFechaSalida(this)" required>
                                                     </div>
 
                                                     <center>
                                                         <div class="col col-xl-6 col-12">
                                                             <label for="Estado" class="text-center">Estado</label>
-                                                            <select id="Estado" class="form-control" required>
+                                                            <select id="Estado" class="form-control"
+                                                            onfocusout="validarEstado(this)" required>
                                                                 <option value="H" class="text-center">H</option>
                                                                 <option value="D" class="text-center">D</option>
                                                             </select>

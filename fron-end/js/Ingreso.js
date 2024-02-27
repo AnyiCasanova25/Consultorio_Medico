@@ -99,18 +99,180 @@ function registrarIngreso() {
         });
     }
 }
+
+
 // Función para validar campos
-function validarCampos() {
-    var cama = document.getElementById("cama");
-    return validarcama(cama);
+
+// Función habitacion
+
+function validarCamposHabitacion() {
+    var habitacion = document.getElementById("habitacion");
+    return validarHabitacion(habitacion);
 }
 
-// Función para validar el documento de identidad
-function validarcama(cuadroNumero) {
+// Función para validar 
+
+function validarHabitacion(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length > 11) {
+    if (valor.length < 1 || valor.length > 11) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función cama
+
+function validarCamposCama() {
+    var cama = document.getElementById("cama");
+    return validarCama(cama);
+}
+
+// Función para validar 
+function validarCama(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 11) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función paciente
+
+function validarPaciente() {
+    var paciente = document.getElementById("paciente");
+    return validarPaciente(paciente);
+}
+
+// Función para validar 
+function validarPaciente(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función medico
+
+function validarmMedico() {
+    var medico = document.getElementById("medico");
+    return validarMedico(medico);
+}
+
+// Función para validar 
+function validarMedico(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función fechaIngreso
+
+function validarCamposFechaIngreso() {
+    var fechaIngreso = document.getElementById("fechaIngreso");
+    return validarFechaIngreso(fechaIngreso);
+}
+
+// Función para validar 
+function validarFechaIngreso(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función fechaSalida
+
+function validarCamposFechaSalida() {
+    var fechaSalida = document.getElementById("fechaSalida");
+    return validarFechaSalida(fechaSalida);
+}
+
+// Función para validar 
+function validarFechaSalida(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función Estado
+
+function validarCamposEstado() {
+    var Estado = document.getElementById("Estado");
+    return validarEstado(Estado);
+}
+
+// Función para validar 
+function validarEstado(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
         valido = false;
     }
 
@@ -129,9 +291,13 @@ function validarcama(cuadroNumero) {
 function limpiar() {
 
     document.getElementById("habitacion").value = "";
+    document.getElementById("habitacion").className="form-control";
     document.getElementById("cama").value = "";
+    document.getElementById("cama").className="form-control";
     document.getElementById("paciente").value = "";
+    document.getElementById("paciente").className="form-control";
     document.getElementById("medico").value = "";
+    document.getElementById("medico").className="form-control";
     // Obtener la fecha actual
     var today = new Date();
 
@@ -140,15 +306,18 @@ function limpiar() {
 
     // Establecer la fecha actual como el valor predeterminado del campo de entrada de fecha
     document.getElementById("fechaIngreso").value = formattedDate;
+    document.getElementById("fechaIngreso").className="form-control";
     document.getElementById("fechaSalida").value = "";
+    document.getElementById("fechaSalida").className="form-control";
     document.getElementById("Estado").value = "";
+    document.getElementById("Estado").className="form-control";
 
 }
 var idIngreso = "";
 // Asociar eventos de clic a los iconos dentro de la tabla
 $(document).on("click", ".editar", function () {
     idIngreso = $(this).data("id");
-
+    limpiar();
     $.ajax({
         url: url + idIngreso,
         type: "GET",
