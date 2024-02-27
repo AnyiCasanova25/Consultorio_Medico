@@ -91,20 +91,22 @@ public class medicoController {
             if (Medico.getEstado().equals("H")) {
 
                 Medico.setEstado("D");
+                medicoService.save(Medico);
                 return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
             } else
                 Medico.setEstado("H");
+                medicoService.save(Medico);
             return new ResponseEntity<>("Se ha habilitado correctamente", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
         }
     }
 
-    // @DeleteMapping("/eliminar permanente/{id}")
-    // public ResponseEntity<Object> delete(@PathVariable String id) {
-    //     clienteService.delete(id);
-    //     return new ResponseEntity<>("Registro eliminado", HttpStatus.OK);
-    // }
+     @DeleteMapping("/eliminarPermanente/{id}")
+        public ResponseEntity<Object> deleteForever(@PathVariable String id) {
+        medicoService.deleteForever(id);
+        return new ResponseEntity<>("Registro eliminado Permanentemente", HttpStatus.OK);
+     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> update(@PathVariable String id, @ModelAttribute("Medico") Medico MedicoUpdate) {
