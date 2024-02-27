@@ -100,6 +100,13 @@ public class ingresoController {
         }
     }
 
+    @DeleteMapping("/eliminarPermanente/{id}")
+        public ResponseEntity<Object> deleteForever(@PathVariable String id) {
+        ingresoService.deleteForever(id);
+        return new ResponseEntity<>("Registro eliminado Permanentemente", HttpStatus.OK);
+     }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Object> update(@PathVariable String id, @ModelAttribute("Ingreso") Ingreso IngresoUpdate) {
         var Ingreso = ingresoService.findOne(id).get();

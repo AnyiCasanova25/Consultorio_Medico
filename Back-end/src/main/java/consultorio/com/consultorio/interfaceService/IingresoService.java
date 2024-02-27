@@ -16,5 +16,5 @@ public interface IingresoService {
 
     public Optional<Ingreso> findOne(String id);
 
-    public int delete(String id);
+    public int deleteForever(String id);
 }

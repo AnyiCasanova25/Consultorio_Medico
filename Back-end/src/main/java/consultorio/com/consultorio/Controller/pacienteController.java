@@ -31,42 +31,43 @@ public class pacienteController {
         if (listaPaciente.count() != 0) {
             return new ResponseEntity<>("El paciente ya existe", HttpStatus.BAD_REQUEST);
         }
-        //verificar que el campo documento de identidad sea diferente vacio
+        // verificar que el campo documento de identidad sea diferente vacio
         if (Paciente.getDocumentoIdentidad().equals("")) {
 
             return new ResponseEntity<>("El documento de identidad es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (Paciente.getPrimerNombre().equals("")) {
-            
+
             return new ResponseEntity<>("El primer nombre es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
         if (Paciente.getPrimerApellido().equals("")) {
-            
+
             return new ResponseEntity<>("El primer apellido es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (Paciente.getCelular().equals("")) {
-            
+
             return new ResponseEntity<>("El numero de celular es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (Paciente.getCorreo().equals("")) {
-            
+
             return new ResponseEntity<>("La direccion de correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
         if (Paciente.getNombrePersonaContacto().equals("")) {
-            
+
             return new ResponseEntity<>("El Nombre Persona Contacto es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
         if (Paciente.getTelefonoPersonaContacto().equals("")) {
-            
-            return new ResponseEntity<>(" El Telefono Persona Contacto es un campo obligatorio", HttpStatus.BAD_REQUEST);
+
+            return new ResponseEntity<>(" El Telefono Persona Contacto es un campo obligatorio",
+                    HttpStatus.BAD_REQUEST);
         }
 
         // todo bien
-        pacienteService.save(Paciente); 
+        pacienteService.save(Paciente);
         return new ResponseEntity<>(Paciente, HttpStatus.OK);
 
     }
@@ -78,7 +79,7 @@ public class pacienteController {
     }
 
     @GetMapping("/busquedafiltro/{filtro}")
-    public ResponseEntity<Object> findFiltro(@PathVariable String filtro){
+    public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
         var listaPaciente = pacienteService.filtroPaciente(filtro);
         return new ResponseEntity<>(listaPaciente, HttpStatus.OK);
     }
@@ -98,11 +99,17 @@ public class pacienteController {
                 Paciente.setEstado("D");
                 return new ResponseEntity<>("Se ha deshabilitado correctamente el paciente", HttpStatus.OK);
             } else
-            Paciente.setEstado("H");
+                Paciente.setEstado("H");
             return new ResponseEntity<>("Se ha habilitado correctamente el paciente", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @DeleteMapping("/eliminarPermanente/{id}")
+    public ResponseEntity<Object> deleteForever(@PathVariable String id) {
+        pacienteService.deleteForever(id);
+        return new ResponseEntity<>("Registro eliminado Permanentemente", HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
@@ -120,8 +127,6 @@ public class pacienteController {
             Paciente.setNombrePersonaContacto(PacienteUpdate.getNombrePersonaContacto());
             Paciente.setTelefonoPersonaContacto(PacienteUpdate.getTelefonoPersonaContacto());
             Paciente.setEstado(PacienteUpdate.getEstado());
-            
-           
 
             pacienteService.save(Paciente);
             return new ResponseEntity<>(Paciente, HttpStatus.OK);

@@ -15,5 +15,5 @@ public interface IpacienteService {
 
     public Optional<Paciente> findOne(String id);
 
-    public int delete(String id);
+    public int deleteForever(String id);
 }
