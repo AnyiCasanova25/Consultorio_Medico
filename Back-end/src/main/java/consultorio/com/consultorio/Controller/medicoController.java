@@ -100,11 +100,11 @@ public class medicoController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable String id) {
-        clienteService.delete(id);
-        return new ResponseEntity<>("Registro eliminado", HttpStatus.OK);
-    }
+    // @DeleteMapping("/eliminar permanente/{id}")
+    // public ResponseEntity<Object> delete(@PathVariable String id) {
+    //     clienteService.delete(id);
+    //     return new ResponseEntity<>("Registro eliminado", HttpStatus.OK);
+    // }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> update(@PathVariable String id, @ModelAttribute("Medico") Medico MedicoUpdate) {
