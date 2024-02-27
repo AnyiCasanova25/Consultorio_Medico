@@ -16,6 +16,7 @@ public class pacienteService implements IpacienteService {
     @Autowired
     private Ipaciente data;
 
+    @SuppressWarnings("null")
     @Override
     public String save(Paciente Paciente) {
         data.save(Paciente);
@@ -29,11 +30,20 @@ public class pacienteService implements IpacienteService {
     }
 
     @Override
+    public List<Paciente> filtroPaciente(String filtro) {
+        List<Paciente>listaPaciente=data.filtroPaciente(filtro);
+        return listaPaciente;
+    }
+
+
+    @Override
     public Optional<Paciente> findOne(String id) {
+        @SuppressWarnings("null")
         Optional<Paciente> Paciente = data.findById(id);
         return Paciente;
     }
 
+    @SuppressWarnings("null")
     @Override
     public int delete(String id) {
         data.deleteById(id);

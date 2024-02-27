@@ -27,6 +27,11 @@ public class ingresoService implements IingresoService {
         List<Ingreso> listaIngreso = (List<Ingreso>) data.findAll();
         return listaIngreso;
     }
+    @Override
+    public List<Ingreso>  filtroIngreso(String filtro) {
+        List<Ingreso> listaIngreso = data.filtroIngreso(filtro);
+        return listaIngreso;
+    }
 
     @Override
     public Optional<Ingreso> findOne(String id) {
