@@ -77,6 +77,12 @@ public class pacienteController {
         return new ResponseEntity<>(listaPaciente, HttpStatus.OK);
     }
 
+    @GetMapping("/busquedafiltro/{filtro}")
+    public ResponseEntity<Object> findFiltro(@PathVariable String filtro){
+        var listaPaciente = pacienteService.filtroPaciente(filtro);
+        return new ResponseEntity<>(listaPaciente, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> findOne(@PathVariable String id) {
         var Paciente = pacienteService.findOne(id);

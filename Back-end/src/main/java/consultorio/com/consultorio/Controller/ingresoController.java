@@ -72,6 +72,12 @@ public class ingresoController {
         return new ResponseEntity<>(listaIngreso, HttpStatus.OK);
     }
 
+    @GetMapping("/busquedafiltro/{filtro}")
+    public ResponseEntity<Object> findFiltro(@PathVariable String filtro){
+        var listaIngreso = ingresoService.filtroIngreso(filtro);
+        return new ResponseEntity<>(listaIngreso, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> findOne(@PathVariable String id) {
         var Ingreso = ingresoService.findOne(id);
