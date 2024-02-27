@@ -28,14 +28,25 @@
                 <div class="row botonregistrar">
                     <!-- Tabla para listar Pacientes -->
 
-                    <h2 class="col-9" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Paciente
+                    <h2 class="col-3" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Paciente
                     </h2>
+                    <!-- Filtro -->
+                    <form action="#" method="post" class="col-6 ">
+                        <div class="input-group mb-3">
+                            <input type="text" id="texto" name="texto" class="form-control" placeholder="Buscar..."
+                                aria-label="Buscar" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-dark col-2 " data-bs-toggle="modal"
-                        onclick="registrarPacienteBandera=true;" data-bs-target="#exampleModal"
+                    <button type="button" class="btn btn-dark  col-2  mb-1" data-bs-toggle="modal"
+                        onclick="registrarPacienteBandera=true; limpiar();" data-bs-target="#exampleModal"
                         style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Paciente
                     </button>
-                    <a class="btn btn-success col-1" href="/fron-end/Inicio.html"><i
+                    <a class="btn btn-success  col-1  mb-1" href="/fron-end/Inicio.html"><i
                             class="fa-sharp fa-solid fa-house"></i></a>
                     <br>
                     <br>
@@ -99,8 +110,11 @@
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
-                                                        <label for="">Estado</label>
-                                                        <input type="text" id="Estado" class="form-control" required>
+                                                        <label for="Estado">Estado</label>
+                                                        <select id="Estado" class="form-control" required>
+                                                            <option value="H">H</option>
+                                                            <option value="D">D</option>
+                                                        </select>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">

@@ -45,7 +45,7 @@
                     </form>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-dark col-2  mb-1" data-bs-toggle="modal"
-                        onclick="registrarMedicoBandera=true;" data-bs-target="#exampleModal"
+                        onclick="registrarMedicoBandera=true; limpiar();" data-bs-target="#exampleModal"
                         style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Médico
                     </button>
                     <a class="btn btn-success col-1  mb-1" href="/fron-end/Inicio.html"><i
@@ -114,15 +114,10 @@
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="Estado">Estado</label>
                                                         <select id="Estado" class="form-control" required>
-                                                            <option value="H" selected>H</option>
+                                                            <option value="H">H</option>
                                                             <option value="D">D</option>
                                                         </select>
                                                     </div>
-
-                                                    <!-- <div class="col col-xl-6 col-12">
-                                                        <label for="">Estado</label>
-                                                        <input type="text" id="Estado" class="form-control" required>
-                                                    </div> -->
 
                                                 </form>
                                                 <br>

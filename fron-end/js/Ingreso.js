@@ -55,7 +55,7 @@ function registrarIngreso() {
     };
     var metodo = "";
     var urlLocal = "";
-    var textoimprimir ="";
+    var textoimprimir = "";
     if (registrarIngresoBandera == true) {
         metodo = "POST";
         urlLocal = url;
@@ -66,7 +66,7 @@ function registrarIngreso() {
         });
     } else {
         metodo = "PUT";
-        urlLocal = url+ idIngreso;
+        urlLocal = url + idIngreso;
         textoimprimir = Swal.fire({
             title: "LISTO",
             text: "Felicidades, Guardado con éxito",
@@ -110,7 +110,7 @@ function validarcama(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if ( valor.length >11) {
+    if (valor.length > 11) {
         valido = false;
     }
 
@@ -132,7 +132,14 @@ function limpiar() {
     document.getElementById("cama").value = "";
     document.getElementById("paciente").value = "";
     document.getElementById("medico").value = "";
-    document.getElementById("fechaIngreso").value = "";
+    // Obtener la fecha actual
+    var today = new Date();
+
+    // Formatear la fecha como "YYYY-MM-DD"
+    var formattedDate = today.toISOString().substr(0, 10);
+
+    // Establecer la fecha actual como el valor predeterminado del campo de entrada de fecha
+    document.getElementById("fechaIngreso").value = formattedDate;
     document.getElementById("fechaSalida").value = "";
     document.getElementById("Estado").value = "";
 
@@ -178,7 +185,7 @@ $(document).on("click", ".cambiarEstado", function () {
 $(document).on("click", ".eliminar", function () {
     var idMedico = $(this).data("id");
 
-    
+
 
     if (confirm) {
         Swal.fire({
@@ -187,7 +194,7 @@ $(document).on("click", ".eliminar", function () {
             title: "Registro eliminado :)",
             showConfirmButton: false,
             timer: 1500
-          });
+        });
     }
 });
 
@@ -195,12 +202,3 @@ $(document).on("click", ".eliminar", function () {
 $(document).ready(function () {
     listarIngreso();
 });
-
-// Obtener la fecha actual
-var today = new Date();
-
-// Formatear la fecha como "YYYY-MM-DD"
-var formattedDate = today.toISOString().substr(0, 10);
-
-// Establecer la fecha actual como el valor predeterminado del campo de entrada de fecha
-document.getElementById("fechaIngreso").value = formattedDate;
