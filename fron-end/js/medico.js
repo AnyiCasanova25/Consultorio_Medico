@@ -20,14 +20,19 @@ function listarMedico() {
                     <td>${result[i]["primerApellido"]}</td>
                     <td>${result[i]["segundoApellido"]}</td>
                     <td>${result[i]["celular"]}</td>
-                    <td>${result[i]["correo"]}</td>
-                    <td class="text-center align-middle">${result[i]["estado"]}</td>
+                    <td>${result[i]["correo"]}</td>`;
+                if (result[i]["estado"]=="H") {
+                    trRegistro.innerHTML +=` <td class="text-center align-middle">Habilitado</td>`
+                }else{
+                    trRegistro.innerHTML +=` <td class="text-center align-middle">Deshabilitado</td>`
+                }
+                trRegistro.innerHTML +=`
                     <td class="text-center align-middle">
                         <i class="fas fa-edit editar"  onclick="registrarMedicoBandera=false;" data-id="${result[i]["idMedico"]}"></i>
-                        <i class="fas fa-user-slash cambiarEstado" data-id="${result[i]["idMedico"]}"></i>
-                        <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idMedico"]}"></i>
-                    </td>
-                `;
+                        <i class="fas fa-user-slash cambiarEstado" data-id="${result[i]["idMedico"]}" ></i >
+                    <i class="fas fa-trash-alt eliminar" data-id="${result[i][" idMedico"]}" ></i >
+                    </td >
+                    `;
                 cuerpoTabla.appendChild(trRegistro);
             }
         },
