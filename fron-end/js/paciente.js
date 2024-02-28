@@ -415,9 +415,9 @@ $(document).on("click", ".cambiarEstado", function () {
 $(document).on("click", ".eliminar", function () {
     var idPaciente = $(this).data("id");
     $.ajax({
-        url: url + idPaciente,
+        url: url + "eliminarPermanente/" + idPaciente,
         type: "DELETE",
-        success: function (paciente) {
+        success: function (eliminarPermanente) {
             Swal.fire({
                 title: '¿Estás seguro?',
                 text: 'No podrás revertir los cambios',
