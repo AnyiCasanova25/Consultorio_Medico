@@ -137,23 +137,243 @@ function validarDocumentoIdentidad(cuadroNumero) {
     return valido
 }
 
+
+
+
+// Función para validar campos
+// Función Documento Identidad
+function validarCampos() {
+    var documentoIdentidad = document.getElementById("documentoIdentidad");
+    return validarDocumentoIdentidad(documentoIdentidad);
+}
+
+// Función para validar el documento de identidad
+function validarDocumentoIdentidad(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 5 || valor.length > 11) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función primerNombre
+
+function validarCamposNombre() {
+    var primerNombre = document.getElementById("primerNombre");
+    return validarPrimerNombre(primerNombre);
+}
+
+// Función para validar 
+
+function validarPrimerNombre(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 11) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función primerApellido
+
+function validarCamposApellido() {
+    var primerApellido = document.getElementById("primerApellido");
+    return validarprimerApellido(primerApellido);
+}
+
+// Función para validar 
+function validarprimerApellido(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 11) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función Telefono
+
+function validarCamposTelefono() {
+    var Celular = document.getElementById("Celular");
+    return validarCelular(Celular);
+}
+
+// Función para validar 
+function validarCelular(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función Correo
+
+function validarCamposCorreo() {
+    var Correo = document.getElementById("Correo");
+    return validarCorreo(Correo);
+}
+
+// Función para validar 
+function validarCorreo(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función Estado
+
+function validarCamposEstado() {
+    var Estado = document.getElementById("Estado");
+    return validarEstado(Estado);
+}
+
+// Función para validar 
+function validarEstado(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función Nombre familiar
+
+function validarCamposNombreFamiliar() {
+    var nombrePersonaContacto = document.getElementById("nombrePersonaContacto");
+    return validarNombrePersonaContacto(nombrePersonaContacto);
+}
+
+// Función para validar 
+function validarNombrePersonaContacto(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
+
+// Función Telefono familiar
+
+function validarCamposTelefonoFamiliar() {
+    var telefonoPersonaContacto = document.getElementById("telefonoPersonaContacto");
+    return validarTelefonoPersonaContacto(telefonoPersonaContacto);
+}
+
+// Función para validar 
+function validarNombrePersonaContacto(cuadroNumero) {
+    var valor = cuadroNumero.value;
+    var valido = true;
+
+    if (valor.length < 1 || valor.length > 15) {
+        valido = false;
+    }
+
+    if (valido) {
+        cuadroNumero.className = "form-control is-valid";
+    } else {
+        cuadroNumero.className = "form-control is-invalid";
+    }
+
+    return valido;
+}
+
 function limpiar() {
 
     document.getElementById("documentoIdentidad").value = "";
+    document.getElementById("documentoIdentidad").className="form-control";
     document.getElementById("primerNombre").value = "";
+    document.getElementById("primerNombre").className="form-control";
     document.getElementById("segundoNombre").value = "";
     document.getElementById("primerApellido").value = "";
+    document.getElementById("primerApellido").className="form-control";
     document.getElementById("segundoApellido").value = "";
     document.getElementById("Celular").value = "";
+    document.getElementById("Celular").className="form-control";
     document.getElementById("Correo").value = "";
+    document.getElementById("Correo").className="form-control";
     document.getElementById("Estado").value = "";
+    document.getElementById("Estado").className="form-control";
     document.getElementById("nombrePersonaContacto").value = "";
+    document.getElementById("nombrePersonaContacto").className="form-control";
     document.getElementById("telefonoPersonaContacto").value = "";
+    document.getElementById("telefonoPersonaContacto").className="form-control";
 
 }
 var idPaciente = "";
 // Asociar eventos de clic a los iconos dentro de la tabla
 $(document).on("click", ".editar", function () {
+    limpiar();
     idPaciente = $(this).data("id");
 
     $.ajax({

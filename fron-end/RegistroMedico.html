@@ -82,7 +82,7 @@
                                                     <div class="col col-xl-6 col-12 table-hover">
                                                         <label for="">Primer Nombre</label>
                                                         <input type="text" id="primerNombre" class="form-control"
-                                                            required>
+                                                            onfocusout="validarPrimerNombre(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
@@ -93,7 +93,7 @@
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Primer Apellido</label>
                                                         <input type="text" id="primerApellido" class="form-control"
-                                                            required>
+                                                        onfocusout="validarprimerApellido(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
@@ -103,17 +103,20 @@
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Teléfono</label>
-                                                        <input type="text" id="Celular" class="form-control" required>
+                                                        <input type="text" id="Celular" class="form-control"
+                                                        onfocusout="validarCelular(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Correo</label>
-                                                        <input type="text" id="Correo" class="form-control" required>
+                                                        <input type="text" id="Correo" class="form-control"
+                                                        onfocusout="validarCorreo(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="Estado">Estado</label>
-                                                        <select id="Estado" class="form-control" required>
+                                                        <select id="Estado" class="form-control"
+                                                        onfocusout="validarEstado(this)" required>
                                                             <option value="H">H</option>
                                                             <option value="D">D</option>
                                                         </select>
