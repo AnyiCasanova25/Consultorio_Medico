@@ -351,23 +351,23 @@ function validarNombrePersonaContacto(cuadroNumero) {
 function limpiar() {
 
     document.getElementById("documentoIdentidad").value = "";
-    document.getElementById("documentoIdentidad").className="form-control";
+    document.getElementById("documentoIdentidad").className = "form-control";
     document.getElementById("primerNombre").value = "";
-    document.getElementById("primerNombre").className="form-control";
+    document.getElementById("primerNombre").className = "form-control";
     document.getElementById("segundoNombre").value = "";
     document.getElementById("primerApellido").value = "";
-    document.getElementById("primerApellido").className="form-control";
+    document.getElementById("primerApellido").className = "form-control";
     document.getElementById("segundoApellido").value = "";
     document.getElementById("Celular").value = "";
-    document.getElementById("Celular").className="form-control";
+    document.getElementById("Celular").className = "form-control";
     document.getElementById("Correo").value = "";
-    document.getElementById("Correo").className="form-control";
+    document.getElementById("Correo").className = "form-control";
     document.getElementById("Estado").value = "";
-    document.getElementById("Estado").className="form-control";
+    document.getElementById("Estado").className = "form-control";
     document.getElementById("nombrePersonaContacto").value = "";
-    document.getElementById("nombrePersonaContacto").className="form-control";
+    document.getElementById("nombrePersonaContacto").className = "form-control";
     document.getElementById("telefonoPersonaContacto").value = "";
-    document.getElementById("telefonoPersonaContacto").className="form-control";
+    document.getElementById("telefonoPersonaContacto").className = "form-control";
 
 }
 var idPaciente = "";
@@ -413,19 +413,32 @@ $(document).on("click", ".cambiarEstado", function () {
 });
 
 $(document).on("click", ".eliminar", function () {
-    var idMedico = $(this).data("id");
-
-
-
-    if (confirm) {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Registro eliminado :)",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
+    var idPaciente = $(this).data("id");
+    $.ajax({
+        url: url + idPaciente,
+        type: "DELETE",
+        success: function (paciente) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'No podrás revertir los cambios',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Registro eliminado :)",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+        }
+    })
 });
 
 // Llamar a la función para listar médicos al cargar la página
