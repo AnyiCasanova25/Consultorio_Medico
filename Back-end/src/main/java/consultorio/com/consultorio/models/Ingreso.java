@@ -132,4 +132,6 @@ public class Ingreso {
         Estado = estado;
     }
 
+    //MUCHACHOS FALTA EL ALTA HOSPITALARIA
+
 }
