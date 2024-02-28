@@ -18,6 +18,6 @@ public interface Ipaciente extends CrudRepository< Paciente , String>{
     List<Paciente>filtroPaciente(String filtro);
 
     @Query("SELECT m FROM Paciente m WHERE m.Estado LIKE %?1% ")
-    List<Paciente>filtroPaciente(char estado);
+    List<Paciente>filtroPaciente(char estado); 
     
 }
