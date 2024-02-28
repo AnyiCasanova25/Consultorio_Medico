@@ -428,6 +428,7 @@ $(document).on("click", ".eliminar", function () {
                 confirmButtonText: 'Eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    actualizarListaPacientes();
                     Swal.fire({
                         position: "top-center",
                         icon: "success",
@@ -445,3 +446,6 @@ $(document).on("click", ".eliminar", function () {
 $(document).ready(function () {
     listarPaciente();
 });
+function actualizarListaPacientes() {
+    listarPaciente();
+}
