@@ -257,7 +257,7 @@ function validarCorreo(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 15) {
+    if (valor.length < 1 || valor.length > 150) {
         valido = false;
     }
 
@@ -424,8 +424,6 @@ $(document).on("click", ".eliminar", function () {
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
                     actualizarListaPacientes();
