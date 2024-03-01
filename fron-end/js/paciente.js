@@ -36,7 +36,7 @@ function listarPaciente() {
                 <td class="text-center align-middle">
                         <i class="fas fa-edit editar"  onclick="registrarPacienteBandera=false;" data-id="${result[i]["idPaciente"]}"></i>
                         <i class="fas fa-user-slash cambiarEstado" data-id="${result[i]["idPaciente"]}"></i>
-                        <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idPaciente"]}"></i>
+                        <i class="fas fa-trash-alt eliminar"  data-id="${result[i]["idPaciente"]}"></i>
                     </td>
             `;
                 cuerpoTabla.appendChild(trRegistro);
@@ -424,23 +424,13 @@ $(document).on("click", ".eliminar", function () {
         type: "DELETE",
         success: function (eliminarPermanente) {
             Swal.fire({
-                title: '¿Estás seguro?',
-                text: 'No podrás revertir los cambios',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    actualizarListaPacientes();
-                    Swal.fire({
-                        position: "top-center",
-                        icon: "success",
-                        title: "Registro eliminado :)",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
+                position: "top-end",
+                icon: "success",
+                title: "Registro Eliminado",
+                showConfirmButton: false,
+                timer: 1500
             });
+            listarPaciente()
         }
     })
 });

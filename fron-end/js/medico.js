@@ -338,24 +338,28 @@ function cambiarEstado(idMedico) {
 
 
 $(document).on("click", ".eliminar", function () {
-    idMedico = $(this).data("id");
-
-
-
-    if (confirm) {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Registro eliminado :)",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
+    var idMedico = $(this).data("id");
+    $.ajax({
+        url: url + "eliminarPermanente/" + idMedico,
+        type: "DELETE",
+        success: function (eliminarPermanente) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Registro Eliminado",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            listarMedico()
+        }
+    })
 });
 
 // Llamar a la función para listar médicos al cargar la página
 $(document).ready(function () {
     listarMedico();
 });
-
+function actualizarlistarMedico() {
+    listarMedico();
+}
 

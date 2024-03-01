@@ -24,8 +24,13 @@ function listarIngreso() {
                     <td>${result[i]["paciente"]["primerNombre"]}</td>
                     <td>${result[i]["medico"]["primerNombre"]}</td>
                     <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
-                    <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>
-                    <td class="text-center align-middle">${result[i]["estado"]}</td>
+                    <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>`;
+                    if (result[i]["estado"]=="H") {
+                        trRegistro.innerHTML +=` <td class="text-center align-middle">Habilitado</td>`
+                    }else{
+                        trRegistro.innerHTML +=` <td class="text-center align-middle">Deshabilitado</td>`
+                    }
+                    trRegistro.innerHTML +=`
                     <td class="text-center align-middle">
                     <i class="fas fa-edit editar"  onclick="registrarIngresoBandera=false;" data-id="${result[i]["idIngreso"]}"></i>
                     <i class="fas fa-user-slash cambiarEstado" data-id="${result[i]["idIngreso"]}"></i>
@@ -353,21 +358,26 @@ $(document).on("click", ".cambiarEstado", function () {
 
 $(document).on("click", ".eliminar", function () {
     var idMedico = $(this).data("id");
-
-
-
-    if (confirm) {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Registro eliminado :)",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
+    $.ajax({
+        url: url + "eliminarPermanente/" + idMedico,
+        type: "DELETE",
+        success: function (eliminarPermanente) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Registro Eliminado",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            listarIngreso()
+        }
+    })
 });
 
 // Llamar a la función para listar médicos al cargar la página
 $(document).ready(function () {
     listarIngreso();
 });
+function actualizarlistarIngreso() {
+    listarIngreso();
+}
