@@ -24,8 +24,13 @@ function listarPaciente() {
                 <td>${result[i]["primerApellido"]}</td>
                 <td>${result[i]["segundoApellido"]}</td>
                 <td>${result[i]["celular"]}</td>
-                <td>${result[i]["correo"]}</td>
-                <td class="text-center align-middle">${result[i]["estado"]}</td>
+                <td>${result[i]["correo"]}</td>`;
+                if (result[i]["estado"]=="H") {
+                    trRegistro.innerHTML +=` <td class="text-center align-middle">Habilitado</td>`
+                }else{
+                    trRegistro.innerHTML +=` <td class="text-center align-middle">Deshabilitado</td>`
+                }
+                trRegistro.innerHTML +=`
                 <td>${result[i]["nombrePersonaContacto"]}</td>
                 <td>${result[i]["telefonoPersonaContacto"]}</td>
                 <td class="text-center align-middle">
