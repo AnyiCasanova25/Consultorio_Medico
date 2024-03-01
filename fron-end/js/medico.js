@@ -14,13 +14,13 @@ function listarMedico() {
                 var trRegistro = document.createElement("tr");
                 trRegistro.innerHTML = `
                     <td>${result[i]["idMedico"]}</td>
-                    <td>${result[i]["documentoIdentidad"]}</td>
-                    <td>${result[i]["primerNombre"]}</td>
-                    <td>${result[i]["segundoNombre"]}</td>
-                    <td>${result[i]["primerApellido"]}</td>
-                    <td>${result[i]["segundoApellido"]}</td>
-                    <td>${result[i]["celular"]}</td>
-                    <td>${result[i]["correo"]}</td>`;
+                    <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
+                    <td class="text-center align-middle">${result[i]["primerNombre"]}</td>
+                    <td class="text-center align-middle">${result[i]["segundoNombre"]}</td>
+                    <td class="text-center align-middle">${result[i]["primerApellido"]}</td>
+                    <td class="text-center align-middle">${result[i]["segundoApellido"]}</td>
+                    <td class="text-center align-middle">${result[i]["celular"]}</td>
+                    <td class="text-center align-middle">${result[i]["correo"]}</td>`;
                 if (result[i]["estado"]=="H") {
                     trRegistro.innerHTML +=` <td class="text-center align-middle">Habilitado</td>`
                 }else{

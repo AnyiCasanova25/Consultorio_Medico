@@ -21,8 +21,8 @@ function listarIngreso() {
                     <td>${result[i]["idIngreso"]}</td>
                     <td class="text-center align-middle">${result[i]["habitacion"]}</td>
                     <td class="text-center align-middle">${result[i]["cama"]}</td>
-                    <td>${result[i]["paciente"]["primerNombre"]}</td>
-                    <td>${result[i]["medico"]["primerNombre"]}</td>
+                    <td class="text-center align-middle">${result[i]["paciente"]["primerNombre"]}</td>
+                    <td class="text-center align-middle">${result[i]["medico"]["primerNombre"]}</td>
                     <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
                     <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>`;
                     if (result[i]["estado"]=="H") {

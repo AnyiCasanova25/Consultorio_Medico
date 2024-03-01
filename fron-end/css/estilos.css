@@ -32,6 +32,13 @@
     }
 }
 
+#estado {
+    width: 135px;
+}
+#estado option {
+    text-align: center; 
+}
+
 .derecha {
     width: 10%;
 }
