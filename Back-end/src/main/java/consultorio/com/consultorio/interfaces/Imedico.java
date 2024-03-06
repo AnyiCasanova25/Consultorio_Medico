@@ -20,4 +20,8 @@ public interface Imedico extends CrudRepository< Medico , String>{
 
     @Query("SELECT m FROM Medico m WHERE m.Estado LIKE %?1%")
     List<Medico> filtroMedico(char estado);
+
+
 }
+
+
