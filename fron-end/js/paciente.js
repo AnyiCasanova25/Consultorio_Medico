@@ -451,17 +451,21 @@ $(document).on("click", ".editar", function () {
 });
 
 $(document).on("click", ".cambiarEstado", function () {
-    idMedico = $(this).data("id");
-
-    if (confirm) {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Cambio de estado exitoso",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
+    var idPaciente = $(this).data("id");
+    $.ajax({
+        url: url + idPaciente,
+        type: "DELETE",
+        success: function(){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Cambio de estado exitoso",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            listarPaciente(); // Actualiza la lista de pacientes en el front-end
+        }
+    });
 });
 
 $(document).on("click", ".eliminar", function () {

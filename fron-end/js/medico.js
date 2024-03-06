@@ -348,13 +348,12 @@ $(document).on("click", ".editar", function () {
     });
 });
 
-// Función para cambiar el estado del médico
-function cambiarEstado(idMedico) {
+$(document).on("click", ".cambiarEstado", function () {
+    var idMedico = $(this).data("id");
     $.ajax({
         url: url + idMedico,
-        type: "PUT",
-        data: { Estado: "D" }, // Cambia el estado a "Deshabilitado"
-        success: function () {
+        type: "DELETE",
+        success: function(){
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -362,20 +361,10 @@ function cambiarEstado(idMedico) {
                 showConfirmButton: false,
                 timer: 1500
             });
-            listarMedico(); // Vuelve a listar los médicos después de cambiar el estado
-        },
-        error: function (error) {
-            console.error("Error al cambiar el estado del médico: " + error.statusText);
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: "ERROR :(",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            listarMedico(); // Actualiza la lista de pacientes en el front-end
         }
     });
-}
+});
 
 
 
