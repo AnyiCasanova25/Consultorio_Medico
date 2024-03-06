@@ -1,3 +1,42 @@
+function buscarMedicoPorFiltro(filtro) {
+    $.ajax({
+        url: "http://localhost:8080/api/v1/Medico/busquedafiltro/" + filtro,
+        type: "GET",
+        success: function (result) {
+            var cuerpoTabla = document.getElementById("cuerpoTabla");
+            cuerpoTabla.innerHTML = "";
+
+            for (var i = 0; i < result.length; i++) {
+                var trRegistro = document.createElement("tr");
+                trRegistro.innerHTML = `
+                    <td>${result[i]["idMedico"]}</td>
+                    <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
+                    <td class="text-center align-middle">${result[i]["primerNombre"]}</td>
+                    <td class="text-center align-middle">${result[i]["segundoNombre"]}</td>
+                    <td class="text-center align-middle">${result[i]["primerApellido"]}</td>
+                    <td class="text-center align-middle">${result[i]["segundoApellido"]}</td>
+                    <td class="text-center align-middle">${result[i]["celular"]}</td>
+                    <td class="text-center align-middle">${result[i]["correo"]}</td>`;
+                if (result[i]["estado"]=="H") {
+                    trRegistro.innerHTML +=` <td class="text-center align-middle">Habilitado</td>`
+                } else {
+                    trRegistro.innerHTML +=` <td class="text-center align-middle">Deshabilitado</td>`
+                }
+                trRegistro.innerHTML +=`
+                    <td class="text-center align-middle">
+                        <i class="fas fa-edit editar"  onclick="registrarMedicoBandera=false;" data-id="${result[i]["idMedico"]}"></i>
+                        <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idMedico"]})" data-id="${result[i]["idMedico"]}"></i>
+                        <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idMedico"]}"></i>
+                    </td>
+                `;
+                cuerpoTabla.appendChild(trRegistro);
+            }
+        },
+        error: function (error) {
+            alert("Error en la petición: " + error);
+        }
+    });
+}
 // URL de la API
 var url = "http://localhost:8080/api/v1/Medico/";
 
