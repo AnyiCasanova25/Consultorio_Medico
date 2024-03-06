@@ -96,6 +96,7 @@ function registrarIngreso() {
         "fechaSalida": document.getElementById("fechaSalida").value,
         "Estado": document.getElementById("Estado").value,
     };
+
     var metodo = "";
     var urlLocal = "";
     var textoimprimir = "";
@@ -148,7 +149,7 @@ function registrarIngreso() {
 
 // Función habitacion
 
-function validarCamposHabitacion() {
+function validarCampos() {
     var habitacion = document.getElementById("habitacion");
     return validarHabitacion(habitacion);
 }
@@ -211,7 +212,7 @@ function validarPaciente(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 15) {
+    if (valor.length < 1 || valor.length > 155) {
         valido = false;
     }
 
@@ -237,7 +238,7 @@ function validarMedico(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 15) {
+    if (valor.length < 1 || valor.length > 155) {
         valido = false;
     }
 
@@ -327,10 +328,6 @@ function validarEstado(cuadroNumero) {
 
     return valido;
 }
-
-
-
-
 function limpiar() {
 
     document.getElementById("habitacion").value = "";

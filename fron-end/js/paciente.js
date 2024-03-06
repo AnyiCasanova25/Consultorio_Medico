@@ -162,33 +162,6 @@ function registrarPaciente() {
 }
 
 
-function validarCampos() {
-    var documentoIdentidad = document.getElementById("documentoIdentidad");
-    return validarDocumentoIdentidad(documentoIdentidad);
-}
-
-function validarDocumentoIdentidad(cuadroNumero) {
-
-
-
-    var valor = cuadroNumero.value;
-    var valido = true;
-    if (valor.length < 5 || valor.length > 11) {
-        valido = false;
-    }
-
-
-    if (valido) {
-        //cuadro de texto cumple
-        //se modifica la clase del cuadro de texto
-        cuadroNumero.className = "form-control is-valid";
-    } else {
-        //cuadro de texto no cumple
-        cuadroNumero.className = "form-control is-invalid"
-    }
-    return valido
-}
-
 
 
 
