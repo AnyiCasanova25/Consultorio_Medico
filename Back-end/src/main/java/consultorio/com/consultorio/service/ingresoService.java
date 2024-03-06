@@ -1,5 +1,6 @@
 package consultorio.com.consultorio.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,19 @@ public class ingresoService implements IingresoService {
         List<Ingreso> listaIngreso = (List<Ingreso>) data.findAll();
         return listaIngreso;
     }
+
     @Override
     public List<Ingreso>  filtroIngreso(String filtro) {
         List<Ingreso> listaIngreso = data.filtroIngreso(filtro);
         return listaIngreso;
     }
+
+    @Override
+    public List<Ingreso>filtroFechaIngreso(Date fechaIngreso) {
+        List<Ingreso> listaIngreso = data.filtroFechaIngreso(fechaIngreso);
+        return listaIngreso;
+    }
+
 
     @Override
     public Optional<Ingreso> findOne(String id) {

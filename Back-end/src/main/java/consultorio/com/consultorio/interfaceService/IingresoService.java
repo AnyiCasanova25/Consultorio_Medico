@@ -1,5 +1,6 @@
 package consultorio.com.consultorio.interfaceService;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,8 @@ public interface IingresoService {
     public List<Ingreso> findAll();
 
     public List<Ingreso> filtroIngreso (String filtro);
+
+    public List<Ingreso> filtroFechaIngreso (Date fechaIngreso);
 
     public Optional<Ingreso> findOne(String id);
 

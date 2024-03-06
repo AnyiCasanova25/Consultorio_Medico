@@ -1,5 +1,7 @@
 package consultorio.com.consultorio.Controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -75,6 +77,11 @@ public class ingresoController {
     @GetMapping("/busquedafiltro/{filtro}")
     public ResponseEntity<Object> findFiltro(@PathVariable String filtro){
         var listaIngreso = ingresoService.filtroIngreso(filtro);
+        return new ResponseEntity<>(listaIngreso, HttpStatus.OK);
+    }
+    @GetMapping("/busquedafechaIngreso/{fechaIngreso}")
+    public ResponseEntity<Object> findFechaIngreso(@PathVariable Date fechaIngreso){
+        var listaIngreso = ingresoService.filtroFechaIngreso(fechaIngreso);
         return new ResponseEntity<>(listaIngreso, HttpStatus.OK);
     }
 
