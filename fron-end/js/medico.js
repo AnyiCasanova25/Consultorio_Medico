@@ -37,6 +37,9 @@ function buscarMedicoPorFiltro(filtro) {
         }
     });
 }
+
+
+
 // URL de la API
 var url = "http://localhost:8080/api/v1/Medico/";
 
@@ -259,7 +262,7 @@ function validarCorreo(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 15) {
+    if (valor.length < 1 || valor.length > 155) {
         valido = false;
     }
 
