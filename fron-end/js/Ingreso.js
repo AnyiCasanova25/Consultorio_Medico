@@ -381,23 +381,27 @@ $(document).on("click", ".editar", function () {
 });
 
 $(document).on("click", ".cambiarEstado", function () {
-    idMedico = $(this).data("id");
-
-    if (confirm) {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Cambio de estado exitoso",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
+    var idIngreso = $(this).data("id");
+    $.ajax({
+        url: url + idIngreso,
+        type: "DELETE",
+        success: function(){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Cambio de estado exitoso",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            listarIngreso(); // Actualiza la lista de pacientes en el front-end
+        }
+    });
 });
 
 $(document).on("click", ".eliminar", function () {
-    var idMedico = $(this).data("id");
+    var idIngreso = $(this).data("id");
     $.ajax({
-        url: url + "eliminarPermanente/" + idMedico,
+        url: url + "eliminarPermanente/" + idIngreso,
         type: "DELETE",
         success: function (eliminarPermanente) {
             Swal.fire({

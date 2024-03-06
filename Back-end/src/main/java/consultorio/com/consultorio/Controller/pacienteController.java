@@ -101,7 +101,7 @@ public class pacienteController {
                 return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
             } else
                 Paciente.setEstado("H");
-                pacienteService.save(Paciente);
+            pacienteService.save(Paciente);
             return new ResponseEntity<>("Se ha habilitado correctamente", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
