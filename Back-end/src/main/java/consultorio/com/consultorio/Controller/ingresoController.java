@@ -98,9 +98,11 @@ public class ingresoController {
             if (Ingreso.getEstado().equals("H")) {
 
                 Ingreso.setEstado("D");
+                ingresoService.save(Ingreso);
                 return new ResponseEntity<>("Se ha deshabilitado correctamente", HttpStatus.OK);
             } else
             Ingreso.setEstado("H");
+            ingresoService.save(Ingreso);
             return new ResponseEntity<>("Se ha habilitado correctamente", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("No se ha encontrado el registro", HttpStatus.BAD_REQUEST);
