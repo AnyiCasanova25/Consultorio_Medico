@@ -28,27 +28,35 @@
                 <div class="row botonregistrar">
                     <!-- Tabla para listar Pacientes -->
 
-                    <h2 class="col-3" style="font-family: Georgia, 'Times New Roman', Times, serif; ">Listado Paciente
-                    </h2>
-                    <!-- Filtro -->
-                    <form action="#" onsubmit="return buscarPacientePorFiltro(document.getElementById('texto').value)" class="col-6">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <h2 class="col-3 mb-0"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; margin-right: 50%;">
+                                Listado Médicos</h2>
+
+                            <button type="button" class="btn btn-dark  col-2  mb-1" data-bs-toggle="modal"
+                                onclick="registrarPacienteBandera=true; limpiar();" data-bs-target="#exampleModal"
+                                style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Paciente
+                            </button>
+                            <a class="btn btn-success col-1 mb-1" href="/fron-end/Inicio.html"><i
+                                    class="fa-sharp fa-solid fa-house"></i></a>
+                        </div>
                         <div class="input-group mb-3">
-                            <input type="text" id="texto" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="button-addon2">
+                            <input type="text" id="texto" class="form-control" placeholder="Buscar..."
+                                aria-label="Buscar" aria-describedby="button-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"
+                                    onclick="return buscarPacientePorFiltro(document.getElementById('texto').value)">
+                                    <i class="fas fa-search"></i>
+                                </button>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-dark  col-2  mb-1" data-bs-toggle="modal"
-                        onclick="registrarPacienteBandera=true; limpiar();" data-bs-target="#exampleModal"
-                        style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Paciente
-                    </button>
-                    <a class="btn btn-success  col-1  mb-1" href="/fron-end/Inicio.html"><i
-                            class="fa-sharp fa-solid fa-house"></i></a>
                     <br>
-                    <br>
+
+
+
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -90,7 +98,7 @@
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Primer Apellido</label>
                                                         <input type="text" id="primerApellido" class="form-control"
-                                                        onfocusout="validarprimerApellido(this)" required>
+                                                            onfocusout="validarprimerApellido(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
@@ -101,19 +109,19 @@
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Teléfono</label>
                                                         <input type="text" id="Celular" class="form-control"
-                                                        onfocusout="validarCelular(this)" required>
+                                                            onfocusout="validarCelular(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Correo</label>
                                                         <input type="text" id="Correo" class="form-control"
-                                                        onfocusout="validarCorreo(this)" required>
+                                                            onfocusout="validarCorreo(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="Estado">Estado</label>
                                                         <select id="Estado" class="form-control"
-                                                        onfocusout="validarEstado(this)" required>
+                                                            onfocusout="validarEstado(this)" required>
                                                             <option value="H">H</option>
                                                             <option value="D">D</option>
                                                         </select>
@@ -122,15 +130,15 @@
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Nombre del Familiar</label>
                                                         <input type="text" id="nombrePersonaContacto"
-                                                        class="form-control"
-                                                        onfocusout="validarNombrePersonaContacto(this)" required>
+                                                            class="form-control"
+                                                            onfocusout="validarNombrePersonaContacto(this)" required>
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Numero del Familiar</label>
                                                         <input type="text" id="telefonoPersonaContacto"
-                                                        class="form-control"
-                                                        onfocusout="validarEstado(this)" required>
+                                                            class="form-control" onfocusout="validarEstado(this)"
+                                                            required>
                                                     </div>
                                                 </form>
                                                 <br>
