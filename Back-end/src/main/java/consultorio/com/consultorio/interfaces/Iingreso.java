@@ -44,6 +44,8 @@ public interface Iingreso extends CrudRepository<Ingreso, String> {
             "m.primerApellido LIKE %?1%  OR\r\n " + //
             "m.segundoApellido LIKE %?1%  OR\r\n " + //
             "m.documentoIdentidad = ?1 OR\r\n " + //
+            "m.fechaIngreso = ?1 OR\r\n" + //
+            "m.fechaSalida = ?1 OR\r\n" + //
             "i.habitacion = ?1 \r\n "  //
             
     )
