@@ -40,14 +40,20 @@ public interface Iingreso extends CrudRepository<Ingreso, String> {
 
     @Query("SELECT i from Ingreso i JOIN i.Paciente p JOIN i.Medico m  WHERE\r\n" + //
             "p.primerNombre LIKE %?1% OR\r\n " + //
+            "m.primerNombre LIKE %?1% OR\r\n " + //
+            "p.segundoNombre LIKE %?1%  OR\r\n " + //
             "m.segundoNombre LIKE %?1%  OR\r\n " + //
+            "p.primerApellido LIKE %?1%  OR\r\n " + //
             "m.primerApellido LIKE %?1%  OR\r\n " + //
+            "p.segundoApellido LIKE %?1%  OR\r\n " + //
             "m.segundoApellido LIKE %?1%  OR\r\n " + //
-            "m.documentoIdentidad = ?1 OR\r\n " + //
-            "m.fechaIngreso = ?1 OR\r\n" + //
-            "m.fechaSalida = ?1 OR\r\n" + //
-            "i.habitacion = ?1 \r\n "  //
+            "p.documentoIdentidad = ?1 OR\r\n "  +//
+            "m.documentoIdentidad = ?1 \r\n "  //
+         
             
     )
+       // "i.fechaIngreso = ?1 OR\r\n" + //
+            // "i.fechaSalida = ?1 OR\r\n" + //
+            // "i.habitacion = ?1 \r\n "  //
     List<Ingreso> filtroIngreso(String filtro);
 }
