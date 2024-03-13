@@ -48,7 +48,8 @@ public interface Iingreso extends CrudRepository<Ingreso, String> {
             "p.segundoApellido LIKE %?1%  OR\r\n " + //
             "m.segundoApellido LIKE %?1%  OR\r\n " + //
             "p.documentoIdentidad = ?1 OR\r\n "  +//
-            "m.documentoIdentidad = ?1 \r\n "  //
+            "m.documentoIdentidad = ?1 \r\n "  +//
+            "i.habitacion = ?1 \r\n" //
                 
     )
 
@@ -58,8 +59,7 @@ public interface Iingreso extends CrudRepository<Ingreso, String> {
             // "i.habitacion = ?1 \r\n "  //
     List<Ingreso> filtroIngreso(String filtro);
 
-    @Query("SELECT i from Ingreso i JOIN i.Paciente p JOIN i.Medico m WHERE\r\n" + //
-    "i.habitacion = ?1 \r\n" //
-    )
-    List<Ingreso> habitacion(String habitacion );
+
+   
+
 }
