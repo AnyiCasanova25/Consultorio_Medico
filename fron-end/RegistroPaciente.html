@@ -31,13 +31,27 @@
                     <div class="col-12">
                         <div class="d-flex justify-content-end align-items-center">
                             <h2 class="col-3 mb-0"
-                                style="font-family: Georgia, 'Times New Roman', Times, serif; margin-right: 50%;">
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; margin-right: 43%;">
                                 Listado de Pacientes</h2>
 
                             <button type="button" class="btn btn-dark  col-2  mb-1" data-bs-toggle="modal"
                                 onclick="registrarPacienteBandera=true; limpiar();" data-bs-target="#exampleModal"
-                                style=" font-family: Georgia, 'Times New Roman', Times, serif;">Registrar Paciente
+                                style=" font-family: Georgia, 'Times New Roman', Times, serif;">
+                                Registrar Paciente
                             </button>
+
+                            <div class="dropdown mb-1">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Estado
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Todos</a></li>
+                                    <li><a class="dropdown-item" href="#">Habilitado</a></li>
+                                    <li><a class="dropdown-item" href="#">Deshabilitado</a></li>
+                                </ul>
+                            </div>
+                            
                             <a class="btn btn-success col-1 mb-1" href="/fron-end/Inicio.html"><i
                                     class="fa-sharp fa-solid fa-house"></i></a>
                         </div>
