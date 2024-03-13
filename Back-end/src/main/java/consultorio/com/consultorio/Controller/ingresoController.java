@@ -79,11 +79,19 @@ public class ingresoController {
         var listaIngreso = ingresoService.filtroIngreso(filtro);
         return new ResponseEntity<>(listaIngreso, HttpStatus.OK);
     }
+
     @GetMapping("/busquedafechaIngreso/{fechaIngreso}")
     public ResponseEntity<Object> findFechaIngreso(@PathVariable Date fechaIngreso){
         var listaIngreso = ingresoService.filtroFechaIngreso(fechaIngreso);
         return new ResponseEntity<>(listaIngreso, HttpStatus.OK);
     }
+
+    @GetMapping("/busquedaEstado/{estado}")
+    public ResponseEntity<Object> findEstado(@PathVariable char estado){
+        var listaIngreso = ingresoService.filtroEstado(estado);
+        return new ResponseEntity<>(listaIngreso, HttpStatus.OK);
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> findOne(@PathVariable String id) {

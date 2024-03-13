@@ -15,6 +15,9 @@ public interface Iingreso extends CrudRepository<Ingreso, String> {
     @Query ("SELECT m FROM Ingreso m WHERE m.fechaIngreso = ?1 ")
     List<Ingreso>filtroFechaIngreso(Date fechaIngreso); 
 
+    @Query("SELECT m FROM Ingreso m WHERE m.Estado LIKE %?1% ")
+    List<Ingreso> filtroEstado (char estado);
+
     // @Query ("SELECT m,p,i from Ingreso i INNER JOIN Paciente p ON
     // i.idPaciente=p.idPaciente\r\n" + //
     // "INNER JOIN Medico m ON i.idMedico=m.idMedico\r\n" + //
@@ -46,8 +49,8 @@ public interface Iingreso extends CrudRepository<Ingreso, String> {
             "m.segundoApellido LIKE %?1%  OR\r\n " + //
             "p.documentoIdentidad = ?1 OR\r\n "  +//
             "m.documentoIdentidad = ?1 OR\r\n "  +//
-            "i.habitacion = ?1 OR\r\n" +//
-            "i.estado = ?1 \r\n" //
+            "i.habitacion = ?1 \r\n" //
+        //     "i.Estado = ?1 \r\n" //
                 
     )
 

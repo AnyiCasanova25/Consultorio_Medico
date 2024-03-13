@@ -17,6 +17,8 @@ public interface IingresoService {
 
     public List<Ingreso> filtroFechaIngreso (Date fechaIngreso);
 
+    public List<Ingreso> filtroEstado (char estado);
+    
     public Optional<Ingreso> findOne(String id);
 
     public int deleteForever(String id);

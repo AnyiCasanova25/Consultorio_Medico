@@ -41,6 +41,11 @@ public class ingresoService implements IingresoService {
         return listaIngreso;
     }
 
+    @Override
+    public List<Ingreso>filtroEstado(char estado) {
+        List<Ingreso> listaIngreso = data.filtroEstado(estado);
+        return listaIngreso;
+    }
 
     @Override
     public Optional<Ingreso> findOne(String id) {
