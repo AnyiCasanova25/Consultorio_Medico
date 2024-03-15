@@ -31,7 +31,7 @@
                     <div class="col-12">
                         <div class="d-flex justify-content-end align-items-center">
                             <h2 class="col-3 mb-0"
-                                style="font-family: Georgia, 'Times New Roman', Times, serif; margin-right: 43%;">
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; margin-right: 48%;">
                                 Listado de Pacientes</h2>
 
                             <button type="button" class="btn btn-dark  col-2  mb-1" data-bs-toggle="modal"
@@ -40,19 +40,19 @@
                                 Registrar Paciente
                             </button>
 
-                            <div class="dropdown mb-1">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            <div class="dropdown mb-1" style="margin-left: 4px;">
+                                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     Estado
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Todos</a></li>
-                                    <li><a class="dropdown-item" href="#">Habilitado</a></li>
-                                    <li><a class="dropdown-item" href="#">Deshabilitado</a></li>
+                                    <li><a class="dropdown-item" onclick="buscarPacientePorEstado('')">Todos</a></li>
+                                    <li><a class="dropdown-item" onclick="buscarPacientePorEstado('H')">Habilitado</a></li>
+                                    <li><a class="dropdown-item" onclick="buscarPacientePorEstado('D')">Deshabilitado</a></li>
                                 </ul>
                             </div>
                             
-                            <a class="btn btn-success col-1 mb-1" href="/fron-end/Inicio.html"><i
+                            <a class="btn btn-success col-0.5 mb-1" style="margin-left: 4px;" href="/fron-end/Inicio.html"><i
                                     class="fa-sharp fa-solid fa-house"></i></a>
                         </div>
                         <div class="input-group mb-3">

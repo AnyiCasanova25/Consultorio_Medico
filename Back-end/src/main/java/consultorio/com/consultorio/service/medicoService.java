@@ -16,6 +16,7 @@ public class medicoService implements ImedicoService {
     @Autowired
     private Imedico data;
 
+    @SuppressWarnings("null")
     @Override
     public String save(Medico Medico) {
         data.save(Medico);
@@ -35,11 +36,19 @@ public class medicoService implements ImedicoService {
     }
 
     @Override
+    public List<Medico> filtroMedicoEstado(char estado) {
+        List<Medico> listaMedico =data.filtroMedicoEstado(estado);
+        return listaMedico;
+    }
+
+    @Override
     public Optional<Medico> findOne(String id) {
+        @SuppressWarnings("null")
         Optional<Medico> Medico = data.findById(id);
         return Medico;
     }
 
+    @SuppressWarnings("null")
     @Override
     public int deleteForever(String id) {
         data.deleteById(id);

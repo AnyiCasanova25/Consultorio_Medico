@@ -11,7 +11,9 @@ public interface IpacienteService {
 
     public List<Paciente> findAll();
 
-    public List<Paciente> filtroPaciente (String filtro);
+    public List<Paciente> filtroPaciente(String filtro);
+
+    public List<Paciente> filtroPacienteEstado(char estado); 
 
     public Optional<Paciente> findOne(String id);
 

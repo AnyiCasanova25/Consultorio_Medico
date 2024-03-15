@@ -32,8 +32,9 @@
                     <div class="col-12">
                         <div class="d-flex justify-content-end align-items-center">
                             <h2 class="col-3 mb-0"
-                                style="font-family: Georgia, 'Times New Roman', Times, serif; margin-right: 43%;">
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; margin-right: 45%;">
                                 Listado de Ingresos</h2>
+
 
                             <button type="button" class="btn btn-dark col-2 mb-1" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal" onclick="registrarIngresoBandera=true;  limpiar();"
@@ -41,20 +42,25 @@
                                 Registrar Ingreso
                             </button>
 
-                            <div class="dropdown mb-1">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            <div class="dropdown mb-1" style="margin-left: 4px;">
+                                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     Estado
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Todos</a></li>
-                                    <li><a class="dropdown-item" href="#">Habilitado</a></li>
-                                    <li><a class="dropdown-item" href="#">Deshabilitado</a></li>
+                                    <li><a class="dropdown-item" onclick="buscarIngresoPorEstado('')">Todos</a></li>
+                                    <li><a class="dropdown-item" onclick="buscarIngresoPorEstado('H')">Habilitado</a>
+                                    </li>
+                                    <li><a class="dropdown-item" onclick="buscarIngresoPorEstado('D')">Deshabilitado</a>
+                                    </li>
                                 </ul>
                             </div>
 
-                            <a class="btn btn-success col-1 mb-1" href="/fron-end/Inicio.html"><i
-                                    class="fa-sharp fa-solid fa-house"></i></a>
+                            <button type="button" class="btn btn-success col-0.5 mb-1" style="margin-left: 4px;" data-bs-toggle="modal"
+                            data-target="#modalFecha"><i class="fa-solid fa-calendar-week"></i></button>
+
+                            <a class="btn btn-success col-0.5 mb-1" style="margin-left: 4px;"
+                                href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i></a>
                         </div>
                         <div class="input-group mb-3">
                             <input type="text" id="texto" class="form-control" placeholder="Buscar..."
@@ -171,7 +177,35 @@
 
         </div>
     </div>
+
+    <!-- Modal -->
+    
+    <div class="modal fade" id="modalFecha" tabindex="-1" aria-labelledby="modalFechaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFechaLabel">Seleccionar Fecha</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Campo de entrada de fecha -->
+                    <div class="col col-xl-6 col-12">
+                        <label for="fechaDeSalida">Fecha De Ingreso</label>
+                        <input type="date" id="fechaDeSalida" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="/fron-end/js/Ingreso.js"></script>
+
+    
 </body>
 
 </html>

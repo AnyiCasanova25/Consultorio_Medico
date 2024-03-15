@@ -13,6 +13,8 @@ public interface ImedicoService {
 
     public List<Medico> filtroMedico(String filtro);
 
+    public List<Medico> filtroMedicoEstado(char estado);
+
     public Optional<Medico> findOne(String id);
 
     public int deleteForever(String id);

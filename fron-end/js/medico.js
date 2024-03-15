@@ -34,40 +34,80 @@ function buscarMedicoPorFiltro(filtro) {
 }
 
 function buscarMedicoPorEstado(estado) {
-    $.ajax({
-        url: "http://localhost:8080/api/v1/Medico/busquedafiltro"+ estado,
-        type: "GET",
-        data: { estado: estado },
-        success: function (result) {
-            var cuerpoTabla = document.getElementById("cuerpoTabla");
-            cuerpoTabla.innerHTML = "";
+    if (estado === '') {
+        listarMedico(); // Mostrar todos los médicos si estado es vacío
+    } else if (estado === 'H') {
+        // Mostrar solo los médicos habilitados si estado es 'H'
+        $.ajax({
+            url: "http://localhost:8080/api/v1/Medico/busquedafiltroestado/" + estado,
+            type: "GET",
+            success: function (result) {
+                var cuerpoTabla = document.getElementById("cuerpoTabla");
+                cuerpoTabla.innerHTML = "";
 
-            for (var i = 0; i < result.length; i++) {
-                var trRegistro = document.createElement("tr");
-                trRegistro.innerHTML = `
-                    <td>${result[i]["idMedico"]}</td>
-                    <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
-                    <td class="text-center align-middle">${result[i]["primerNombre"]}</td>
-                    <td class="text-center align-middle">${result[i]["segundoNombre"]}</td>
-                    <td class="text-center align-middle">${result[i]["primerApellido"]}</td>
-                    <td class="text-center align-middle">${result[i]["segundoApellido"]}</td>
-                    <td class="text-center align-middle">${result[i]["celular"]}</td>
-                    <td class="text-center align-middle">${result[i]["correo"]}</td>
-                    <td class="text-center align-middle">${result[i]["estado"]}</td>
-                    <td class="text-center align-middle">
-                        <i class="fas fa-edit editar"  onclick="registrarMedicoBandera=false;" data-id="${result[i]["idMedico"]}"></i>
-                        <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idMedico"]})" data-id="${result[i]["idMedico"]}"></i>
-                        <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idMedico"]}"></i>
-                    </td>
-                `;
-                cuerpoTabla.appendChild(trRegistro);
+                for (var i = 0; i < result.length; i++) {
+                    var trRegistro = document.createElement("tr");
+                    trRegistro.innerHTML = `
+                        <td>${result[i]["idMedico"]}</td>
+                        <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["primerNombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["segundoNombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["primerApellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["segundoApellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["celular"]}</td>
+                        <td class="text-center align-middle">${result[i]["correo"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
+                        <td class="text-center align-middle">
+                            <i class="fas fa-edit editar"  onclick="registrarMedicoBandera=false;" data-id="${result[i]["idMedico"]}"></i>
+                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idMedico"]})" data-id="${result[i]["idMedico"]}"></i>
+                            <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idMedico"]}"></i>
+                        </td>
+                    `;
+                    cuerpoTabla.appendChild(trRegistro);
+                }
+            },
+            error: function (error) {
+                alert("Error en la petición: " + error);
             }
-        },
-        error: function (error) {
-            alert("Error en la petición: " + error);
-        }
-    });
+        });
+    } else {
+        // Mostrar solo los médicos deshabilitados si no es vacío ni 'H'
+        $.ajax({
+            url: "http://localhost:8080/api/v1/Medico/busquedafiltroestado/" + estado,
+            type: "GET",
+            success: function (result) {
+                var cuerpoTabla = document.getElementById("cuerpoTabla");
+                cuerpoTabla.innerHTML = "";
+
+                for (var i = 0; i < result.length; i++) {
+                    var trRegistro = document.createElement("tr");
+                    trRegistro.innerHTML = `
+                        <td>${result[i]["idMedico"]}</td>
+                        <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["primerNombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["segundoNombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["primerApellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["segundoApellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["celular"]}</td>
+                        <td class="text-center align-middle">${result[i]["correo"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
+                        <td class="text-center align-middle">
+                            <i class="fas fa-edit editar"  onclick="registrarMedicoBandera=false;" data-id="${result[i]["idMedico"]}"></i>
+                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idMedico"]})" data-id="${result[i]["idMedico"]}"></i>
+                            <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idMedico"]}"></i>
+                        </td>
+                    `;
+                    cuerpoTabla.appendChild(trRegistro);
+                }
+            },
+            error: function (error) {
+                alert("Error en la petición: " + error);
+            }
+        });
+    }
 }
+
+
 
 
 

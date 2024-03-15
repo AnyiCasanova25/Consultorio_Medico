@@ -79,6 +79,12 @@ public class medicoController {
         return new ResponseEntity<>(listaMedico, HttpStatus.OK);
     }
 
+    @GetMapping("/busquedafiltroestado/{estado}")
+    public ResponseEntity<Object> findEstado(@PathVariable char estado) {
+        var listaMedico = medicoService.filtroMedicoEstado(estado);
+        return new ResponseEntity<>(listaMedico, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> findOne(@PathVariable String id) {
         var Medico = medicoService.findOne(id);
