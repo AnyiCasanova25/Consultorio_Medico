@@ -56,10 +56,4 @@ public class pacienteService implements IpacienteService {
         data.deleteById(id);
         return 1;
     }
-
-    @Override
-    public List<Paciente> filtroPacienteEstado(char estado) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filtroPacienteEstado'");
-    }
 }
