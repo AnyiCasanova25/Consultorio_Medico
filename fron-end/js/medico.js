@@ -171,19 +171,10 @@ function registrarMedico() {
     if (registrarMedicoBandera == true) {
         metodo = "POST";
         urlLocal = url;
-        textoimprimir = Swal.fire({
-            title: "LISTO",
-            text: "Felicidades, Registrado con éxito",
-            icon: "success"
-        });
+
     } else {
         metodo = "PUT";
         urlLocal = url + idMedico;
-        textoimprimir = Swal.fire({
-            title: "LISTO",
-            text: "Felicidades, Guardado con éxito",
-            icon: "success"
-        });
     }
     if (validarCampos()) {
         $.ajax({
@@ -194,13 +185,19 @@ function registrarMedico() {
                 textoimprimir;
                 $('#exampleModal').modal('hide');
                 listarMedico();
+
+                textoimprimir = Swal.fire({
+                    title: "LISTO",
+                    text: "Felicidades, Guardado con éxito",
+                    icon: "success"
+                });
             },
             error: function (error) {
-                if (error.responseJSON && error.responseJSON.message) {
-                    alert("Error al guardar: " + error.responseJSON.message);
-                } else {
-                    alert("Error al guardar: " + error.statusText);
-                }
+                textoimprimir = Swal.fire({
+                    title: "ERROR",
+                    text: responseText,
+                    icon: "success"
+                });
             }
         });
     } else {
@@ -374,19 +371,19 @@ function validarEstado(cuadroNumero) {
 // Función para limpiar campos del formulario
 function limpiar() {
     document.getElementById("documentoIdentidad").value = "";
-    document.getElementById("documentoIdentidad").className="form-control";
+    document.getElementById("documentoIdentidad").className = "form-control";
     document.getElementById("primerNombre").value = "";
-    document.getElementById("primerNombre").className="form-control";
+    document.getElementById("primerNombre").className = "form-control";
     document.getElementById("segundoNombre").value = "";
     document.getElementById("primerApellido").value = "";
-    document.getElementById("primerApellido").className="form-control";
+    document.getElementById("primerApellido").className = "form-control";
     document.getElementById("segundoApellido").value = "";
     document.getElementById("Celular").value = "";
-    document.getElementById("Celular").className="form-control";
+    document.getElementById("Celular").className = "form-control";
     document.getElementById("Correo").value = "";
-    document.getElementById("Correo").className="form-control";
+    document.getElementById("Correo").className = "form-control";
     document.getElementById("Estado").value = "";
-    document.getElementById("Estado").className="form-control";
+    document.getElementById("Estado").className = "form-control";
 }
 
 var idMedico = "";
@@ -420,7 +417,7 @@ $(document).on("click", ".cambiarEstado", function () {
     $.ajax({
         url: url + idMedico,
         type: "DELETE",
-        success: function(){
+        success: function () {
             Swal.fire({
                 position: "top-end",
                 icon: "success",

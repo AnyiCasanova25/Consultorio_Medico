@@ -213,13 +213,19 @@ function registrarPaciente() {
                 textoimprimir;
                 $('#exampleModal').modal('hide');
                 listarPaciente();
+           
+                textoimprimir = Swal.fire({
+                    title: "LISTO",
+                    text: "Felicidades, Guardado con éxito",
+                    icon: "success"
+                });
             },
             error: function (error) {
-                if (error.responseJSON && error.responseJSON.message) {
-                    alert("Error al guardar: " + error.responseJSON.message);
-                } else {
-                    alert("Error al guardar: " + error.statusText);
-                }
+                textoimprimir = Swal.fire({
+                    title: "ERROR",
+                    text: responseText,
+                    icon: "success"
+                });
             }
         });
     } else {
