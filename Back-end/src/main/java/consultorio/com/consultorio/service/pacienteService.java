@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import consultorio.com.consultorio.interfaceService.IpacienteService;
 import consultorio.com.consultorio.interfaces.Ipaciente;
-import consultorio.com.consultorio.models.Medico;
 import consultorio.com.consultorio.models.Paciente;
 
 @Service
