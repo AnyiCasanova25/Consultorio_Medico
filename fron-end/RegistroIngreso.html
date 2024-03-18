@@ -19,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/fron-end/css/estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body onload="listarIngreso()">
@@ -56,7 +57,7 @@
                                 </ul>
                             </div>
 
-                            <button type="button" class="btn btn-success col-0.5 mb-1" style="margin-left: 4px;" data-bs-toggle="modal"
+                            <button id="fechaIngreso" type="button" class="btn btn-success col-0.5 mb-1" style="margin-left: 4px;" data-bs-toggle="modal"
                             data-target="#modalFecha"><i class="fa-solid fa-calendar-week"></i></button>
 
                             <a class="btn btn-success col-0.5 mb-1" style="margin-left: 4px;"
@@ -204,6 +205,13 @@
     </div>
 
     <script src="/fron-end/js/Ingreso.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#fechaIngreso", {
+            dateFormat: "Y-m-d", // Formato de fecha
+            // Configuración adicional, si lo necesitas
+        });
+    </script>
 
     
 </body>
