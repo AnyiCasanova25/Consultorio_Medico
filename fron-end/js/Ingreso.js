@@ -166,6 +166,44 @@ function buscarIngresoPorFechaIngreso(fechaIngreso) {
 }
 
 
+// Llamar a las funciones para cargar las listas al cargar la página
+$(document).ready(function() {
+    cargarPacientesActivos();
+    cargarMedicosActivos();
+});
+
+// Función para cargar la lista de pacientes activos
+function cargarPacientesActivos() {
+    $.ajax({
+        url: "http://localhost:8080/api/v1/Paciente/busquedafiltroestado/H",
+        type: "GET",
+        success: function(result) {
+            result.forEach(function(paciente) {
+                $("#paciente").append(`<option value="${paciente.idPaciente}">${paciente.documentoIdentidad}</option>`);
+            });
+        },
+        error: function(error) {
+            console.error("Error al cargar pacientes activos:", error);
+        }
+    });
+}
+
+// Función para cargar la lista de médicos activos
+function cargarMedicosActivos() {
+    $.ajax({
+        url: "http://localhost:8080/api/v1/Medico/busquedafiltroestado/H",
+        type: "GET",
+        success: function(result) {
+            result.forEach(function(medico) {
+                $("#medico").append(`<option value="${medico.idMedico}">${medico.documentoIdentidad}</option>`);
+            });
+        },
+        error: function(error) {
+            console.error("Error al cargar médicos activos:", error);
+        }
+    });
+}
+
 
 
 
@@ -254,8 +292,8 @@ function registrarIngreso() {
             error: function (error) {
                 textoimprimir = Swal.fire({
                     title: "ERROR",
-                    text: responseText,
-                    icon: "success"
+                    text: error.responseText,
+                    icon: "ERROR"
                 });
             }
         });
@@ -277,8 +315,6 @@ function validarCampos() {
     var habitacion = document.getElementById("habitacion");
     return validarHabitacion(habitacion);
 }
-
-// Función para validar 
 
 function validarHabitacion(cuadroNumero) {
     var valor = cuadroNumero.value;
@@ -305,7 +341,6 @@ function validarCamposCama() {
     return validarCama(cama);
 }
 
-// Función para validar 
 function validarCama(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
@@ -331,7 +366,6 @@ function validarPaciente() {
     return validarPaciente(paciente);
 }
 
-// Función para validar 
 function validarPaciente(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
@@ -357,7 +391,6 @@ function validarmMedico() {
     return validarMedico(medico);
 }
 
-// Función para validar 
 function validarMedico(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
@@ -383,7 +416,6 @@ function validarCamposFechaIngreso() {
     return validarFechaIngreso(fechaIngreso);
 }
 
-// Función para validar 
 function validarFechaIngreso(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
@@ -433,9 +465,6 @@ function validarFechaSalida(cuadroNumero) {
     return valido;
 }
 
-
-
-
 // Función Estado
 
 function validarCamposEstado() {
@@ -443,7 +472,6 @@ function validarCamposEstado() {
     return validarEstado(Estado);
 }
 
-// Función para validar 
 function validarEstado(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
@@ -460,6 +488,7 @@ function validarEstado(cuadroNumero) {
 
     return valido;
 }
+
 function limpiar() {
 
     document.getElementById("habitacion").value = "";
@@ -485,6 +514,7 @@ function limpiar() {
     document.getElementById("Estado").className="form-control";
 
 }
+
 var idIngreso = "";
 // Asociar eventos de clic a los iconos dentro de la tabla
 $(document).on("click", ".editar", function () {

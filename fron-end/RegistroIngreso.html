@@ -109,16 +109,19 @@
                                                     </div>
 
                                                     <div class="col col-xl-6 col-12 table-hover">
-                                                        <label for="">ID Paciente</label>
-                                                        <input type="text" id="paciente" class="form-control"
-                                                            onfocusout="validarPaciente(this)" required>
+                                                        <label for="paciente">N° Documento Paciente</label>
+                                                        <select id="paciente" class="form-control" required>
+                                                            <!-- Las opciones de paciente se cargarán dinámicamente aquí -->
+                                                        </select>
                                                     </div>
-
+                                                    
                                                     <div class="col col-xl-6 col-12">
-                                                        <label for="">ID Médicos</label>
-                                                        <input type="text" id="medico" class="form-control"
-                                                            onfocusout="validarMedico(this)" required>
+                                                        <label for="medico">N° Documento Médico</label>
+                                                        <select id="medico" class="form-control" required>
+                                                            <!-- Las opciones de médico se cargarán dinámicamente aquí -->
+                                                        </select>
                                                     </div>
+                                                    
 
                                                     <div class="col col-xl-6 col-12">
                                                         <label for="">Fecha Ingreso</label>
