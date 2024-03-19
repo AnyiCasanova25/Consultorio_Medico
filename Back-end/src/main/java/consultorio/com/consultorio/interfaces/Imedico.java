@@ -25,6 +25,7 @@ public interface Imedico extends CrudRepository< Medico , String>{
      * - celular (obligatorio)
      * - correo electrónico (obligatorio)
      * - Estado (Habilitado, Deshabilitado)
+     * la maldita primaveraaaaa que importa siiiiiii para enamorarme basta una hora pasa ligera la maldita primavera pasa ligera me castiga solo a miiiiiiiiiiiiiiiiiiiiiiiii
      */
     @Query("SELECT m FROM Medico m WHERE m.primerNombre LIKE %?1% OR m.segundoNombre LIKE %?1% OR m.primerApellido LIKE %?1% OR m.segundoApellido LIKE %?1% OR m.documentoIdentidad  LIKE %?1%")
     List<Medico> filtroMedico(String filtro);
