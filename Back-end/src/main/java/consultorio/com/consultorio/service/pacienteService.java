@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import consultorio.com.consultorio.interfaceService.IpacienteService;
 import consultorio.com.consultorio.interfaces.Ipaciente;
-import consultorio.com.consultorio.models.Medico;
 import consultorio.com.consultorio.models.Paciente;
 
 @Service
@@ -55,11 +54,5 @@ public class pacienteService implements IpacienteService {
     public int deleteForever(String id) {
         data.deleteById(id);
         return 1;
-    }
-
-    @Override
-    public List<Paciente> filtroPacienteEstado(char estado) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filtroPacienteEstado'");
     }
 }
