@@ -57,7 +57,7 @@
                                 </ul>
                             </div>
 
-                            <button id="fechaIngresoo" type="button" class="btn btn-success col-0.5 mb-1" style="margin-left: 4px;"><i class="fa-solid fa-calendar-week"></i></button>
+                            <button id="fechaIngresoo" onclick="buscarIngresoPorFechaIngreso()" type="button" class="btn btn-success col-0.5 mb-1" style="margin-left: 4px;"><i class="fa-solid fa-calendar-week"></i></button>
 
                             <a class="btn btn-success col-0.5 mb-1" style="margin-left: 4px;"
                                 href="/fron-end/Inicio.html"><i class="fa-sharp fa-solid fa-house"></i></a>
@@ -174,7 +174,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -209,8 +208,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         flatpickr("#fechaIngresoo", {
-            dateFormat: "Y-m-d", // Formato de fecha
-            // Configuración adicional, si lo necesitas
+            dateFormat: "Y-m-d", 
         });
     </script>
 

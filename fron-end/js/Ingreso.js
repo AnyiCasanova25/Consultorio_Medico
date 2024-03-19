@@ -103,6 +103,72 @@ function buscarIngresoPorEstado(estado) {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    flatpickr("#fechaIngresoo", {
+        dateFormat: "Y-m-d", 
+        onChange: function(selectedDates, dateStr, instance) {
+            // Cuando se seleccione una fecha, llama a buscarIngresoPorFechaIngreso() con la fecha seleccionada
+            buscarIngresoPorFechaIngreso(dateStr);
+        }
+    });
+});
+
+function buscarIngresoPorFechaIngreso(fechaIngreso) {
+    if (!fechaIngreso) {
+        Swal.fire({
+            position: "top",
+            icon: "question", 
+            title: "Seleccionar Fecha de Ingreso",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        
+        return;
+    }
+    
+    // Hacer la solicitud AJAX al backend con la fecha seleccionada
+    $.ajax({
+        url: "http://localhost:8080/api/v1/Ingreso/busquedafechaIngreso/" + fechaIngreso,
+        type: "GET",
+        success: function(result) {
+            // Obtener el elemento donde se mostrarán los registros
+            var cuerpoTabla = document.getElementById("cuerpoTabla");
+            // Limpiar el contenido existente
+            cuerpoTabla.innerHTML = "";
+            // Iterar sobre los registros y agregarlos al HTML
+            result.forEach(function(registro) {
+                var trRegistro = document.createElement("tr");
+                trRegistro.innerHTML = `
+                    <td>${registro.idIngreso}</td>
+                    <td class="text-center align-middle">${registro.habitacion}</td>
+                    <td class="text-center align-middle">${registro.cama}</td>
+                    <td class="text-center align-middle">${registro.paciente.primerNombre}</td>
+                    <td class="text-center align-middle">${registro.medico.primerNombre}</td>
+                    <td class="text-center align-middle">${registro.fechaIngreso}</td>
+                    <td class="text-center align-middle">${registro.fechaSalida}</td>
+                    <td class="text-center align-middle">${registro.estado}</td>
+                    <td class="text-center align-middle">
+                        <i class="fas fa-edit editar"  onclick="registrarIngresoBandera=false;" data-id="${registro.idIngreso}"></i>
+                        <i class="fas fa-user-slash cambiarEstado" data-id="${registro.idIngreso}"></i>
+                        <i class="fas fa-trash-alt eliminar" data-id="${registro.idIngreso}"></i>
+                    </td>
+                `;
+                cuerpoTabla.appendChild(trRegistro);
+            });
+        },
+        error: function(xhr, status, error) {
+            // Mostrar detalles del error en la consola
+            console.error("Error en la petición:", status, error);
+            // Mostrar un mensaje de alerta con detalles del error
+            alert("Error en la petición: " + status + "\n" + error);
+        }
+    });
+}
+
+
+
+
+
 
 //se almacena la url de la API
 var url = "http://localhost:8080/api/v1/Ingreso/";
@@ -443,6 +509,7 @@ $(document).on("click", ".editar", function () {
     });
 });
 
+
 $(document).on("click", ".cambiarEstado", function () {
     var idIngreso = $(this).data("id");
     $.ajax({
@@ -486,3 +553,4 @@ $(document).ready(function () {
 function actualizarlistarIngreso() {
     listarIngreso();
 }
+
