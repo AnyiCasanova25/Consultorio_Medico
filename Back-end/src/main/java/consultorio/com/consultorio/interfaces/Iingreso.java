@@ -59,8 +59,4 @@ public interface Iingreso extends CrudRepository<Ingreso, String> {
             // "i.fechaSalida = ?1 OR\r\n" + //
             // "i.habitacion = ?1 \r\n "  //
     List<Ingreso> filtroIngreso(String filtro);
-
-
-   
-
 }
