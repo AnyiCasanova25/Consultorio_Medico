@@ -26,13 +26,23 @@ public class ingresoController {
     private IingresoService ingresoService;
 
     @PostMapping("/")
-    public ResponseEntity<Object> save(@ModelAttribute("Ingreso") Ingreso Ingreso) {
+    public ResponseEntity<Object> save( @ModelAttribute("Ingreso")  Ingreso Ingreso) {
         var listaIngreso = ingresoService.findAll()
                 .stream().filter(ingreso -> ingreso.getCama()
-                        .equals(Ingreso.getCama()));
+                        .equals(Ingreso.getCama())).
+                        filter(ingreso->ingreso.getHabitacion().equals(Ingreso.getHabitacion())).
+                        filter(ingreso->ingreso.getEstado().equals("H"));
         if (listaIngreso.count() != 0) {
-            return new ResponseEntity<>("El ingreso ya existe", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("La cama está ocupada", HttpStatus.BAD_REQUEST);
         }
+        listaIngreso = ingresoService.findAll()
+                .stream().filter(ingreso -> ingreso.getPaciente()
+                        .equals(Ingreso.getPaciente())).
+                        filter(ingreso->ingreso.getPaciente().equals(Ingreso.getPaciente())).
+                        filter(ingreso->ingreso.getEstado().equals("H"));
+        if (listaIngreso.count() != 0) {
+        return new ResponseEntity<>("El paciente ya se encuentra en el sistema", HttpStatus.BAD_REQUEST);
+        }                
         //verificar que el campo documento de identidad sea diferente vacio
         if (Ingreso.getHabitacion().equals("")) {
 
