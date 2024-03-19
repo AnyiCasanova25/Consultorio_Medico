@@ -55,6 +55,10 @@ public class pacienteController {
 
             return new ResponseEntity<>("La direccion de correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
+        if (Paciente.getEstado().equals("")) {
+
+            return new ResponseEntity<>("El estado es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
         if (Paciente.getNombrePersonaContacto().equals("")) {
 
             return new ResponseEntity<>("El Nombre Persona Contacto es un campo obligatorio", HttpStatus.BAD_REQUEST);

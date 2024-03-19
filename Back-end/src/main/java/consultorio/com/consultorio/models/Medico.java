@@ -19,6 +19,9 @@ public class Medico {
      * - celular (obligatorio)
      * - correo electrónico (obligatorio)
      * - Estado (Habilitado, Deshabilitado)
+     * yo no se mañana, si estaremos juntos si se acaba el mundo yo no se 
+     * si soy para ti si seras para mi si debemos amarnos u odiaarnos
+     * yo no se mañana yo no se mañana quien va estar aquiiiiiiiiiiiiiiiii
      */
 
     @Id

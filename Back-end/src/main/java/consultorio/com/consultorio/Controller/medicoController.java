@@ -60,6 +60,10 @@ public class medicoController {
             
             return new ResponseEntity<>("La direccion de correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
+        if (Medico.getEstado().equals("")) {
+            
+            return new ResponseEntity<>("El estado es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
         
         // todo bien
         medicoService.save(Medico);

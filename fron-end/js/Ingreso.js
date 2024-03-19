@@ -165,19 +165,9 @@ function registrarIngreso() {
     if (registrarIngresoBandera == true) {
         metodo = "POST";
         urlLocal = url;
-        textoimprimir = Swal.fire({
-            title: "LISTO",
-            text: "Felicidades, Registrado con éxito",
-            icon: "success"
-        });
     } else {
         metodo = "PUT";
         urlLocal = url + idIngreso;
-        textoimprimir = Swal.fire({
-            title: "LISTO",
-            text: "Felicidades, Guardado con éxito",
-            icon: "success"
-        });
     }
     if (validarCampos()) {
         $.ajax({
@@ -188,13 +178,19 @@ function registrarIngreso() {
                 textoimprimir;
                 $('#exampleModal').modal('hide');
                 listarIngreso();
+
+                textoimprimir = Swal.fire({
+                    title: "LISTO",
+                    text: "Felicidades, Guardado con éxito",
+                    icon: "success"
+                });
             },
             error: function (error) {
-                if (error.responseJSON && error.responseJSON.message) {
-                    alert("Error al guardar: " + error.responseJSON.message);
-                } else {
-                    alert("Error al guardar: " + error.statusText);
-                }
+                textoimprimir = Swal.fire({
+                    title: "ERROR",
+                    text: responseText,
+                    icon: "success"
+                });
             }
         });
     } else {
@@ -342,17 +338,23 @@ function validarFechaIngreso(cuadroNumero) {
 
 // Función fechaSalida
 
-function validarCamposFechaSalida() {
-    var fechaSalida = document.getElementById("fechaSalida");
-    return validarFechaSalida(fechaSalida);
-}
-
-// Función para validar 
 function validarFechaSalida(cuadroNumero) {
-    var valor = cuadroNumero.value;
+    var fechaSalida = cuadroNumero.value;
+    var fechaIngreso = document.getElementById("fechaIngreso").value;
+
+    // Verificar si la fecha de salida está vacía
+    if (fechaSalida === "") {
+        // Si está vacía, se considera válida
+        cuadroNumero.className = "form-control";
+        return true;
+    }
+
+    var fechaSalidaDate = new Date(fechaSalida);
+    var fechaIngresoDate = new Date(fechaIngreso);
+
     var valido = true;
 
-    if (valor.length < 1 || valor.length > 15) {
+    if (fechaSalidaDate < fechaIngresoDate) {
         valido = false;
     }
 
@@ -364,6 +366,8 @@ function validarFechaSalida(cuadroNumero) {
 
     return valido;
 }
+
+
 
 
 // Función Estado
