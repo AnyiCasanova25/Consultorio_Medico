@@ -17,6 +17,7 @@ public class ingresoService implements IingresoService {
     @Autowired
     private Iingreso data;
 
+    @SuppressWarnings("null")
     @Override
     public String save(Ingreso Ingreso) {
         data.save(Ingreso);
@@ -49,10 +50,12 @@ public class ingresoService implements IingresoService {
 
     @Override
     public Optional<Ingreso> findOne(String id) {
+        @SuppressWarnings("null")
         Optional<Ingreso> Ingreso = data.findById(id);
         return Ingreso;
     }
 
+    @SuppressWarnings("null")
     @Override
     public int deleteForever(String id) {
         data.deleteById(id);
