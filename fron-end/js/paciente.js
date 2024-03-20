@@ -1,16 +1,19 @@
 
 
 function buscarPacientePorFiltro(filtro) {
-    $.ajax({
-        url : "http://localhost:8080/api/v1/Paciente/busquedafiltro/" + filtro,
-        type: "GET",
-        success: function (result) {
-            var cuerpoTabla = document.getElementById("cuerpoTabla");
-            cuerpoTabla.innerHTML = "";
+    if (filtro === '') {
+        listarPaciente(); // Mostrar todos los médicos si estado es vacío
+    } else {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/Paciente/busquedafiltro/" + filtro,
+            type: "GET",
+            success: function (result) {
+                var cuerpoTabla = document.getElementById("cuerpoTabla");
+                cuerpoTabla.innerHTML = "";
 
-            for (var i = 0; i < result.length; i++) {
-                var trRegistro = document.createElement("tr");
-                trRegistro.innerHTML = `
+                for (var i = 0; i < result.length; i++) {
+                    var trRegistro = document.createElement("tr");
+                    trRegistro.innerHTML = `
                 <td>${result[i]["idPaciente"]}</td>
                 <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
                 <td class="text-center align-middle">${result[i]["primerNombre"]}</td>
@@ -28,13 +31,14 @@ function buscarPacientePorFiltro(filtro) {
                         <i class="fas fa-trash-alt eliminar"  data-id="${result[i]["idPaciente"]}"></i>
                 </td>
             `;
-                cuerpoTabla.appendChild(trRegistro);
+                    cuerpoTabla.appendChild(trRegistro);
+                }
+            },
+            error: function (error) {
+                alert("Error en la petición: " + error);
             }
-        },
-        error: function (error) {
-            alert("Error en la petición: " + error);
-        }
-    });
+        });
+    }
 }
 
 function buscarPacientePorEstado(estado) {
@@ -203,39 +207,38 @@ function registrarPaciente() {
         });
     }
 
-
     if (validarCampos()) {
         $.ajax({
             url: urlLocal,
             type: metodo,
             data: forData,
-            success: function (result) {
-                textoimprimir;
-                $('#exampleModal').modal('hide');
-                listarPaciente();
-           
-                textoimprimir = Swal.fire({
-                    title: "LISTO",
-                    text: "Felicidades, Guardado con éxito",
+            success: function (response) {
+                Swal.fire({
+                    title: "Éxito",
+                    text: "El paciente ha sido registrado correctamente",
                     icon: "success"
+                }).then(function () {
+                    // Aquí puedes agregar más acciones después del registro exitoso
+                    $('#exampleModal').modal('hide');
+                    listarPaciente();
                 });
             },
-            error: function (error) {
-                textoimprimir = Swal.fire({
-                    title: "ERROR",
-                    text: responseText,
-                    icon: "success"
+            error: function (xhr, status, error) {
+                Swal.fire({
+                    title: "Error",
+                    text: "¡Llene todos los campos correctamente!",
+                    icon: "error"
                 });
             }
         });
     } else {
         Swal.fire({
-            title: "Error!",
+            title: "Error",
             text: "¡Llene todos los campos correctamente!",
             icon: "error"
         });
     }
-}
+};
 
 
 
@@ -504,7 +507,7 @@ $(document).on("click", ".cambiarEstado", function () {
     $.ajax({
         url: url + idPaciente,
         type: "DELETE",
-        success: function(){
+        success: function () {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -518,22 +521,49 @@ $(document).on("click", ".cambiarEstado", function () {
 });
 
 $(document).on("click", ".eliminar", function () {
+    // Obtener el ID del paciente desde el atributo data del elemento clicado
     var idPaciente = $(this).data("id");
-    $.ajax({
-        url: url + "eliminarPermanente/" + idPaciente,
-        type: "DELETE",
-        success: function (eliminarPermanente) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Registro Eliminado",
-                showConfirmButton: false,
-                timer: 1500
+
+    // Mostrar un cuadro de diálogo para confirmar la eliminación
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Deseas eliminar este paciente?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Eliminar'
+    }).then((result) => {
+        // Si el usuario confirma la eliminación, proceder con la solicitud AJAX
+        if (result.isConfirmed) {
+            $.ajax({
+                url: url + "eliminarPermanente/" + idPaciente,
+                type: "DELETE",
+                success: function () {
+                    // Mostrar un mensaje de éxito
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Registro Eliminado",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    // Actualizar la lista de pacientes después de la eliminación
+                    listarPaciente();
+                },
+                error: function (xhr, status, error) {
+                    // Manejo de errores
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'El registro tiene un ingreso.'
+                    });
+                }
             });
-            listarPaciente()
         }
-    })
+    });
 });
+
 
 // Llamar a la función para listar médicos al cargar la página
 $(document).ready(function () {

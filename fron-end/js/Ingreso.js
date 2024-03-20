@@ -1,18 +1,21 @@
 function buscarIngresoPorFiltro(filtro) {
-    $.ajax({
-        url : "http://localhost:8080/api/v1/Ingreso/busquedafiltro/" + filtro,
-    type: "GET",
-    success: function (result) {
-        var cuerpoTabla = document.getElementById("cuerpoTabla");
-        cuerpoTabla.innerHTML = "";
-        for (var i = 0; i < result.length; i++) {
-            var trRegistro = document.createElement("tr");
-            trRegistro.innerHTML = `
+    if (filtro === '') {
+        listarIngreso(); // Mostrar todos los médicos si estado es vacío
+    } else {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/Ingreso/busquedafiltro/" + filtro,
+            type: "GET",
+            success: function (result) {
+                var cuerpoTabla = document.getElementById("cuerpoTabla");
+                cuerpoTabla.innerHTML = "";
+                for (var i = 0; i < result.length; i++) {
+                    var trRegistro = document.createElement("tr");
+                    trRegistro.innerHTML = `
                 <td>${result[i]["idIngreso"]}</td>
                 <td class="text-center align-middle">${result[i]["habitacion"]}</td>
                 <td class="text-center align-middle">${result[i]["cama"]}</td>
-                <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]}</td>
-                <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]}</td>
+                <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]} ${result[i]["paciente"]["primerNombre"]} ${result[i]["paciente"]["primerApellido"]}</td>
+                <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]} ${result[i]["medico"]["primerNombre"]} ${result[i]["medico"]["primerApellido"]}</td>
                 <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
                 <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>
                 <td class="text-center align-middle">${result[i]["estado"]}</td>
@@ -22,13 +25,14 @@ function buscarIngresoPorFiltro(filtro) {
                 <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idIngreso"]}"></i>
                 </td>
             `;
-            cuerpoTabla.appendChild(trRegistro);
-        }
-    },
-    error: function (error) {
-        alert("Error en la petición: " + error);
+                    cuerpoTabla.appendChild(trRegistro);
+                }
+            },
+            error: function (error) {
+                alert("Error en la petición: " + error);
+            }
+        });
     }
-});
 }
 
 function buscarIngresoPorEstado(estado) {
@@ -49,8 +53,8 @@ function buscarIngresoPorEstado(estado) {
                         <td>${result[i]["idIngreso"]}</td>
                         <td class="text-center align-middle">${result[i]["habitacion"]}</td>
                         <td class="text-center align-middle">${result[i]["cama"]}</td>
-                        <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]}</td>
-                        <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]} ${result[i]["paciente"]["primerNombre"]} ${result[i]["paciente"]["primerApellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]} ${result[i]["medico"]["primerNombre"]} ${result[i]["medico"]["primerApellido"]}</td>
                         <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
                         <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>
                         <td class="text-center align-middle">${result[i]["estado"]}</td>
@@ -82,8 +86,8 @@ function buscarIngresoPorEstado(estado) {
                         <td>${result[i]["idIngreso"]}</td>
                         <td class="text-center align-middle">${result[i]["habitacion"]}</td>
                         <td class="text-center align-middle">${result[i]["cama"]}</td>
-                        <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]}</td>
-                        <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]} ${result[i]["paciente"]["primerNombre"]} ${result[i]["paciente"]["primerApellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]} ${result[i]["medico"]["primerNombre"]} ${result[i]["medico"]["primerApellido"]}</td>
                         <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
                         <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>
                         <td class="text-center align-middle">${result[i]["estado"]}</td>
@@ -103,10 +107,10 @@ function buscarIngresoPorEstado(estado) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     flatpickr("#fechaIngresoo", {
-        dateFormat: "Y-m-d", 
-        onChange: function(selectedDates, dateStr, instance) {
+        dateFormat: "Y-m-d",
+        onChange: function (selectedDates, dateStr, instance) {
             // Cuando se seleccione una fecha, llama a buscarIngresoPorFechaIngreso() con la fecha seleccionada
             buscarIngresoPorFechaIngreso(dateStr);
         }
@@ -117,33 +121,33 @@ function buscarIngresoPorFechaIngreso(fechaIngreso) {
     if (!fechaIngreso) {
         Swal.fire({
             position: "top",
-            icon: "question", 
+            icon: "question",
             title: "Seleccionar Fecha de Ingreso",
             showConfirmButton: false,
             timer: 1500
         });
-        
+
         return;
     }
-    
+
     // Hacer la solicitud AJAX al backend con la fecha seleccionada
     $.ajax({
         url: "http://localhost:8080/api/v1/Ingreso/busquedafechaIngreso/" + fechaIngreso,
         type: "GET",
-        success: function(result) {
+        success: function (result) {
             // Obtener el elemento donde se mostrarán los registros
             var cuerpoTabla = document.getElementById("cuerpoTabla");
             // Limpiar el contenido existente
             cuerpoTabla.innerHTML = "";
             // Iterar sobre los registros y agregarlos al HTML
-            result.forEach(function(registro) {
+            result.forEach(function (registro) {
                 var trRegistro = document.createElement("tr");
                 trRegistro.innerHTML = `
                     <td>${registro.idIngreso}</td>
                     <td class="text-center align-middle">${registro.habitacion}</td>
                     <td class="text-center align-middle">${registro.cama}</td>
-                    <td class="text-center align-middle">${registro.paciente.primerNombre}</td>
-                    <td class="text-center align-middle">${registro.medico.primerNombre}</td>
+                    <td class="text-center align-middle">${registro.paciente.documentoIdentidad}-${registro.paciente.primerNombre} ${registro.paciente.primerApellido}</td>
+                    <td class="text-center align-middle">${registro.medico.documentoIdentidad}-${registro.medico.primerNombre} ${registro.medico.primerApellido}</td>
                     <td class="text-center align-middle">${registro.fechaIngreso}</td>
                     <td class="text-center align-middle">${registro.fechaSalida}</td>
                     <td class="text-center align-middle">${registro.estado}</td>
@@ -156,7 +160,7 @@ function buscarIngresoPorFechaIngreso(fechaIngreso) {
                 cuerpoTabla.appendChild(trRegistro);
             });
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             // Mostrar detalles del error en la consola
             console.error("Error en la petición:", status, error);
             // Mostrar un mensaje de alerta con detalles del error
@@ -167,7 +171,7 @@ function buscarIngresoPorFechaIngreso(fechaIngreso) {
 
 
 // Llamar a las funciones para cargar las listas al cargar la página
-$(document).ready(function() {
+$(document).ready(function () {
     cargarPacientesActivos();
     cargarMedicosActivos();
 });
@@ -177,12 +181,12 @@ function cargarPacientesActivos() {
     $.ajax({
         url: "http://localhost:8080/api/v1/Paciente/busquedafiltroestado/H",
         type: "GET",
-        success: function(result) {
-            result.forEach(function(paciente) {
-                $("#paciente").append(`<option value="${paciente.idPaciente}">${paciente.documentoIdentidad}</option>`);
+        success: function (result) {
+            result.forEach(function (paciente) {
+                $("#paciente").append(`<option value="${paciente.idPaciente}">${paciente.documentoIdentidad}-${paciente.primerNombre} ${paciente.primerApellido}</option>`);
             });
         },
-        error: function(error) {
+        error: function (error) {
             console.error("Error al cargar pacientes activos:", error);
         }
     });
@@ -193,12 +197,12 @@ function cargarMedicosActivos() {
     $.ajax({
         url: "http://localhost:8080/api/v1/Medico/busquedafiltroestado/H",
         type: "GET",
-        success: function(result) {
-            result.forEach(function(medico) {
-                $("#medico").append(`<option value="${medico.idMedico}">${medico.documentoIdentidad}</option>`);
+        success: function (result) {
+            result.forEach(function (medico) {
+                $("#medico").append(`<option value="${medico.idMedico}">${medico.documentoIdentidad}-${medico.primerNombre} ${medico.primerApellido}</option>`);
             });
         },
-        error: function(error) {
+        error: function (error) {
             console.error("Error al cargar médicos activos:", error);
         }
     });
@@ -230,8 +234,8 @@ function listarIngreso() {
                     <td>${result[i]["idIngreso"]}</td>
                     <td class="text-center align-middle">${result[i]["habitacion"]}</td>
                     <td class="text-center align-middle">${result[i]["cama"]}</td>
-                    <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]}</td>
-                    <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]}</td>
+                    <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]} ${result[i]["paciente"]["primerNombre"]} ${result[i]["paciente"]["primerApellido"]}</td>
+                    <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]} ${result[i]["medico"]["primerNombre"]} ${result[i]["medico"]["primerApellido"]}</td>
                     <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
                     <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>
                     <td class="text-center align-middle">${result[i]["estado"]}</td>
@@ -492,13 +496,13 @@ function validarEstado(cuadroNumero) {
 function limpiar() {
 
     document.getElementById("habitacion").value = "";
-    document.getElementById("habitacion").className="form-control";
+    document.getElementById("habitacion").className = "form-control";
     document.getElementById("cama").value = "";
-    document.getElementById("cama").className="form-control";
+    document.getElementById("cama").className = "form-control";
     document.getElementById("paciente").value = "";
-    document.getElementById("paciente").className="form-control";
+    document.getElementById("paciente").className = "form-control";
     document.getElementById("medico").value = "";
-    document.getElementById("medico").className="form-control";
+    document.getElementById("medico").className = "form-control";
     // Obtener la fecha actual
     var today = new Date();
 
@@ -507,11 +511,11 @@ function limpiar() {
 
     // Establecer la fecha actual como el valor predeterminado del campo de entrada de fecha
     document.getElementById("fechaIngreso").value = formattedDate;
-    document.getElementById("fechaIngreso").className="form-control";
+    document.getElementById("fechaIngreso").className = "form-control";
     document.getElementById("fechaSalida").value = "";
-    document.getElementById("fechaSalida").className="form-control";
+    document.getElementById("fechaSalida").className = "form-control";
     document.getElementById("Estado").value = "";
-    document.getElementById("Estado").className="form-control";
+    document.getElementById("Estado").className = "form-control";
 
 }
 
@@ -545,7 +549,7 @@ $(document).on("click", ".cambiarEstado", function () {
     $.ajax({
         url: url + idIngreso,
         type: "DELETE",
-        success: function(){
+        success: function () {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -559,22 +563,41 @@ $(document).on("click", ".cambiarEstado", function () {
 });
 
 $(document).on("click", ".eliminar", function () {
+    // Obtener el ID del ingreso desde el atributo data del elemento clicado
     var idIngreso = $(this).data("id");
-    $.ajax({
-        url: url + "eliminarPermanente/" + idIngreso,
-        type: "DELETE",
-        success: function (eliminarPermanente) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Registro Eliminado",
-                showConfirmButton: false,
-                timer: 1500
+
+    // Mostrar un cuadro de diálogo para confirmar la eliminación
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Deseas eliminar este ingreso?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Eliminar'
+    }).then((result) => {
+        // Si el usuario confirma la eliminación, proceder con la solicitud AJAX
+        if (result.isConfirmed) {
+            $.ajax({
+                url: url + "eliminarPermanente/" + idIngreso,
+                type: "DELETE",
+                success: function () {
+                    // Mostrar un mensaje de éxito
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Registro Eliminado",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    // Actualizar la lista de ingresos después de la eliminación
+                    listarIngreso();
+                },
             });
-            listarIngreso()
         }
-    })
+    });
 });
+
 
 // Llamar a la función para listar médicos al cargar la página
 $(document).ready(function () {

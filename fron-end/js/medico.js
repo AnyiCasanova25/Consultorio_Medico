@@ -1,36 +1,41 @@
 function buscarMedicoPorFiltro(filtro) {
-    $.ajax({
-        url: "http://localhost:8080/api/v1/Medico/busquedafiltro/" + filtro,
-        type: "GET",
-        success: function (result) {
-            var cuerpoTabla = document.getElementById("cuerpoTabla");
-            cuerpoTabla.innerHTML = "";
-
-            for (var i = 0; i < result.length; i++) {
-                var trRegistro = document.createElement("tr");
-                trRegistro.innerHTML = `
-                    <td>${result[i]["idMedico"]}</td>
-                    <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
-                    <td class="text-center align-middle">${result[i]["primerNombre"]}</td>
-                    <td class="text-center align-middle">${result[i]["segundoNombre"]}</td>
-                    <td class="text-center align-middle">${result[i]["primerApellido"]}</td>
-                    <td class="text-center align-middle">${result[i]["segundoApellido"]}</td>
-                    <td class="text-center align-middle">${result[i]["celular"]}</td>
-                    <td class="text-center align-middle">${result[i]["correo"]}</td>
-                    <td class="text-center align-middle">${result[i]["estado"]}</td>
-                    <td class="text-center align-middle">
-                        <i class="fas fa-edit editar"  onclick="registrarMedicoBandera=false;" data-id="${result[i]["idMedico"]}"></i>
-                        <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idMedico"]})" data-id="${result[i]["idMedico"]}"></i>
-                        <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idMedico"]}"></i>
-                    </td>
-                `;
-                cuerpoTabla.appendChild(trRegistro);
+    if (filtro=== '') {
+        listarMedico(); // Mostrar todos los médicos si estado es vacío
+    }else{
+        $.ajax({
+            url: "http://localhost:8080/api/v1/Medico/busquedafiltro/" + filtro,
+            type: "GET",
+            success: function (result) {
+                var cuerpoTabla = document.getElementById("cuerpoTabla");
+                cuerpoTabla.innerHTML = "";
+    
+                for (var i = 0; i < result.length; i++) {
+                    var trRegistro = document.createElement("tr");
+                    trRegistro.innerHTML = `
+                        <td>${result[i]["idMedico"]}</td>
+                        <td class="text-center align-middle">${result[i]["documentoIdentidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["primerNombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["segundoNombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["primerApellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["segundoApellido"]}</td>
+                        <td class="text-center align-middle">${result[i]["celular"]}</td>
+                        <td class="text-center align-middle">${result[i]["correo"]}</td>
+                        <td class="text-center align-middle">${result[i]["estado"]}</td>
+                        <td class="text-center align-middle">
+                            <i class="fas fa-edit editar"  onclick="registrarMedicoBandera=false;" data-id="${result[i]["idMedico"]}"></i>
+                            <i class="fas fa-user-slash cambiarEstado" onclick="cambiarEstado(${result[i]["idMedico"]})" data-id="${result[i]["idMedico"]}"></i>
+                            <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idMedico"]}"></i>
+                        </td>
+                    `;
+                    cuerpoTabla.appendChild(trRegistro);
+                }
+            },
+            error: function (error) {
+                alert("Error en la petición: " + error);
             }
-        },
-        error: function (error) {
-            alert("Error en la petición: " + error);
-        }
-    });
+        });
+    }
+    
 }
 
 function buscarMedicoPorEstado(estado) {
@@ -155,16 +160,40 @@ var registrarMedicoBandera = true;
 
 // Función para registrar un médico
 function registrarMedico() {
+    var documentoIdentidad = document.getElementById("documentoIdentidad");
+    var primerNombre = document.getElementById("primerNombre");
+    var primerApellido = document.getElementById("primerApellido");
+    var Celular = document.getElementById("Celular");
+    var Correo = document.getElementById("Correo");
+    var Estado = document.getElementById("Estado");
+
+    // Verificar si algún campo obligatorio está vacío
+    if (!validarDocumentoIdentidad(documentoIdentidad) ||
+        !validarPrimerNombre(primerNombre) ||
+        !validarprimerApellido(primerApellido) ||
+        !validarCelular(Celular) ||
+        !validarCorreo(Correo) ||
+        !validarEstado(Estado)) {
+        // Mostrar una alerta indicando que todos los campos son obligatorios
+        Swal.fire({
+            title: "Error!",
+            text: "¡Llene todos los campos correctamente!",
+            icon: "error"
+        });
+        return; // Salir de la función si algún campo está vacío
+    }
+
     var forData = {
-        "documentoIdentidad": document.getElementById("documentoIdentidad").value,
-        "primerNombre": document.getElementById("primerNombre").value,
+        "documentoIdentidad": documentoIdentidad.value,
+        "primerNombre": primerNombre.value,
         "segundoNombre": document.getElementById("segundoNombre").value,
-        "primerApellido": document.getElementById("primerApellido").value,
+        "primerApellido": primerApellido.value,
         "segundoApellido": document.getElementById("segundoApellido").value,
-        "Celular": document.getElementById("Celular").value,
-        "Correo": document.getElementById("Correo").value,
-        "Estado": document.getElementById("Estado").value,
+        "Celular": Celular.value,
+        "Correo": Correo.value,
+        "Estado": Estado.value,
     };
+
     var metodo = "";
     var urlLocal = "";
     var textoimprimir = "";
@@ -176,37 +205,30 @@ function registrarMedico() {
         metodo = "PUT";
         urlLocal = url + idMedico;
     }
-    if (validarCampos()) {
-        $.ajax({
-            url: urlLocal,
-            type: metodo,
-            data: forData,
-            success: function (result) {
-                textoimprimir;
-                $('#exampleModal').modal('hide');
-                listarMedico();
 
-                textoimprimir = Swal.fire({
-                    title: "LISTO",
-                    text: "Felicidades, Guardado con éxito",
-                    icon: "success"
-                });
-            },
-            error: function (error) {
-                textoimprimir = Swal.fire({
-                    title: "ERROR",
-                    text: responseText,
-                    icon: "success"
-                });
-            }
-        });
-    } else {
-        Swal.fire({
-            title: "Error!",
-            text: "¡Llene todos los campos correctamente!",
-            icon: "error"
-        });
-    }
+    $.ajax({
+        url: urlLocal,
+        type: metodo,
+        data: forData,
+        success: function (result) {
+            textoimprimir;
+            $('#exampleModal').modal('hide');
+            listarMedico();
+
+            textoimprimir = Swal.fire({
+                title: "LISTO",
+                text: "Felicidades, Guardado con éxito",
+                icon: "success"
+            });
+        },
+        error: function (error) {
+            textoimprimir = Swal.fire({
+                title: "ERROR",
+                text: responseText,
+                icon: "error"
+            });
+        }
+    });
 }
 
 // Función para validar campos
@@ -433,22 +455,51 @@ $(document).on("click", ".cambiarEstado", function () {
 
 
 $(document).on("click", ".eliminar", function () {
+    // Obtener el ID del médico desde el atributo data del elemento clicado
     var idMedico = $(this).data("id");
-    $.ajax({
-        url: url + "eliminarPermanente/" + idMedico,
-        type: "DELETE",
-        success: function (eliminarPermanente) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Registro Eliminado",
-                showConfirmButton: false,
-                timer: 1500
+
+    // Mostrar un cuadro de diálogo para confirmar la eliminación
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Deseas eliminar este medico?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar'
+    }).then((result) => {
+        // Si el usuario confirma la eliminación, proceder con la solicitud AJAX
+        if (result.isConfirmed) {
+            $.ajax({
+                url: url + "eliminarPermanente/" + idMedico,
+                type: "DELETE",
+                success: function (eliminarPermanente) {
+                    // Mostrar un mensaje de éxito
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Registro Eliminado",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    // Actualizar la lista de médicos después de eliminar
+                    listarMedico();
+                },
+                error: function (xhr, status, error) {
+                    // Manejo de errores
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'El registro tiene un ingreso.'
+                    });
+                }
             });
-            listarMedico()
         }
-    })
+    });
 });
+
+
+
 
 // Llamar a la función para listar médicos al cargar la página
 $(document).ready(function () {
