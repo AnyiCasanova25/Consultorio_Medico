@@ -11,8 +11,8 @@ function buscarIngresoPorFiltro(filtro) {
                 <td>${result[i]["idIngreso"]}</td>
                 <td class="text-center align-middle">${result[i]["habitacion"]}</td>
                 <td class="text-center align-middle">${result[i]["cama"]}</td>
-                <td class="text-center align-middle">${result[i]["paciente"]["primerNombre"]}</td>
-                <td class="text-center align-middle">${result[i]["medico"]["primerNombre"]}</td>
+                <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]}</td>
+                <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]}</td>
                 <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
                 <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>
                 <td class="text-center align-middle">${result[i]["estado"]}</td>
@@ -49,8 +49,8 @@ function buscarIngresoPorEstado(estado) {
                         <td>${result[i]["idIngreso"]}</td>
                         <td class="text-center align-middle">${result[i]["habitacion"]}</td>
                         <td class="text-center align-middle">${result[i]["cama"]}</td>
-                        <td class="text-center align-middle">${result[i]["paciente"]["primerNombre"]}</td>
-                        <td class="text-center align-middle">${result[i]["medico"]["primerNombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]}</td>
                         <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
                         <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>
                         <td class="text-center align-middle">${result[i]["estado"]}</td>
@@ -82,8 +82,8 @@ function buscarIngresoPorEstado(estado) {
                         <td>${result[i]["idIngreso"]}</td>
                         <td class="text-center align-middle">${result[i]["habitacion"]}</td>
                         <td class="text-center align-middle">${result[i]["cama"]}</td>
-                        <td class="text-center align-middle">${result[i]["paciente"]["primerNombre"]}</td>
-                        <td class="text-center align-middle">${result[i]["medico"]["primerNombre"]}</td>
+                        <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]}</td>
+                        <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]}</td>
                         <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
                         <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>
                         <td class="text-center align-middle">${result[i]["estado"]}</td>
@@ -230,8 +230,8 @@ function listarIngreso() {
                     <td>${result[i]["idIngreso"]}</td>
                     <td class="text-center align-middle">${result[i]["habitacion"]}</td>
                     <td class="text-center align-middle">${result[i]["cama"]}</td>
-                    <td class="text-center align-middle">${result[i]["paciente"]["primerNombre"]}</td>
-                    <td class="text-center align-middle">${result[i]["medico"]["primerNombre"]}</td>
+                    <td class="text-center align-middle">${result[i]["paciente"]["documentoIdentidad"]}</td>
+                    <td class="text-center align-middle">${result[i]["medico"]["documentoIdentidad"]}</td>
                     <td class="text-center align-middle">${result[i]["fechaIngreso"]}</td>
                     <td class="text-center align-middle">${result[i]["fechaSalida"]}</td>
                     <td class="text-center align-middle">${result[i]["estado"]}</td>
