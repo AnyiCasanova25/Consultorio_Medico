@@ -200,36 +200,53 @@ function registrarMedico() {
     if (registrarMedicoBandera == true) {
         metodo = "POST";
         urlLocal = url;
-
+        textoimprimir = Swal.fire({
+            title: "LISTO",
+            text: "Felicidades, Registrado con éxito",
+            icon: "success"
+        });
     } else {
         metodo = "PUT";
         urlLocal = url + idMedico;
+        textoimprimir = Swal.fire({
+            title: "LISTO",
+            text: "Felicidades, Guardado con éxito",
+            icon: "success"
+        });
     }
 
-    $.ajax({
-        url: urlLocal,
-        type: metodo,
-        data: forData,
-        success: function (result) {
-            textoimprimir;
-            $('#exampleModal').modal('hide');
-            listarMedico();
-
-            textoimprimir = Swal.fire({
-                title: "LISTO",
-                text: "Felicidades, Guardado con éxito",
-                icon: "success"
-            });
-        },
-        error: function (error) {
-            textoimprimir = Swal.fire({
-                title: "ERROR",
-                text: responseText,
-                icon: "error"
-            });
-        }
-    });
-}
+    if (validarCampos()) {
+        $.ajax({
+            url: urlLocal,
+            type: metodo,
+            data: forData,
+            success: function (response) {
+                Swal.fire({
+                    title: "Éxito",
+                    text: "Felicidades, Guardado con éxito",
+                    icon: "success"
+                }).then(function () {
+                    // Aquí puedes agregar más acciones después del registro exitoso
+                    $('#exampleModal').modal('hide');
+                    listarMedico();
+                });
+            },
+            error: function (xhr, status, error) {
+                Swal.fire({
+                    title: "Error",
+                    text: "¡El número de documento ya se encuentra registrado!",
+                    icon: "error"
+                });
+            }
+        });
+    } else {
+        Swal.fire({
+            title: "Error",
+            text: "¡Llene todos los campos correctamente!",
+            icon: "error"
+        });
+    }
+};
 
 // Función para validar campos
 // Función Documento Identidad

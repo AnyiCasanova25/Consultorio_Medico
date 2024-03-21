@@ -215,7 +215,7 @@ function registrarPaciente() {
             success: function (response) {
                 Swal.fire({
                     title: "Éxito",
-                    text: "El paciente ha sido registrado correctamente",
+                    text: "Felicidades, Guardado con éxito",
                     icon: "success"
                 }).then(function () {
                     // Aquí puedes agregar más acciones después del registro exitoso
@@ -226,7 +226,7 @@ function registrarPaciente() {
             error: function (xhr, status, error) {
                 Swal.fire({
                     title: "Error",
-                    text: "¡Llene todos los campos correctamente!",
+                    text: "¡El número de documento ya se encuentra registrado!",
                     icon: "error"
                 });
             }
