@@ -173,6 +173,29 @@ var registrarPacienteBandera = true;
 
 //se almacenan los valores
 function registrarPaciente() {
+    var documentoIdentidad = document.getElementById("documentoIdentidad");
+    var primerNombre = document.getElementById("primerNombre");
+    var primerApellido = document.getElementById("primerApellido");
+    var Celular = document.getElementById("Celular");
+    var Correo = document.getElementById("Correo");
+    var Estado = document.getElementById("Estado");
+
+     // Verificar si algún campo obligatorio está vacío
+     if (!validarDocumentoIdentidad(documentoIdentidad) ||
+     !validarPrimerNombre(primerNombre) ||
+     !validarprimerApellido(primerApellido) ||
+     !validarCelular(Celular) ||
+     !validarCorreo(Correo) ||
+     !validarEstado(Estado)) {
+     // Mostrar una alerta indicando que todos los campos son obligatorios
+     Swal.fire({
+         title: "¡Error!",
+         text: "¡Llene todos los campos correctamente!",
+         icon: "error"
+     });
+     return; // Salir de la función si algún campo está vacío
+ }
+
     let forData = {
         "documentoIdentidad": document.getElementById("documentoIdentidad").value,
         "primerNombre": document.getElementById("primerNombre").value,
@@ -497,7 +520,7 @@ $(document).on("click", ".editar", function () {
             $('#exampleModal').modal('show');
         },
         error: function (error) {
-            alert("Error al obtener los datos del médico: " + error.statusText);
+            alert("Error al obtener los datos del paciente: " + error.statusText);
         }
     });
 });

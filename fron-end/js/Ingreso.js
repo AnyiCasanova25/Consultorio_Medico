@@ -257,6 +257,25 @@ function listarIngreso() {
 var registrarIngresoBandera = true;
 //se almacenan los valores
 function registrarIngreso() {
+    var habitacion = document.getElementById("habitacion");
+    var cama = document.getElementById("cama");
+    var fechaSalida = document.getElementById("fechaSalida");
+    var Estado = document.getElementById("Estado");
+
+    // Verificar si algún campo obligatorio está vacío
+    if (!validarHabitacion(habitacion) ||
+        !validarCama(cama) ||
+        !validarFechaSalida(fechaSalida) ||
+        !validarEstado(Estado)) {
+        // Mostrar una alerta indicando que todos los campos son obligatorios
+        Swal.fire({
+            title: "¡Error!",
+            text: "¡Llene todos los campos correctamente!",
+            icon: "error"
+        });
+        return; // Salir de la función si algún campo está vacío
+    }
+
     let forData = {
         "habitacion": document.getElementById("habitacion").value,
         "cama": document.getElementById("cama").value,

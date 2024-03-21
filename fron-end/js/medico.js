@@ -176,7 +176,7 @@ function registrarMedico() {
         !validarEstado(Estado)) {
         // Mostrar una alerta indicando que todos los campos son obligatorios
         Swal.fire({
-            title: "Error!",
+            title: "¡Error!",
             text: "¡Llene todos los campos correctamente!",
             icon: "error"
         });
