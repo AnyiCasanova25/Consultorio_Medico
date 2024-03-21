@@ -281,8 +281,6 @@ function validarCamposNombre() {
     return validarPrimerNombre(primerNombre);
 }
 
-// Función para validar 
-
 function validarPrimerNombre(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
@@ -300,7 +298,6 @@ function validarPrimerNombre(cuadroNumero) {
     return valido;
 }
 
-
 // Función primerApellido
 
 function validarCamposApellido() {
@@ -308,7 +305,6 @@ function validarCamposApellido() {
     return validarprimerApellido(primerApellido);
 }
 
-// Función para validar 
 function validarprimerApellido(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
@@ -326,7 +322,6 @@ function validarprimerApellido(cuadroNumero) {
     return valido;
 }
 
-
 // Función Telefono
 
 function validarCamposTelefono() {
@@ -334,7 +329,6 @@ function validarCamposTelefono() {
     return validarCelular(Celular);
 }
 
-// Función para validar 
 function validarCelular(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
@@ -352,7 +346,6 @@ function validarCelular(cuadroNumero) {
     return valido;
 }
 
-
 // Función Correo
 
 function validarCamposCorreo() {
@@ -360,7 +353,6 @@ function validarCamposCorreo() {
     return validarCorreo(Correo);
 }
 
-// Función para validar 
 function validarCorreo(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
@@ -378,7 +370,6 @@ function validarCorreo(cuadroNumero) {
     return valido;
 }
 
-
 // Función Estado
 
 function validarCamposEstado() {
@@ -386,7 +377,6 @@ function validarCamposEstado() {
     return validarEstado(Estado);
 }
 
-// Función para validar 
 function validarEstado(cuadroNumero) {
     var valor = cuadroNumero.value;
     var valido = true;
