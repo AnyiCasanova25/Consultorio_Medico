@@ -527,7 +527,7 @@ $(document).on("click", ".eliminar", function () {
     // Mostrar un cuadro de diálogo para confirmar la eliminación
     Swal.fire({
         title: '¿Estás seguro?',
-        text: "Deseas eliminar este paciente?",
+        text: "¿Deseas eliminar este paciente?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',

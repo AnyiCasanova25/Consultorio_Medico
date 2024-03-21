@@ -303,7 +303,7 @@ function registrarIngreso() {
         });
     } else {
         Swal.fire({
-            title: "Error!",
+            title: "¡Error!",
             text: "¡Llene todos los campos correctamente!",
             icon: "error"
         });
@@ -569,7 +569,7 @@ $(document).on("click", ".eliminar", function () {
     // Mostrar un cuadro de diálogo para confirmar la eliminación
     Swal.fire({
         title: '¿Estás seguro?',
-        text: "Deseas eliminar este ingreso?",
+        text: "¿Deseas eliminar este ingreso?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
